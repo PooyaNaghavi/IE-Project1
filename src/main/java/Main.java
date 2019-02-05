@@ -16,17 +16,20 @@ public class Main {
 
             switch (commandName) {
                 case "register":
-                    Utility.register(commandData);
+                    Auction.register(commandData);
                     break;
                 case "addProject":
-                    Utility.addProject(commandData);
+                    Auction.addProject(commandData);
                     break;
                 case "bid":
-                    Utility.bid(commandData);
+                    Auction.bid(commandData);
                     break;
                 case "auction":
-                    Utility.auction(commandData);
+                    Auction.auction(commandData);
                     isFinished = true;
+                    break;
+                default:
+                    System.out.println("unknown command");
                     break;
             }
         }
