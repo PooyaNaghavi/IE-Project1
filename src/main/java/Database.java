@@ -20,7 +20,7 @@ public class Database {
 
     public static Project findProjectByName(String name) throws NotFoundException{
         for(Project project : projects){
-            if(project.getName().equals(project.getName())){
+            if(project.getName().equals(name)){
                 return project;
             }
         }
@@ -41,19 +41,25 @@ public class Database {
 
     public static void insertProject(String title, ArrayList<Skill> projectSkills, int budget) {
         Project project = new Project(title, projectSkills, budget);
-        Database.getProjects().add(project);
+        projects.add(project);
     }
 
     public static void insertBid(User user, Project project, int bidAmount) throws BadConditionException {
         Bid bid = new Bid(user, project, bidAmount);
         if(!Auction.checkBidCondtions(bid, project))
             throw new BadConditionException("bid conditions not satistfied");
-        Database.getBids().add(bid);
+        for(Bid prev_bid : bids) {
+            if(prev_bid.getUser().getName().equals(bid.getUser().getName()) && prev_bid.getProject().getName().equals(bid.getProject().getName())) {
+                prev_bid.setAmount(bid.getAmount());
+                return;
+            }
+        }
+        bids.add(bid);
     }
 
     public static void insertUser(String username, ArrayList<Skill> userSkills) {
         User user = new User(username, userSkills);
-        Database.getUsers().add(user);
+        users.add(user);
     }
 
     public static ArrayList<User> findBiddingUserInProject(Project project){
@@ -68,7 +74,7 @@ public class Database {
     }
 
     public static Bid findUserOffer(User biddingUser, Project project) throws NotFoundException {
-        for(Bid bid : Database.getBids()){
+        for(Bid bid : bids){
             if(bid.getUser().getName().equals(biddingUser.getName()) && bid.getProject().getName().equals(project.getName())){
                 return bid;
             }

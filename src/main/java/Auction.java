@@ -17,6 +17,9 @@ public class Auction {
     }
 
     private static User findAuctionWinner(ArrayList<User> biddingUsers, Project project) throws NotFoundException{
+        if(biddingUsers.size() == 0){
+            throw new NotFoundException("No bid for this project");
+        }
         int max = calcBidValue(biddingUsers.get(0), project);
         User maxUser = biddingUsers.get(0);
         for(User biddingUser : biddingUsers){

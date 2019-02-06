@@ -23,14 +23,14 @@ public class Bid {
     }
 
     public void setUser(User user) {
-        user = user;
+        this.user = user;
     }
 
     public void setProject(Project project) {
-        project = project;
+        this.project = project;
     }
 
     public void setAmount(int amount) {
-        amount = amount;
+        this.amount = amount;
     }
 }

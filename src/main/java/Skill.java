@@ -17,10 +17,10 @@ public class Skill {
     }
 
     public void setName(String name) {
-        name = name;
+        this.name = name;
     }
 
     public void setPoint(int point) {
-        point = point;
+        this.point = point;
     }
 }

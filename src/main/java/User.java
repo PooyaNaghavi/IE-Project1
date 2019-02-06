@@ -1,3 +1,5 @@
+import Exceptions.NotFoundException;
+
 import java.util.ArrayList;
 
 public class User {
@@ -10,13 +12,13 @@ public class User {
         this.skills = skills;
     }
 
-    public int getSkillPoint(Skill skill) {
+    public int getSkillPoint(Skill skill) throws NotFoundException {
         for(Skill user_skill : skills){
             if(user_skill.getName().equals(skill.getName())){
-                return skill.getPoint();
+                return user_skill.getPoint();
             }
         }
-        return 0;
+        throw new NotFoundException("Skill not found");
     }
 
     public String getName() {
@@ -24,7 +26,7 @@ public class User {
     }
 
     public void setName(String name) {
-        name = name;
+        this.name = name;
     }
 
     public ArrayList<Skill> getSkills() {
@@ -32,6 +34,6 @@ public class User {
     }
 
     public void setSkills(ArrayList<Skill> skills) {
-        skills = skills;
+        this.skills = skills;
     }
 }

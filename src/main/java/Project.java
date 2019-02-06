@@ -25,14 +25,14 @@ public class Project {
     }
 
     public void setName(String name) {
-        name = name;
+        this.name = name;
     }
 
     public void setSkills(ArrayList<Skill> skills) {
-        skills = skills;
+        this.skills = skills;
     }
 
     public void setBudget(int budget) {
-        budget = budget;
+        this.budget = budget;
     }
 }
