@@ -31,8 +31,9 @@ public class Main {
         skills.add(new Skill("Javascript", 4));
         skills.add(new Skill("C++", 2));
         skills.add(new Skill("Java", 3));
-        myUsers.add(new User("1", "علی", "شریف‌زاده", "برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلیکارا بکنه ولی پول نداشت", skills));
+        myUsers.add(new User("1", "علی", "شریف‌زاده", "برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت", skills));
     }
+
     public static void main(String[] args) throws IOException {
 
         addAuthenticatedUser();
@@ -119,22 +120,24 @@ public class Main {
                 System.out.println(id);
                 for (Project p : myObjects) {
                     if(p.getId().equals(id)){
-                        res += "id:" + id + "\n";
-                        res += "title:" + p.getTitle() + "\n";
-                        res += "description:" + p.getDescription() + "\n";
-                        res += "Url:" + p.getImageUrl() + "\n";
-                        res += "budget:" + Integer.toString(p.getBudget()) + "\n";
+
+                        res += "<!DOCTYPE html> \n <html lang=\"en\"> \n <head> \n <meta charset=\"UTF-8\"> \n <title>Project</title> \n </head> \n <body> \n <ul> \n ";
+                        res += "<li>id: " + p.getId() + "</li> \n  <li>title: " +  p.getTitle() + "</li> \n <li>description: " + p.getDescription() + "</li> \n <li> imageUrl: ";
+                        res += "<img src= " + p.getImageUrl() + " style=\"width: 50px; height: 50px;\"> </li> \n<li>budget: " + Integer.toString(p.getBudget()) + "</li> \n </ul> \n </body>\n </html>\n";
+
                     }
                 }
             }else {
+                res += "<!DOCTYPE html> \n <html lang=\"en\"> \n <head> \n <meta charset=\"UTF-8\"> \n <title>Projects</title> \n" +
+                        "<style> \n table { \n text-align: center; \n margin: 0 auto; \n } \n td { \n min-width: 300px; \n margin: 5px 5px 5px 5px; \n" +
+                        "text-align: center; \n } \n </style> \n </head> \n <body> \n <ul> \n";
+                res += "<body> \n <table> \n <tr> \n <th>id</th> \n <th>title</th> \n <th>budget</th> \n </tr> \n ";
                 for (Project p : myObjects) {
-                    res += p.getId();
-                    res += "\t";
-                    res += p.getTitle();
-                    res += "\t";
-                    res += p.getBudget();
-                    res += "\n";
+                    res += "<tr> \n <td>" + p.getId() + "</td> \n <td>";
+                    res += p.getTitle() + "</td> \n <td>" + p.getBudget() + "</tr>\n";
                 }
+                res += "</table> \n </body> \n </html>";
+
             }
             byte [] response = res.getBytes();
             t.sendResponseHeaders(200, response.length);
@@ -148,18 +151,17 @@ public class Main {
         public void handle(HttpExchange t) throws IOException {
             String uri = t.getRequestURI().toString();
             String res = "";
+
             if(uri.indexOf("/") != uri.lastIndexOf("/"))
             {
                 String id = uri.substring(uri.lastIndexOf("/") + 1);
                 System.out.println(id);
                 for (User u : myUsers) {
                     if(u.getId().equals(id)){
-                        System.out.println("sss");
-                        res += "id:" + u.getId() + "\n";
-                        res += "firstname:" + u.getFirstName() + "\n";
-                        res += "lastname:" + u.getLastName() + "\n";
-                        res += "jobTitle:" + u.getJobTitle() + "\n";
-                        res += "bio:" + u.getBio() + "\n";
+
+                        res += "<!DOCTYPE html> \n <html lang=\"en\"> \n <head> \n <meta charset=\"UTF-8\"> \n <title>User</title> \n </head> \n <body> \n <ul> \n ";
+                        res += "<li>id: " + u.getId() + "</li> \n  <li>first name: " +  u.getFirstName() + "</li> \n <li>last name: " + u.getLastName() + "</li> \n <li> jobTitle: ";
+                        res += u.getJobTitle() + "</li> \n<li>bio: " + u.getBio() + "</li> \n </ul> \n </body>\n </html>\n";
                     }
                 }
             }
