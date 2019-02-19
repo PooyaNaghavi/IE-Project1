@@ -8,19 +8,38 @@ public class Database {
     private static ArrayList<User> users = new ArrayList<>();
     private static ArrayList<Project> projects = new ArrayList<>();
     private static ArrayList<Bid> bids = new ArrayList<>();
+    private static ArrayList<Bid> skills = new ArrayList<>();
 
-    public static User findUserByName(String name) throws NotFoundException{
+    public static void addAuthenticatedUser(){
+        ArrayList<Skill> skills = new ArrayList<>();
+        skills.add(new Skill("HTML", 5));
+        skills.add(new Skill("Javascript", 4));
+        skills.add(new Skill("C++", 2));
+        skills.add(new Skill("Java", 3));
+        users.add(new User("1", "علی", "شریف‌زاده", "برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت", skills));
+    }
+
+    public static User findUserById(String id) throws NotFoundException{
         for(User user : users){
-            if(user.getFirstName().equals(name)){
+            if(user.getId().equals(id)){
                 return user;
             }
         }
         throw new NotFoundException("User not found!!!");
     }
 
-    public static Project findProjectByName(String name) throws NotFoundException{
+    public static Project findProjectByTitle(String title) throws NotFoundException{
         for(Project project : projects){
-            if(project.getTitle().equals(name)){
+            if(project.getTitle().equals(title)){
+                return project;
+            }
+        }
+        throw new NotFoundException("Project not found!!!");
+    }
+
+    public static Project findProjectById(String id) throws NotFoundException{
+        for(Project project : projects){
+            if(project.getId().equals(id)){
                 return project;
             }
         }
@@ -80,5 +99,37 @@ public class Database {
             }
         }
         throw new NotFoundException("Bid not found");
+    }
+
+    public static void insertMultipleUsers(ArrayList<User> users) {
+        Database.users.addAll(users);
+    }
+
+    public static void insertMultipleProjects(ArrayList<Project> projects) {
+        Database.projects.addAll(projects);
+    }
+
+    public static void insetMultipleBids(ArrayList<Bid> bids) {
+        Database.bids.addAll(bids);
+    }
+
+    public static void setUsers(ArrayList<User> users) {
+        Database.users = users;
+    }
+
+    public static void setProjects(ArrayList<Project> projects) {
+        Database.projects = projects;
+    }
+
+    public static void setBids(ArrayList<Bid> bids) {
+        Database.bids = bids;
+    }
+
+    public static ArrayList<Bid> getSkills() {
+        return skills;
+    }
+
+    public static void setSkills(ArrayList<Bid> skills) {
+        Database.skills = skills;
     }
 }
