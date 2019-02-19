@@ -6,53 +6,28 @@ import java.util.ArrayList;
 
 public class Auction {
 
-    private static int calcBidValue(User biddingUser, Project project) throws NotFoundException {
-        int sum = 0;
-        for(Skill skill : project.getSkills()){
-            sum += Math.pow((biddingUser.getSkillPoint(skill) - skill.getPoint()), 2) * 10000;
-        }
-        sum += project.getBudget() - Database.findUserOffer(biddingUser, project).getAmount();
-        return sum;
-
-    }
-
-    private static User findAuctionWinner(ArrayList<User> biddingUsers, Project project) throws NotFoundException{
-        if(biddingUsers.size() == 0){
-            throw new NotFoundException("No bid for this project");
-        }
-        int max = calcBidValue(biddingUsers.get(0), project);
-        User maxUser = biddingUsers.get(0);
-        for(User biddingUser : biddingUsers){
-            if(calcBidValue(biddingUser, project) > max){
-                max = calcBidValue(biddingUser, project);
-                maxUser = biddingUser;
-            }
-        }
-        return maxUser;
-    }
-
     public static boolean checkBidCondtions(Bid bid, Project project){
         if(bid.getAmount() > project.getBudget())
             return false;
 
-        ArrayList<Skill> projectSkills = project.getSkills();
-        ArrayList<Skill> userSkills = bid.getUser().getSkills();
-        boolean find = false;
-
-        for(Skill projectSkill : projectSkills){
-            find = false;
-            for(Skill userSkill : userSkills){
-                if(projectSkill.getName().equals(userSkill.getName()))
-                {
-                    find = true;
-                    if(projectSkill.getPoint() > userSkill.getPoint()){
-                        return false;
-                    }
-                }
-            }
-            if(find == false)
-                return false;
-        }
+//        ArrayList<Skill> projectSkills = project.getSkills();
+//        ArrayList<Skill> userSkills = bid.getUser().getSkills();
+//        boolean find = false;
+//
+//        for(Skill projectSkill : projectSkills){
+//            find = false;
+//            for(Skill userSkill : userSkills){
+//                if(projectSkill.getName().equals(userSkill.getName()))
+//                {
+//                    find = true;
+//                    if(projectSkill.getPoint() > userSkill.getPoint()){
+//                        return false;
+//                    }
+//                }
+//            }
+//            if(find == false)
+//                return false;
+//        }
         return true;
     }
 
@@ -123,8 +98,8 @@ public class Auction {
         try {
             Project project = Database.findProjectByName(projectTitle);
             ArrayList<User> biddingUsers = Database.findBiddingUserInProject(project);
-            User winner = findAuctionWinner(biddingUsers, project);
-            System.out.println("winner : " + winner.getName());
+            User winner = project.findAuctionWinner(biddingUsers, project);
+            System.out.println("winner : " + winner.getFirstName());
         }
         catch(NotFoundException e){
             System.out.println(e.getMessage());

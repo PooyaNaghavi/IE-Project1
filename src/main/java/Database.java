@@ -11,7 +11,7 @@ public class Database {
 
     public static User findUserByName(String name) throws NotFoundException{
         for(User user : users){
-            if(user.getName().equals(name)){
+            if(user.getFirstName().equals(name)){
                 return user;
             }
         }
@@ -20,7 +20,7 @@ public class Database {
 
     public static Project findProjectByName(String name) throws NotFoundException{
         for(Project project : projects){
-            if(project.getName().equals(name)){
+            if(project.getTitle().equals(name)){
                 return project;
             }
         }
@@ -49,7 +49,7 @@ public class Database {
         if(!Auction.checkBidCondtions(bid, project))
             throw new BadConditionException("bid conditions not satistfied");
         for(Bid prev_bid : bids) {
-            if(prev_bid.getUser().getName().equals(bid.getUser().getName()) && prev_bid.getProject().getName().equals(bid.getProject().getName())) {
+            if(prev_bid.getUser().getFirstName().equals(bid.getUser().getFirstName()) && prev_bid.getProject().getTitle().equals(bid.getProject().getTitle())) {
                 prev_bid.setAmount(bid.getAmount());
                 return;
             }
@@ -66,7 +66,7 @@ public class Database {
         ArrayList<User> biddingUser = new ArrayList<>();
 
         for(Bid bid : bids){
-            if(bid.getProject().getName().equals(project.getName())){
+            if(bid.getProject().getTitle().equals(project.getTitle())){
                 biddingUser.add(bid.getUser());
             }
         }
@@ -75,7 +75,7 @@ public class Database {
 
     public static Bid findUserOffer(User biddingUser, Project project) throws NotFoundException {
         for(Bid bid : bids){
-            if(bid.getUser().getName().equals(biddingUser.getName()) && bid.getProject().getName().equals(project.getName())){
+            if(bid.getUser().getFirstName().equals(biddingUser.getFirstName()) && bid.getProject().getTitle().equals(project.getTitle())){
                 return bid;
             }
         }
