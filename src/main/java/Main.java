@@ -25,6 +25,14 @@ public class Main {
     private static ArrayList<User> myUsers = new ArrayList<>();
 
 
+    public static void sendOutput(HttpExchange t, String result) throws IOException {
+        byte [] response = result.getBytes();
+        t.sendResponseHeaders(200, response.length);
+        OutputStream os = t.getResponseBody();
+        os.write(response);
+        os.close();
+    }
+
     public static void addAuthenticatedUser(){
         ArrayList<Skill> skills = new ArrayList<>();
         skills.add(new Skill("HTML", 5));
@@ -34,11 +42,8 @@ public class Main {
         myUsers.add(new User("1", "علی", "شریف‌زاده", "برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت", skills));
     }
 
-    public static void main(String[] args) throws IOException {
-
-        addAuthenticatedUser();
-
-        URL url = new URL("http://142.93.134.194:8000/joboonja/project");
+    public static String getResponse(String urlAddress) throws IOException {
+        URL url = new URL(urlAddress);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 
@@ -51,65 +56,39 @@ public class Main {
         }
         System.out.println(content);
         in.close();
+        return content;
+    }
 
-        ObjectMapper mapper = new ObjectMapper();
-        myObjects = mapper.readValue(content, new TypeReference<ArrayList<Project>>(){});
-        for(Project p : myObjects)
-            System.out.println(p.getBudget());
-
-
-        URL url1 = new URL("http://142.93.134.194:8000/joboonja/skill");
-        HttpURLConnection con1 = (HttpURLConnection) url1.openConnection();
-        con1.setRequestMethod("GET");
-
-        BufferedReader in1 = new BufferedReader(
-                new InputStreamReader(con1.getInputStream()));
-        String inputLine1;
-        String content1 = "";
-        while ((inputLine1 = in1.readLine()) != null) {
-            content1 += inputLine1;
-        }
-        System.out.println(content1);
-        in1.close();
-
-
-        List<Skill> mySkills = mapper.readValue(content1, new TypeReference<List<Skill>>(){});
-        for(Skill s : mySkills)
-            System.out.println(s.getName());
-
-
-
+    public static void startServer() throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
         server.createContext("/project", new MyHandler());
         server.createContext("/user", new MyHandler1());
         server.setExecutor(null); // creates a default executor
         server.start();
-
-//        while (!isFinished) {
-//            Pair<String, String> commandParts = getCommandParts();
-//            String commandName = commandParts.getKey();
-//            String commandData = commandParts.getValue();
-//
-//            switch (commandName) {
-//                case "register":
-//                    Auction.register(commandData);
-//                    break;
-//                case "addProject":
-//                    Auction.addProject(commandData);
-//                    break;
-//                case "bid":
-//                    Auction.bid(commandData);
-//                    break;
-//                case "auction":
-//                    Auction.auction(commandData);
-//                    isFinished = true;
-//                    break;
-//                default:
-//                    System.out.println("unknown command");
-//                    break;
-//            }
-//        }
     }
+
+    public static void main(String[] args) throws IOException {
+
+        addAuthenticatedUser();
+
+        String projectContent = getResponse("http://142.93.134.194:8000/joboonja/project");
+
+        ObjectMapper mapper = new ObjectMapper();
+        myObjects = mapper.readValue(projectContent, new TypeReference<ArrayList<Project>>(){});
+        for(Project p : myObjects)
+            System.out.println(p.getBudget());
+
+        String skillContent = getResponse("http://142.93.134.194:8000/joboonja/skill");
+
+        ArrayList<Skill> mySkills = mapper.readValue(skillContent, new TypeReference<ArrayList<Skill>>(){});
+        for(Skill s : mySkills)
+            System.out.println(s.getName());
+
+        startServer();
+
+    }
+
+
     static class MyHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
             String uri = t.getRequestURI().toString();
@@ -139,11 +118,8 @@ public class Main {
                 res += "</table> \n </body> \n </html>";
 
             }
-            byte [] response = res.getBytes();
-            t.sendResponseHeaders(200, response.length);
-            OutputStream os = t.getResponseBody();
-            os.write(response);
-            os.close();
+
+            sendOutput(t, res);
         }
     }
 
@@ -165,16 +141,8 @@ public class Main {
                     }
                 }
             }
-            byte [] response = res.getBytes();
-            t.sendResponseHeaders(200, response.length);
-            OutputStream os = t.getResponseBody();
-            os.write(response);
-            os.close();
+            sendOutput(t, res);
         }
     }
-    private static Pair<String, String> getCommandParts() {
-        String command = scanner.nextLine();
-        int spaceIndex = command.indexOf(" ");
-        return new Pair<>(command.substring(0, spaceIndex), command.substring(spaceIndex));
-    }
+
 }
