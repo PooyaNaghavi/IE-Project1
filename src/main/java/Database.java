@@ -63,18 +63,18 @@ public class Database {
         projects.add(project);
     }
 
-    public static void insertBid(User user, Project project, int bidAmount) throws BadConditionException {
-        Bid bid = new Bid(user, project, bidAmount);
-        if(!Auction.checkBidCondtions(bid, project))
-            throw new BadConditionException("bid conditions not satistfied");
-        for(Bid prev_bid : bids) {
-            if(prev_bid.getUser().getFirstName().equals(bid.getUser().getFirstName()) && prev_bid.getProject().getTitle().equals(bid.getProject().getTitle())) {
-                prev_bid.setAmount(bid.getAmount());
-                return;
-            }
-        }
-        bids.add(bid);
-    }
+//    public static void insertBid(User user, Project project, int bidAmount) throws BadConditionException {
+//        Bid bid = new Bid(user, project, bidAmount);
+//        if(!Auction.checkBidCondtions(bid, project))
+//            throw new BadConditionException("bid conditions not satistfied");
+//        for(Bid prev_bid : bids) {
+//            if(prev_bid.getUser().getFirstName().equals(bid.getUser().getFirstName()) && prev_bid.getProject().getTitle().equals(bid.getProject().getTitle())) {
+//                prev_bid.setAmount(bid.getAmount());
+//                return;
+//            }
+//        }
+//        bids.add(bid);
+//    }
 
     public static void insertUser(String username, ArrayList<Skill> userSkills) {
         User user = new User(username, userSkills);

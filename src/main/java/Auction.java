@@ -6,30 +6,30 @@ import java.util.ArrayList;
 
 public class Auction {
 
-    public static boolean checkBidCondtions(Bid bid, Project project){
-        if(bid.getAmount() > project.getBudget())
-            return false;
-
-        ArrayList<Skill> projectSkills = project.getSkills();
-        ArrayList<Skill> userSkills = bid.getUser().getSkills();
-        boolean find = false;
-
-        for(Skill projectSkill : projectSkills){
-            find = false;
-            for(Skill userSkill : userSkills){
-                if(projectSkill.getName().equals(userSkill.getName()))
-                {
-                    find = true;
-                    if(projectSkill.getPoint() > userSkill.getPoint()){
-                        return false;
-                    }
-                }
-            }
-            if(find == false)
-                return false;
-        }
-        return true;
-    }
+//    public static boolean checkBidCondtions(Bid bid, Project project){
+//        if(bid.getAmount() > project.getBudget())
+//            return false;
+//
+//        ArrayList<Skill> projectSkills = project.getSkills();
+//        ArrayList<Skill> userSkills = bid.getUser().getSkills();
+//        boolean find = false;
+//
+//        for(Skill projectSkill : projectSkills){
+//            find = false;
+//            for(Skill userSkill : userSkills){
+//                if(projectSkill.getName().equals(userSkill.getName()))
+//                {
+//                    find = true;
+//                    if(projectSkill.getPoint() > userSkill.getPoint()){
+//                        return false;
+//                    }
+//                }
+//            }
+//            if(find == false)
+//                return false;
+//        }
+//        return true;
+//    }
 
     private static ArrayList<Skill> getSkillsFromJSON(JSONArray inputJSON) {
         ArrayList<Skill> skills = new ArrayList<>();

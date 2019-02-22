@@ -9,9 +9,9 @@ import java.util.StringTokenizer;
 public abstract class Handler implements HttpHandler {
     protected static View view = new View();
 
-    public static void sendOutput(HttpExchange t, String result) throws IOException {
+    public static void sendOutput(HttpExchange t, int statusCode, String result) throws IOException {
         byte [] response = result.getBytes();
-        t.sendResponseHeaders(200, response.length);
+        t.sendResponseHeaders(statusCode, response.length);
         OutputStream os = t.getResponseBody();
         os.write(response);
         os.close();
@@ -21,31 +21,52 @@ public abstract class Handler implements HttpHandler {
 class projectHandler extends Handler{
     public void handle(HttpExchange t) throws IOException {
         String viewResult;
+        int statusCode = 200;
         String uri = t.getRequestURI().toString();
         StringTokenizer st = new StringTokenizer(uri, "/");
         String context = st.nextToken();
-
-        if(st.hasMoreTokens())
-        {
-            String id = st.nextToken();
-            try {
-                Project foundProject = Database.findProjectById(id);
+        String id = st.nextToken();
+        User authenticatedUser = null;
+        try {
+            authenticatedUser = Database.findUserById("1");
+        } catch (NotFoundException e) {
+            view.showError(e.getMessage());
+        }
+        try {
+            Project foundProject = Database.findProjectById(id);
+            if(authenticatedUser.checkSkillCondtions(foundProject)){
                 viewResult = view.projectView(foundProject);
-            } catch (NotFoundException e) {
-                viewResult = view.showError(e.getMessage());
+            } else {
+                viewResult = view.showError("Forbidden!");
+                statusCode = 403;
             }
-
+        } catch (NotFoundException e) {
+            viewResult = view.showError(e.getMessage());
         }
-        else {
-            viewResult = view.projectsListView(Database.getProjects());
-        }
-        sendOutput(t, viewResult);
+        sendOutput(t, statusCode, viewResult);
     }
 }
+
+class projectListHandler extends Handler{
+    public void handle(HttpExchange t) throws IOException {
+        String viewResult;
+        int statusCode = 200;
+        User authenticatedUser = null;
+        try {
+            authenticatedUser = Database.findUserById("1");
+        } catch (NotFoundException e) {
+            view.showError(e.getMessage());
+        }
+        viewResult = view.projectsListView(authenticatedUser.getQualifiedProjects());
+        sendOutput(t, statusCode, viewResult);
+    }
+}
+
 
 class userHandler extends Handler {
     public void handle(HttpExchange t) throws IOException {
         String viewResult;
+        int statusCode = 200;
         String uri = t.getRequestURI().toString();
         StringTokenizer st = new StringTokenizer(uri, "/");
         String context = st.nextToken();
@@ -57,11 +78,13 @@ class userHandler extends Handler {
                 User foundUser = Database.findUserById(id);
                 viewResult = view.usersListView(foundUser);
             } catch (NotFoundException e) {
+                statusCode = 404;
                 viewResult = view.showError(e.getMessage());
             }
         }else{
-            viewResult = view.showError("404 Not Found");
+            statusCode = 404;
+            viewResult = view.showError("Page Not Found");
         }
-        sendOutput(t, viewResult);
+        sendOutput(t, statusCode, viewResult);
     }
 }

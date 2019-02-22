@@ -1,5 +1,7 @@
 import Exceptions.NotFoundException;
 
+import javax.xml.crypto.Data;
+import java.awt.image.DataBuffer;
 import java.util.ArrayList;
 
 public class User {
@@ -34,6 +36,39 @@ public class User {
             }
         }
         throw new NotFoundException("Skill not found");
+    }
+
+    public boolean checkSkillCondtions(Project project){
+
+        ArrayList<Skill> projectSkills = project.getSkills();
+        boolean find;
+
+        for(Skill projectSkill : projectSkills){
+            find = false;
+            for(Skill userSkill : skills){
+                if(projectSkill.getName().equals(userSkill.getName()))
+                {
+                    find = true;
+                    if(projectSkill.getPoint() > userSkill.getPoint()){
+                        return false;
+                    }
+                }
+            }
+            if(!find)
+                return false;
+        }
+        return true;
+    }
+
+    public ArrayList<Project> getQualifiedProjects() {
+        ArrayList<Project> projects = Database.getProjects();
+        ArrayList<Project> qualifiedProjects = new ArrayList<>();
+        for(Project project: projects) {
+            if(checkSkillCondtions(project)) {
+                qualifiedProjects.add(project);
+            }
+        }
+        return qualifiedProjects;
     }
 
     public String getFirstName() {
