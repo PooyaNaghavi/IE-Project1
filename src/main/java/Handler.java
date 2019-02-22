@@ -37,10 +37,11 @@ class projectHandler extends Handler{
             if(authenticatedUser.checkSkillCondtions(foundProject)){
                 viewResult = view.projectView(foundProject);
             } else {
-                viewResult = view.showError("Forbidden!");
                 statusCode = 403;
+                viewResult = view.showError("Forbidden!");
             }
         } catch (NotFoundException e) {
+            statusCode = 404;
             viewResult = view.showError(e.getMessage());
         }
         sendOutput(t, statusCode, viewResult);
@@ -55,6 +56,7 @@ class projectListHandler extends Handler{
         try {
             authenticatedUser = Database.findUserById("1");
         } catch (NotFoundException e) {
+            statusCode = 404;
             view.showError(e.getMessage());
         }
         viewResult = view.projectsListView(authenticatedUser.getQualifiedProjects());
