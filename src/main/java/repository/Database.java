@@ -1,5 +1,11 @@
-import Exceptions.BadConditionException;
-import Exceptions.NotFoundException;
+package repository;
+
+import exceptions.BadConditionException;
+import exceptions.NotFoundException;
+import model.Bid;
+import model.Project;
+import model.Skill;
+import model.User;
 
 import java.util.ArrayList;
 
@@ -8,7 +14,7 @@ public class Database {
     private static ArrayList<User> users = new ArrayList<>();
     private static ArrayList<Project> projects = new ArrayList<>();
     private static ArrayList<Bid> bids = new ArrayList<>();
-    private static ArrayList<Bid> skills = new ArrayList<>();
+    private static ArrayList<Skill> skills = new ArrayList<>();
 
     public static void addAuthenticatedUser(){
         ArrayList<Skill> skills = new ArrayList<>();
@@ -63,22 +69,32 @@ public class Database {
         projects.add(project);
     }
 
-//    public static void insertBid(User user, Project project, int bidAmount) throws BadConditionException {
-//        Bid bid = new Bid(user, project, bidAmount);
-//        if(!Auction.checkBidCondtions(bid, project))
-//            throw new BadConditionException("bid conditions not satistfied");
-//        for(Bid prev_bid : bids) {
-//            if(prev_bid.getUser().getFirstName().equals(bid.getUser().getFirstName()) && prev_bid.getProject().getTitle().equals(bid.getProject().getTitle())) {
-//                prev_bid.setAmount(bid.getAmount());
-//                return;
-//            }
-//        }
-//        bids.add(bid);
-//    }
+    public static void insertBid(User user, Project project, int bidAmount) throws BadConditionException {
+        Bid bid = new Bid(user, project, bidAmount);
+        if(!bid.checkBidCondtions(project))
+            throw new BadConditionException("bid conditions not satistfied");
+        for(Bid prev_bid : bids) {
+            if(prev_bid.getUser().getFirstName().equals(bid.getUser().getFirstName()) && prev_bid.getProject().getTitle().equals(bid.getProject().getTitle())) {
+                prev_bid.setAmount(bid.getAmount());
+                return;
+            }
+        }
+        bids.add(bid);
+    }
 
     public static void insertUser(String username, ArrayList<Skill> userSkills) {
         User user = new User(username, userSkills);
         users.add(user);
+    }
+
+    public static Bid findBid(User user, Project project){
+
+        for(Bid bid : bids){
+            if(bid.getProject().getId().equals(project.getId()) && bid.getUser().getId().equals(user.getId())){
+                return bid;
+            }
+        }
+        throw new NotFoundException("Bid not found");
     }
 
     public static ArrayList<User> findBiddingUserInProject(Project project){
@@ -125,11 +141,20 @@ public class Database {
         Database.bids = bids;
     }
 
-    public static ArrayList<Bid> getSkills() {
+    public static ArrayList<Skill> getSkills() {
         return skills;
     }
 
-    public static void setSkills(ArrayList<Bid> skills) {
+    public static void setSkills(ArrayList<Skill> skills) {
         Database.skills = skills;
+    }
+
+    public static Skill findSkillByName(String skillName) {
+        for(Skill skill : skills){
+            if(skill.getName().equals(skillName)){
+                return skill;
+            }
+        }
+        throw new NotFoundException("Skill not found");
     }
 }

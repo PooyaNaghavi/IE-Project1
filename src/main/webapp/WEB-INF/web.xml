@@ -1,0 +1,24 @@
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <listener>
+    <listener-class>
+      listeners.InitListener
+    </listener-class>
+  </listener>
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>filters.AuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>ExceptionFilter</filter-name>
+    <filter-class>filters.ExceptionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ExceptionFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+</web-app>

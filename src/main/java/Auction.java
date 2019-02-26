@@ -1,35 +1,12 @@
-import Exceptions.NotFoundException;
+import model.Bid;
+import model.Project;
+import model.Skill;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class Auction {
-
-//    public static boolean checkBidCondtions(Bid bid, Project project){
-//        if(bid.getAmount() > project.getBudget())
-//            return false;
-//
-//        ArrayList<Skill> projectSkills = project.getSkills();
-//        ArrayList<Skill> userSkills = bid.getUser().getSkills();
-//        boolean find = false;
-//
-//        for(Skill projectSkill : projectSkills){
-//            find = false;
-//            for(Skill userSkill : userSkills){
-//                if(projectSkill.getName().equals(userSkill.getName()))
-//                {
-//                    find = true;
-//                    if(projectSkill.getPoint() > userSkill.getPoint()){
-//                        return false;
-//                    }
-//                }
-//            }
-//            if(find == false)
-//                return false;
-//        }
-//        return true;
-//    }
 
     private static ArrayList<Skill> getSkillsFromJSON(JSONArray inputJSON) {
         ArrayList<Skill> skills = new ArrayList<>();
@@ -55,7 +32,7 @@ public class Auction {
 //
 //        ArrayList<Skill> userSkills = getSkillsFromJSON(skills);
 //
-//        Database.insertUser(username, userSkills);
+//        repository.Database.insertUser(username, userSkills);
 //
 //    }
 //
@@ -70,7 +47,7 @@ public class Auction {
 //
 //        int budget = jsonObject.getInt("budget");
 //
-//        Database.insertProject(title, projectSkills, budget);
+//        repository.Database.insertProject(title, projectSkills, budget);
 //    }
 //
 //    public static void bid(String commandData) {
@@ -83,9 +60,9 @@ public class Auction {
 //        int bidAmount = jsonObject.getInt("bidAmount");
 //
 //        try {
-//            User user = Database.findUserByName(biddingUser);
-//            Project project = Database.findProjectByTitle(projectTitle);
-//            Database.insertBid(user, project, bidAmount);
+//            User user = repository.Database.findUserByName(biddingUser);
+//            Project project = repository.Database.findProjectByTitle(projectTitle);
+//            repository.Database.insertBid(user, project, bidAmount);
 //        }catch(Exception e){
 //            System.out.println(e.getMessage());
 //        }
@@ -96,8 +73,8 @@ public class Auction {
 //
 //        String projectTitle = jsonObject.getString("projectTitle");
 //        try {
-//            Project project = Database.findProjectByTitle(projectTitle);
-//            ArrayList<User> biddingUsers = Database.findBiddingUserInProject(project);
+//            Project project = repository.Database.findProjectByTitle(projectTitle);
+//            ArrayList<User> biddingUsers = repository.Database.findBiddingUserInProject(project);
 //            User winner = project.findAuctionWinner(biddingUsers, project);
 //            System.out.println("winner : " + winner.getFirstName());
 //        }

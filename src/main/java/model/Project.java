@@ -1,4 +1,7 @@
-import Exceptions.NotFoundException;
+package model;
+
+import exceptions.NotFoundException;
+import repository.Database;
 
 import java.util.ArrayList;
 

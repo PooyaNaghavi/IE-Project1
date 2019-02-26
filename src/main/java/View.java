@@ -1,7 +1,6 @@
-import com.sun.net.httpserver.HttpExchange;
+import model.Project;
+import model.User;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class View {
@@ -22,7 +21,7 @@ public class View {
     }
     public String projectView(Project project){
         String result = "";
-        result += "<!DOCTYPE html> \n <html lang=\"en\"> \n <head> \n <meta charset=\"UTF-8\"> \n <title>Project</title> \n </head> \n <body> \n <ul> \n ";
+        result += "<!DOCTYPE html> \n <html lang=\"en\"> \n <head> \n <meta charset=\"UTF-8\"> \n <title>model.Project</title> \n </head> \n <body> \n <ul> \n ";
         result += "<li>id: " + project.getId() + "</li> \n  <li>title: " +  project.getTitle() + "</li> \n <li>description: " + project.getDescription() + "</li> \n <li> imageUrl: ";
         result += "<img src= " + project.getImageUrl() + " style=\"width: 50px; height: 50px;\"> </li> \n<li>budget: " + Integer.toString(project.getBudget()) + "</li> \n </ul> \n </body>\n </html>\n";
         return result;
@@ -30,7 +29,7 @@ public class View {
     public String usersListView(User user){
         String result = "";
 
-        result += "<!DOCTYPE html> \n <html lang=\"en\"> \n <head> \n <meta charset=\"UTF-8\"> \n <title>User</title> \n </head> \n <body> \n <ul> \n ";
+        result += "<!DOCTYPE html> \n <html lang=\"en\"> \n <head> \n <meta charset=\"UTF-8\"> \n <title>model.User</title> \n </head> \n <body> \n <ul> \n ";
         result += "<li>id: " + user.getId() + "</li> \n  <li>first name: " +  user.getFirstName() + "</li> \n <li>last name: " + user.getLastName() + "</li> \n <li> jobTitle: ";
         result += user.getJobTitle() + "</li> \n<li>bio: " + user.getBio() + "</li> \n </ul> \n </body>\n </html>\n";
 
@@ -43,4 +42,5 @@ public class View {
         result += "<h2>" + message + "</h2> \n </body>\n </html>\n";
         return result;
     }
+
 }

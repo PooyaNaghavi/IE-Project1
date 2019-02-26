@@ -1,3 +1,8 @@
+package service;
+
+import model.Project;
+import model.Skill;
+import repository.Database;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

@@ -1,7 +1,8 @@
-import Exceptions.NotFoundException;
+package model;
 
-import javax.xml.crypto.Data;
-import java.awt.image.DataBuffer;
+import exceptions.NotFoundException;
+import repository.Database;
+
 import java.util.ArrayList;
 
 public class User {
@@ -72,6 +73,7 @@ public class User {
     }
 
     public String getFirstName() {
+
         return firstName;
     }
 

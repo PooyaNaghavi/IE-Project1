@@ -1,4 +1,7 @@
-import Exceptions.NotFoundException;
+import exceptions.NotFoundException;
+import model.Project;
+import model.User;
+import repository.Database;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
