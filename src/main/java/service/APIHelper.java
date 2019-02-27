@@ -2,6 +2,7 @@ package service;
 
 import model.Project;
 import model.Skill;
+import model.User;
 import repository.Database;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,9 +19,9 @@ public class APIHelper {
         URL url = new URL(urlAddress);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
-
+        
         BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
+                new InputStreamReader(con.getInputStream(), "UTF-8"));
         String inputLine;
         String content = "";
         while ((inputLine = in.readLine()) != null) {
@@ -38,5 +39,11 @@ public class APIHelper {
         String skillContent = APIRequest("http://142.93.134.194:8000/joboonja/skill");
         ObjectMapper mapper = new ObjectMapper();
         Database.setSkills(mapper.readValue(skillContent, new TypeReference<ArrayList<Skill>>(){}));
+        ArrayList<User> endrosUsers = new ArrayList<>();
+        for (Skill skill : Database.getSkills()){
+            if(skill.getEndorseUsers() == null){
+                skill.setEndorseUsers(endrosUsers);
+            }
+        }
     }
 }

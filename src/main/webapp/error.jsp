@@ -15,6 +15,7 @@
 </head>
 <body>
     <h2> <%= request.getAttribute("message") %></h2>
+    <a style="text-decoration: none;" href="/IE"><button>return to home</button></a>
 </body>
 </html>
 

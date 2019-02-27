@@ -26,7 +26,7 @@ public class SkillServlet extends HttpServlet {
         String body = request.getReader().lines()
                 .reduce("", (accumulator, actual) -> accumulator + actual);
         StringTokenizer st = new StringTokenizer(body, "&");
-        User user = (User) request.getAttribute("contextUser");
+        User contextUser = (User) request.getAttribute("contextUser");
 
         String action = "";
         Skill skill = null;
@@ -50,12 +50,23 @@ public class SkillServlet extends HttpServlet {
             }
         }
         switch (action){
-            case "add": break; // TODO: do stuff
-            case "delete": break;
-            case "endorse": break;
-            default: break;
+            case "add":
+                user.addSkill(skill);
+                break;
+            case "delete":
+                user.deleteSkill(skill);
+                break;
+            case "endorse":
+                user.endorseSkill(skill, contextUser);
+                break;
+            default:
+                break;
         }
         // TODO : set attr user
+        request.setAttribute("user", user);
+        request.setAttribute("userSkills", user.getSkills());
+        request.setAttribute("allSkills", Database.getSkills());
+        request.setAttribute("endorseSkills", user.getEndorseSkillsByUser(contextUser));
         request.getRequestDispatcher("/user-profile.jsp").forward(request, response);
     }
 }

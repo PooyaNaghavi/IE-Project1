@@ -3,6 +3,7 @@ package model;
 import exceptions.NotFoundException;
 import repository.Database;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class User {
@@ -127,5 +128,38 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void addSkill(Skill skill) {
+        skills.add(skill);
+    }
+
+    public void deleteSkill(Skill skill) {
+        for (Skill userSkill : skills){
+            if(userSkill.getName().equals(skill.getName())){
+               skills.remove(userSkill);
+               return;
+            }
+        }
+    }
+
+    public void endorseSkill(Skill skill, User contextUser) {
+        for (Skill userSkill : skills){
+            if(userSkill.getName().equals(skill.getName())){
+                userSkill.addEndorseUser(contextUser);
+            }
+        }
+    }
+
+    public ArrayList<Skill> getEndorseSkillsByUser(User contextUser) {
+        ArrayList<Skill> endorseSkills = new ArrayList<>();
+        for (Skill skill : skills){
+            for (User user : skill.getEndorseUsers()){
+                if(user.getId().equals(contextUser.getId())){
+                    endorseSkills.add(skill);
+                }
+            }
+        }
+        return endorseSkills;
     }
 }

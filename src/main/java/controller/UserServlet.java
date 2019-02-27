@@ -1,6 +1,7 @@
 package controller;
 
 import exceptions.NotFoundException;
+import model.Skill;
 import model.User;
 import repository.Database;
 
@@ -20,11 +21,18 @@ public class UserServlet extends HttpServlet {
         StringTokenizer st = new StringTokenizer(uri, "/");
         st.nextToken();
         String context = st.nextToken();
+        User contextUser = (User) request.getAttribute("contextUser");
 
         if(st.hasMoreTokens()) {
             String id = st.nextToken();
             User foundUser = Database.findUserById(id);
             request.setAttribute("user", foundUser);
+            request.setAttribute("userSkills", foundUser.getSkills());
+            System.out.println("id" + foundUser.getId());
+            for(Skill s : foundUser.getSkills())
+                System.out.println(s.getName());
+            request.setAttribute("allSkills", Database.getSkills());
+            request.setAttribute("endorseSkills", foundUser.getEndorseSkillsByUser(contextUser));
             request.getRequestDispatcher("/user-profile.jsp").forward(request, response);
         }
     }
