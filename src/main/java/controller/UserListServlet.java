@@ -17,14 +17,7 @@ public class UserListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String viewResult;
         int statusCode = 200;
-        User authenticatedUser = null;
-        try {
-            authenticatedUser = Database.findUserById("1");
-        } catch (NotFoundException e) {
-            statusCode = 404;
-            response.setStatus(statusCode);
-            //TODO : error JSP
-        }
+        User authenticatedUser = Database.findUserById("1");
         request.setAttribute("users", Database.getUsers());
         response.setStatus(statusCode);
         request.getRequestDispatcher("/user-list.jsp").forward(request, response);

@@ -62,7 +62,6 @@ public class SkillServlet extends HttpServlet {
             default:
                 break;
         }
-        // TODO : set attr user
         request.setAttribute("user", user);
         request.setAttribute("userSkills", user.getSkills());
         request.setAttribute("allSkills", Database.getSkills());
