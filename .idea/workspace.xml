@@ -7,12 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1069b45d-c35b-4971-b11f-5848813e70c1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/BidServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/BidServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserListServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/authenticated-user.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/user-profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user-profile.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/BidServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="26" column="72" selection-start-line="26" selection-start-column="72" selection-end-line="26" selection-end-column="72" />
+            <state relative-caret-position="255">
+              <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,7 +93,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/View.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -228,9 +223,9 @@
         <option value="$PROJECT_DIR$/src/main/java/model/Bid.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/user-profile.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/BidServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/UserListServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/View.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/BidServlet.java" />
       </list>
     </option>
   </component>
@@ -279,6 +274,14 @@
               <item name="IE" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IE" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -298,7 +301,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551300451777" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551300598958" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -428,7 +431,7 @@
       <workItem from="1549877968349" duration="591000" />
       <workItem from="1550384208064" duration="875000" />
       <workItem from="1550477222947" duration="29398000" />
-      <workItem from="1551159732942" duration="49914000" />
+      <workItem from="1551159732942" duration="49967000" />
     </task>
     <task id="LOCAL-00001" summary="endorsement implemented.">
       <created>1551287344781</created>
@@ -458,12 +461,12 @@
       <option name="project" value="LOCAL" />
       <updated>1551296234763</updated>
     </task>
-    <task id="LOCAL-00005" summary="redundent bid bug fixed">
-      <created>1549452939336</created>
+    <task id="LOCAL-00005" summary="encoding bug fixed.">
+      <created>1551300492800</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1549452939336</updated>
+      <updated>1551300492800</updated>
     </task>
     <task id="LOCAL-00006" summary="Project2 started.">
       <created>1550581825313</created>
@@ -500,11 +503,11 @@
       <option name="project" value="LOCAL" />
       <updated>1551173182670</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44606000" />
+    <option name="totallyTimeSpent" value="44659000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -587,7 +590,8 @@
     <MESSAGE value="endorsement implemented." />
     <MESSAGE value="C++ bug fixed." />
     <MESSAGE value="Phase3 Completed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase3 Completed." />
+    <MESSAGE value="encoding bug fixed." />
+    <option name="LAST_COMMIT_MESSAGE" value="encoding bug fixed." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/Desktop/ca3-2/src/main/java/DemoServlet.java">
@@ -936,16 +940,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/BidServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="26" column="72" selection-start-line="26" selection-start-column="72" selection-end-line="26" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Handler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -960,6 +954,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="7" column="4" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="43" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/BidServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

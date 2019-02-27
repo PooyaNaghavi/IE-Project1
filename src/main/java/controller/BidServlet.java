@@ -16,11 +16,6 @@ import java.util.StringTokenizer;
 @WebServlet("/bid")
 public class BidServlet extends HttpServlet {
 
-    @Override
-    public void init() throws ServletException {
-        super.init();
-    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getAttribute("contextUser");
         Project project = Database.findProjectById(request.getParameter("project"));
