@@ -38,7 +38,7 @@ public class Bid {
         this.amount = amount;
     }
 
-    public boolean checkBidCondtions(Project project){
+    public boolean checkBidConditions(Project project){
         if(amount > project.getBudget())
             return false;
 

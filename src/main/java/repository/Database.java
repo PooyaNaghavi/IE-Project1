@@ -71,7 +71,7 @@ public class Database {
 
     public static void insertBid(User user, Project project, int bidAmount) throws BadConditionException {
         Bid bid = new Bid(user, project, bidAmount);
-        if(!bid.checkBidCondtions(project))
+        if(!bid.checkBidConditions(project))
             throw new BadConditionException("bid conditions not satistfied");
         for(Bid prev_bid : bids) {
             if(prev_bid.getUser().getFirstName().equals(bid.getUser().getFirstName()) && prev_bid.getProject().getTitle().equals(bid.getProject().getTitle())) {
