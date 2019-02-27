@@ -28,9 +28,6 @@ public class UserServlet extends HttpServlet {
             User foundUser = Database.findUserById(id);
             request.setAttribute("user", foundUser);
             request.setAttribute("userSkills", foundUser.getSkills());
-            System.out.println("id" + foundUser.getId());
-            for(Skill s : foundUser.getSkills())
-                System.out.println(s.getName());
             request.setAttribute("allSkills", Database.getSkills());
             request.setAttribute("endorseSkills", foundUser.getEndorseSkillsByUser(contextUser));
             request.getRequestDispatcher("/user-profile.jsp").forward(request, response);

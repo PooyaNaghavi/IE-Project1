@@ -28,6 +28,7 @@ public class SkillServlet extends HttpServlet {
         StringTokenizer st = new StringTokenizer(body, "&");
         User contextUser = (User) request.getAttribute("contextUser");
 
+        System.out.println(body);
         String action = "";
         Skill skill = null;
         User user = null;
@@ -40,7 +41,13 @@ public class SkillServlet extends HttpServlet {
                     action = paramSt.nextToken();
                     break;
                 case "skill":
-                    skill = Database.findSkillByName(paramSt.nextToken());
+                    String skillName = paramSt.nextToken();
+                    while(skillName.contains("%2B")){
+                        skillName = skillName.substring(0, skillName.indexOf("%2B")) + "+" + skillName.substring(skillName.indexOf("%2B"), skillName.lastIndexOf("%2B"));
+                        System.out.println("name" +skillName);
+                    }
+                    System.out.println("name" +skillName);
+                    skill = Database.findSkillByName(skillName);
                     break;
                 case "user":
                     user = Database.findUserById(paramSt.nextToken());
