@@ -23,36 +23,10 @@ public class SkillServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String body = request.getReader().lines()
-                .reduce("", (accumulator, actual) -> accumulator + actual);
-        StringTokenizer st = new StringTokenizer(body, "&");
         User contextUser = (User) request.getAttribute("contextUser");
-
-        String action = "";
-        Skill skill = null;
-        User user = null;
-        while (st.hasMoreTokens()) {
-            String param = st.nextToken();
-            StringTokenizer paramSt = new StringTokenizer(param, "=");
-            String name = paramSt.nextToken();
-            switch (name) {
-                case "action":
-                    action = paramSt.nextToken();
-                    break;
-                case "skill":
-                    String skillName = paramSt.nextToken();
-                    while(skillName.contains("%2B")){
-                        skillName = skillName.substring(0, skillName.indexOf("%2B")) + "+" + skillName.substring(skillName.indexOf("%2B"), skillName.lastIndexOf("%2B"));
-                    }
-                    skill = Database.findSkillByName(skillName);
-                    break;
-                case "user":
-                    user = Database.findUserById(paramSt.nextToken());
-                    break;
-                default:
-                    break;
-            }
-        }
+        String action = request.getParameter("action");
+        Skill skill = Database.findSkillByName(request.getParameter("skill"));
+        User user = Database.findUserById(request.getParameter("user"));
         switch (action){
             case "add":
                 user.addSkill(skill);

@@ -47,10 +47,10 @@
             <% for(Skill skill : userSkills) {%>
                 <% if(selfProfile || !objectFoundInArray(skill, endorseSkills)) { %>
                     <li>
-                        <%= skill.getName() %> : <%= skill.getPoint() %>
-                        <form action="/IE/skill" method="POST">
+                        <%= skill.getName() %> : <%= skill.getPoint()%>
+                        <form action="/IE/skill" method="POST" >
                             <input type="hidden" name="user" value="<%= user.getId() %>">
-                            <input type="hidden" name="skill" value="<%=skill.getName()%>">
+                            <input type="hidden" name="skill" value="<%= skill.getName() %>">
                             <% if(!selfProfile) { %>
                                 <button type="submit" name="action" value="endorse">Endorse</button>
                             <% } else { %>

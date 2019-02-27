@@ -22,29 +22,9 @@ public class BidServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String body = request.getReader().lines()
-                .reduce("", (accumulator, actual) -> accumulator + actual);
-        StringTokenizer st = new StringTokenizer(body, "&");
         User user = (User) request.getAttribute("contextUser");
-        String projectId;
-        Project project = null;
-        int amount = 0;
-        while (st.hasMoreTokens()) {
-            String param = st.nextToken();
-            StringTokenizer paramSt = new StringTokenizer(param, "=");
-            String name = paramSt.nextToken();
-            switch (name) {
-                case "project":
-                    projectId = paramSt.nextToken();
-                    project = Database.findProjectById(projectId);
-                    break;
-                case "bidAmount":
-                    amount = Integer.valueOf(paramSt.nextToken());
-                    break;
-                default:
-                    break;
-            }
-        }
+        Project project = Database.findProjectById(request.getParameter("project"));
+        int amount = Integer.valueOf(request.getParameter("bidAmount"));
         Database.insertBid(user, project, amount);
         request.getRequestDispatcher("/bid-result.jsp").forward(request, response);
     }

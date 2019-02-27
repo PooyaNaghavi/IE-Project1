@@ -15,7 +15,6 @@ import java.io.IOException;
 public class UserListServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String viewResult;
         int statusCode = 200;
         User authenticatedUser = Database.findUserById("1");
         request.setAttribute("users", Database.getUsers());
