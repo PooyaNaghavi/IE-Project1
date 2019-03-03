@@ -19,7 +19,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uri = request.getRequestURI().toString();
         StringTokenizer st = new StringTokenizer(uri, "/");
-        st.nextToken();
+//        st.nextToken();
         String context = st.nextToken();
         User contextUser = (User) request.getAttribute("contextUser");
 

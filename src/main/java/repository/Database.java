@@ -1,12 +1,14 @@
 package repository;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.BadConditionException;
 import exceptions.NotFoundException;
-import model.Bid;
-import model.Project;
-import model.Skill;
-import model.User;
+import model.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Database {
@@ -17,11 +19,15 @@ public class Database {
     private static ArrayList<Skill> skills = new ArrayList<>();
 
     public static void addAuthenticatedUser(){
-        ArrayList<Skill> skills = new ArrayList<>();
-        skills.add(new Skill("HTML", 5));
-        skills.add(new Skill("Javascript", 4));
-        skills.add(new Skill("C++", 2));
-        skills.add(new Skill("Java", 3));
+        ArrayList<UserSkill> skills = new ArrayList<>();
+        ArrayList<User> endorsers = new ArrayList<>();
+        for (User u : users) {
+            endorsers.add(u);
+        }
+        skills.add(new UserSkill("HTML", endorsers));
+        skills.add(new UserSkill("Javascript", endorsers));
+        skills.add(new UserSkill("C++", endorsers));
+        skills.add(new UserSkill("Java", endorsers));
         users.add(new User("1", "علی", "شریف‌زاده", "برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت", skills));
     }
 
@@ -82,7 +88,7 @@ public class Database {
         bids.add(bid);
     }
 
-    public static void insertUser(String username, ArrayList<Skill> userSkills) {
+    public static void insertUser(String username, ArrayList<UserSkill> userSkills) {
         User user = new User(username, userSkills);
         users.add(user);
     }
@@ -156,5 +162,32 @@ public class Database {
             }
         }
         throw new NotFoundException("Skill not found");
+    }
+
+    public static void addSomeUsersAndEndorsements() {
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<User> initialUsers = new ArrayList<>();
+        ArrayList<UserSkill> pooyaSkills = new ArrayList<>();
+        pooyaSkills.add(new UserSkill("C"));
+        initialUsers.add(new User(
+                "2",
+                "pooya",
+                "naghavi",
+                "bikar",
+                "https://sample-videos.com/img/Sample-jpg-image-50kb.jpg",
+                "pooooooya hastam",
+                pooyaSkills));
+        ArrayList<UserSkill> mamadSkills = new ArrayList<>();
+        mamadSkills.add(new UserSkill("C"));
+        mamadSkills.add(new UserSkill("C++"));
+        initialUsers.add(new User(
+                "3",
+                "mohammad",
+                "ganji",
+                "bakar",
+                "https://sample-videos.com/img/Sample-jpg-image-50kb.jpg",
+                "mamadam",
+                mamadSkills));
+        Database.setUsers(initialUsers);
     }
 }

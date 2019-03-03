@@ -1,10 +1,6 @@
 <%@ page import="model.Project" %>
-<--Created by IntelliJ IDEA.
-  model.User: pooya
-  Date: 2019-02-26
-  Time: 10:17
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="model.Bid" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Project project = (Project) request.getAttribute("project"); %>
 <% boolean userHasBid = (boolean) request.getAttribute("userHasBid"); %>
@@ -25,7 +21,7 @@
 </ul>
 <!-- display form if user has not bidded before -->
 <% if(!userHasBid) {%>
-<form action="/IE/bid" method="POST">
+<form action="/bid" method="POST">
     <label for="bidAmount">Bid Amount:</label>
     <input type="number" id="bidAmount" name="bidAmount">
     <input type="hidden" id="project" name="project" value="<%=project.getId()%>">

@@ -12,6 +12,6 @@
 </head>
 <body>
 <h2> bid successful</h2>
-<a style="text-decoration: none;" href="/IE/project"><button>return to home</button></a>
+<a style="text-decoration: none;" href="/project"><button>return to home</button></a>
 </body>
 </html>

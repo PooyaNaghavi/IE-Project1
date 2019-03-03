@@ -1,6 +1,7 @@
 package listeners;
 
 
+import model.User;
 import repository.Database;
 import service.APIHelper;
 
@@ -19,6 +20,7 @@ public class InitListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent arg0) {
+        Database.addSomeUsersAndEndorsements();
         Database.addAuthenticatedUser();
         try {
             apiHelper.updateProjects();

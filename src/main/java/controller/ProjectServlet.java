@@ -20,7 +20,7 @@ public class ProjectServlet extends HttpServlet {
         String uri = request.getRequestURI();
 
         StringTokenizer st = new StringTokenizer(uri, "/");
-        st.nextToken();
+//        st.nextToken();
         String context = st.nextToken();
         String id = st.nextToken();
 

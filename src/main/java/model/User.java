@@ -3,7 +3,6 @@ package model;
 import exceptions.NotFoundException;
 import repository.Database;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class User {
@@ -14,14 +13,14 @@ public class User {
     private String jobTitle;
     private String profilePictureURL;
     private String bio;
-    private ArrayList<Skill> skills;
+    private ArrayList<UserSkill> skills;
 
-    public User(String name, ArrayList<Skill> skills) {
+    public User(String name, ArrayList<UserSkill> skills) {
         this.firstName = name;
         this.skills = skills;
     }
 
-    public User(String id, String firstName, String lastName, String jobTitle, String profilePictureURL, String bio, ArrayList<Skill> skills) {
+    public User(String id, String firstName, String lastName, String jobTitle, String profilePictureURL, String bio, ArrayList<UserSkill> skills) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -78,11 +77,11 @@ public class User {
         return firstName;
     }
 
-    public ArrayList<Skill> getSkills() {
+    public ArrayList<UserSkill> getSkills() {
         return skills;
     }
 
-    public void setSkills(ArrayList<Skill> skills) {
+    public void setSkills(ArrayList<UserSkill> skills) {
         this.skills = skills;
     }
 
@@ -130,12 +129,12 @@ public class User {
         this.id = id;
     }
 
-    public void addSkill(Skill skill) {
+    public void addSkill(UserSkill skill) {
         skills.add(skill);
     }
 
-    public void deleteSkill(Skill skill) {
-        for (Skill userSkill : skills){
+    public void deleteSkill(UserSkill skill) {
+        for (UserSkill userSkill : skills){
             if(userSkill.getName().equals(skill.getName())){
                skills.remove(userSkill);
                return;
@@ -143,17 +142,17 @@ public class User {
         }
     }
 
-    public void endorseSkill(Skill skill, User contextUser) {
-        for (Skill userSkill : skills){
+    public void endorseSkill(UserSkill skill, User contextUser) {
+        for (UserSkill userSkill: skills){
             if(userSkill.getName().equals(skill.getName())){
                 userSkill.addEndorseUser(contextUser);
             }
         }
     }
 
-    public ArrayList<Skill> getEndorseSkillsByUser(User contextUser) {
-        ArrayList<Skill> endorseSkills = new ArrayList<>();
-        for (Skill skill : skills){
+    public ArrayList<UserSkill> getEndorseSkillsByUser(User contextUser) {
+        ArrayList<UserSkill> endorseSkills = new ArrayList<>();
+        for (UserSkill skill : skills){
             for (User user : skill.getEndorseUsers()){
                 if(user.getId().equals(contextUser.getId())){
                     endorseSkills.add(skill);

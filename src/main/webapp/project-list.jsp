@@ -32,6 +32,7 @@
         <th>id</th>
         <th>title</th>
         <th>budget</th>
+        <th>link</th>
     </tr>
     <% for(Project project : projects) { %>
         <tr>

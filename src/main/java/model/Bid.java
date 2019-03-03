@@ -43,12 +43,12 @@ public class Bid {
             return false;
 
         ArrayList<Skill> projectSkills = project.getSkills();
-        ArrayList<Skill> userSkills = user.getSkills();
+        ArrayList<UserSkill> userSkills = user.getSkills();
         boolean find = false;
 
         for(Skill projectSkill : projectSkills){
             find = false;
-            for(Skill userSkill : userSkills){
+            for(UserSkill userSkill : userSkills){
                 if(projectSkill.getName().equals(userSkill.getName()))
                 {
                     find = true;
@@ -57,8 +57,7 @@ public class Bid {
                     }
                 }
             }
-            if(find == false)
-                return false;
+            if(!find) { return false; }
         }
         return true;
     }

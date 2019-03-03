@@ -39,11 +39,5 @@ public class APIHelper {
         String skillContent = APIRequest("http://142.93.134.194:8000/joboonja/skill");
         ObjectMapper mapper = new ObjectMapper();
         Database.setSkills(mapper.readValue(skillContent, new TypeReference<ArrayList<Skill>>(){}));
-        ArrayList<User> endrosUsers = new ArrayList<>();
-        for (Skill skill : Database.getSkills()){
-            if(skill.getEndorseUsers() == null){
-                skill.setEndorseUsers(endrosUsers);
-            }
-        }
     }
 }

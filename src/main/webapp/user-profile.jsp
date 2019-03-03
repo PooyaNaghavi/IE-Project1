@@ -2,8 +2,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Skill" %>
 <%@ page import="java.util.Collections" %>
-<%@ page import="model.SkillComparator" %>
-<%@ page import="model.SkillComparator" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: pooya
   Date: 2019-02-26
@@ -45,20 +44,18 @@
         skills:
         <ul>
             <% for(Skill skill : userSkills) {%>
-                <% if(selfProfile || !objectFoundInArray(skill, endorseSkills)) { %>
-                    <li>
-                        <%= skill.getName() %> : <%= skill.getPoint()%>
-                        <form action="/IE/skill" method="POST" >
-                            <input type="hidden" name="user" value="<%= user.getId() %>">
-                            <input type="hidden" name="skill" value="<%= skill.getName() %>">
-                            <% if(!selfProfile) { %>
-                                <button type="submit" name="action" value="endorse">Endorse</button>
-                            <% } else { %>
-                                <button type="submit" name="action" value="delete">Delete</button>
-                            <% } %>
-                        </form>
-                    </li>
-                <% } %>
+                <li>
+                    <%= skill.getName() %> : <%= skill.getPoint()%>
+                    <form action="/skill" method="POST" >
+                        <input type="hidden" name="user" value="<%= user.getId() %>">
+                        <input type="hidden" name="skill" value="<%= skill.getName() %>">
+                        <% if(!selfProfile && !objectFoundInArray(skill, endorseSkills)) { %>
+                            <button type="submit" name="action" value="endorse">Endorse</button>
+                        <% } else if(selfProfile) { %>
+                            <button type="submit" name="action" value="delete">Delete</button>
+                        <% } %>
+                    </form>
+                </li>
             <% } %>
         </ul>
     </li>
@@ -66,7 +63,7 @@
 
 <% if(selfProfile) { %>
     Add Skill:
-    <form action="/IE/skill" method="POST">
+    <form action="/skill" method="POST">
         <select name="skill">
             <% for(Skill skill : allSkills) { %>
                 <% if(!objectFoundInArray(skill, userSkills)) { %>

@@ -17,6 +17,7 @@ public class UserListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int statusCode = 200;
         User authenticatedUser = Database.findUserById("1");
+        System.out.println(Database.getUsers().size());
         request.setAttribute("users", Database.getUsers());
         response.setStatus(statusCode);
         request.getRequestDispatcher("/user-list.jsp").forward(request, response);

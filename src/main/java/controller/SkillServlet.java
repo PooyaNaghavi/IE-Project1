@@ -3,6 +3,7 @@ package controller;
 import model.Project;
 import model.Skill;
 import model.User;
+import model.UserSkill;
 import repository.Database;
 
 import javax.servlet.ServletException;
@@ -26,16 +27,17 @@ public class SkillServlet extends HttpServlet {
         User contextUser = (User) request.getAttribute("contextUser");
         String action = request.getParameter("action");
         Skill skill = Database.findSkillByName(request.getParameter("skill"));
+        UserSkill userSkill = new UserSkill(skill.getName());
         User user = Database.findUserById(request.getParameter("user"));
         switch (action){
             case "add":
-                user.addSkill(skill);
+                user.addSkill(userSkill);
                 break;
             case "delete":
-                user.deleteSkill(skill);
+                user.deleteSkill(userSkill);
                 break;
             case "endorse":
-                user.endorseSkill(skill, contextUser);
+                user.endorseSkill(userSkill, contextUser);
                 break;
             default:
                 break;
