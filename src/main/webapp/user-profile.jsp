@@ -1,29 +1,8 @@
-<%@ page import="model.User" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="model.Skill" %>
-<%@ page import="java.util.Collections" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: pooya
-  Date: 2019-02-26
-  Time: 16:38
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% User user = (User) request.getAttribute("user"); %>
-<% User contextUser = (User) request.getAttribute("contextUser"); %>
-<% ArrayList<Skill> userSkills = (ArrayList<Skill>) request.getAttribute("userSkills"); %>
-<% ArrayList<Skill> allSkills = (ArrayList<Skill>) request.getAttribute("allSkills");%>
-<% ArrayList<Skill> endorseSkills = (ArrayList<Skill>) request.getAttribute("endorseSkills");%>
-<% boolean selfProfile = user.getId().equals(contextUser.getId()); %>
-<%! public boolean objectFoundInArray(Skill skill, ArrayList<Skill> skills){
-    for (Skill s : skills){
-        if(skill.getName().equals(s.getName())){
-            return true;
-        }
-    }
-    return false;
-}%>
+
+<c:set var="selfProfile" value="${user.getId().equals(contextUser.getId())}"></c:set>
 
 
 
@@ -35,47 +14,48 @@
 </head>
 <body>
 <ul>
-    <li>id: <%= user.getId() %> </li>
-    <li>first name: <%= user.getFirstName() %></li>
-    <li>last name: <%= user.getLastName() %> </li>
-    <li>jobTitle: <%= user.getJobTitle() %> </li>
-    <li>bio: <%= user.getBio() %> </li>
+    <li>id: <c:out value="${user.getId()}" /> </li>
+    <li>first name: <c:out value="${user.getFirstName()}" /></li>
+    <li>last name: <c:out value="${user.getLastName()}" /> </li>
+    <li>jobTitle: <c:out value="${user.getJobTitle()}" /> </li>
+    <li>bio: <c:out value="${user.getBio()}" /> </li>
     <li>
         skills:
         <ul>
-            <% for(Skill skill : userSkills) {%>
+            <c:forEach var="skill" items="${userSkills}" >
                 <li>
-                    <%= skill.getName() %> : <%= skill.getPoint()%>
+                    <c:out value="${skill.getName()}" /> : <c:out value="${skill.getPoint()}" />
                     <form action="/skill" method="POST" >
-                        <input type="hidden" name="user" value="<%= user.getId() %>">
-                        <input type="hidden" name="skill" value="<%= skill.getName() %>">
-                        <% if(!selfProfile && !objectFoundInArray(skill, endorseSkills)) { %>
+                        <input type="hidden" name="user" value="<c:out value="${user.getId()}" />">
+                        <input type="hidden" name="skill" value="<c:out value="${skill.getName()}" />">
+                        <c:if test="${!selfProfile && !endorseSkills.get(skill.getName())}">
                             <button type="submit" name="action" value="endorse">Endorse</button>
-                        <% } else if(selfProfile) { %>
+                        </c:if>
+                        <c:if test="${selfProfile}">
                             <button type="submit" name="action" value="delete">Delete</button>
-                        <% } %>
+                        </c:if>
                     </form>
                 </li>
-            <% } %>
+            </c:forEach>
         </ul>
     </li>
 </ul>
 
-<% if(selfProfile) { %>
-    Add Skill:
-    <form action="/skill" method="POST">
-        <select name="skill">
-            <% for(Skill skill : allSkills) { %>
-                <% if(!objectFoundInArray(skill, userSkills)) { %>
-                    <%= skill.getName() %> : <%= skill.getPoint() %>
-                        <option name = "skill" value="<%= skill.getName() %>"> <%= skill.getName() %></option>
-                <% } %>
-            <% } %>
-        </select>
-        <input type="hidden" name="user" value="<%= user.getId() %>">
-        <button type="submit" name="action" value="add">Add</button>
-    </form>
-<% } %>
+
+<c:if test="${selfProfile}" >
+Add Skill:
+<form action="/skill" method="POST">
+    <select name="skill">
+        <c:forEach var="skill" items="${allSkills}">
+            <option name = "skill" value="<c:out value="${skill.getName()}" />"> <c:out value="${skill.getName()}" /></option>
+        </c:forEach>
+    </select>
+    <input type="hidden" name="user" value="<c:out value="${user.getId()}" />">
+    <button type="submit" name="action" value="add">Add</button>
+</form>
+</c:if>
+
+
 
 </body>
 </html>

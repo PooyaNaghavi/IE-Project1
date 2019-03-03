@@ -1,14 +1,5 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="model.User" %><%--
-  Created by IntelliJ IDEA.
-  User: pooya
-  Date: 2019-02-26
-  Time: 16:12
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% ArrayList<User> users = (ArrayList<User>) request.getAttribute("users"); %>
-<% User contextUser = (User) request.getAttribute("contextUser"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,15 +25,15 @@
         <th>name</th>
         <th>jobTitle</th>
     </tr>
-    <% for(User user : users) { %>
-        <% if(!user.getId().equals(contextUser.getId())) { %>
+    <c:forEach var="user" items="${users}">
+        <c:if test="${user.getId() ne contextUser.getId()}" >
             <tr>
-                <td> <%= user.getId()%> </td>
-                <td> <%= user.getFirstName()%> <%= user.getLastName()%></td>
-                <td> <%= user.getJobTitle() %> </td>
+                <td> <c:out value="${user.getId()}" /> </td>
+                <td> <c:out value="${user.getFirstName()}" /> <c:out value="${user.getLastName()}" /></td>
+                <td> <c:out value="${user.getJobTitle()}" /> </td>
             </tr>
-        <% } %>
-    <% } %>
+        </c:if>
+    </c:forEach>
 </table>
 </body>
 </html>

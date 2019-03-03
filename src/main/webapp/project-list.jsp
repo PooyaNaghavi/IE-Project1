@@ -1,13 +1,5 @@
-<%@ page import="model.Project" %>
-<%@ page import="java.util.ArrayList" %><%--
-  Created by IntelliJ IDEA.
-  User: pooya
-  Date: 2019-02-26
-  Time: 19:23
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% ArrayList<Project> projects = (ArrayList<Project>) request.getAttribute("projects"); %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,14 +26,14 @@
         <th>budget</th>
         <th>link</th>
     </tr>
-    <% for(Project project : projects) { %>
+    <c:forEach var="project" items="${projects}" >
         <tr>
-            <td><%= project.getId() %></td>
-            <td><%= project.getTitle() %></td>
-            <td><%= project.getBudget() %></td>
-            <td><a href="project/<%=project.getId()%>">link</a></td>
+            <td><c:out value="${project.getId()}" /></td>
+            <td><c:out value="${project.getTitle()}" /></td>
+            <td><c:out value="${project.getBudget()}" /></td>
+            <td><a href="project/<c:out value="${project.getId()}" />">link</a></td>
         </tr>
-    <% } %>
+    </c:forEach>
 </table>
 </body>
 </html>

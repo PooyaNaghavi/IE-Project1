@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pooya
@@ -14,7 +15,7 @@
     <title>Error</title>
 </head>
 <body>
-    <h2> <%= request.getAttribute("message") %></h2>
+    <h2> <c:out value="${message}"/> </h2>
     <a style="text-decoration: none;" href="/"><button>return to home</button></a>
 </body>
 </html>

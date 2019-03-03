@@ -4,6 +4,7 @@ import exceptions.NotFoundException;
 import repository.Database;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class User {
 
@@ -129,7 +130,17 @@ public class User {
         this.id = id;
     }
 
+    private boolean hasSkill(UserSkill skill) {
+        for (UserSkill userSkill :skills) {
+            if(userSkill.getName().equals(skill.getName())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addSkill(UserSkill skill) {
+        if(hasSkill(skill)) return;
         skills.add(skill);
     }
 
@@ -150,12 +161,14 @@ public class User {
         }
     }
 
-    public ArrayList<UserSkill> getEndorseSkillsByUser(User contextUser) {
-        ArrayList<UserSkill> endorseSkills = new ArrayList<>();
+    public HashMap<String, Boolean> getEndorseSkillsByUser(User contextUser) {
+        HashMap<String, Boolean> endorseSkills = new HashMap<>();
         for (UserSkill skill : skills){
             for (User user : skill.getEndorseUsers()){
                 if(user.getId().equals(contextUser.getId())){
-                    endorseSkills.add(skill);
+                    endorseSkills.put(skill.getName(), true);
+                } else {
+                    endorseSkills.put(skill.getName(), false);
                 }
             }
         }
