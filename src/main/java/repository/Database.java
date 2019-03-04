@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Database {
 
@@ -189,5 +190,19 @@ public class Database {
                 "mamadam",
                 mamadSkills));
         Database.setUsers(initialUsers);
+    }
+
+    public static HashMap<String, Boolean> getAllSkillsByUser(User user) {
+        HashMap<String, Boolean> allSkills = new HashMap<>();
+        for (Skill skill : skills){
+            for (UserSkill userSkill : user.getSkills()){
+                if(skill.getName().equals(userSkill.getName())){
+                    allSkills.put(skill.getName(), true);
+                } else {
+                    allSkills.put(skill.getName(), false);
+                }
+            }
+        }
+        return allSkills;
     }
 }

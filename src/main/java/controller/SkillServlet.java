@@ -44,6 +44,7 @@ public class SkillServlet extends HttpServlet {
         }
         request.setAttribute("user", user);
         request.setAttribute("userSkills", user.getSkills());
+        request.setAttribute("contextUserSkills", Database.getAllSkillsByUser(contextUser));
         request.setAttribute("allSkills", Database.getSkills());
         request.setAttribute("endorseSkills", user.getEndorseSkillsByUser(contextUser));
         request.getRequestDispatcher("/user-profile.jsp").forward(request, response);

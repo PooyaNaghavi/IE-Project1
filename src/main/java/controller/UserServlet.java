@@ -1,7 +1,5 @@
 package controller;
 
-import exceptions.NotFoundException;
-import model.Skill;
 import model.User;
 import repository.Database;
 
@@ -29,6 +27,7 @@ public class UserServlet extends HttpServlet {
             request.setAttribute("user", foundUser);
             request.setAttribute("userSkills", foundUser.getSkills());
             request.setAttribute("allSkills", Database.getSkills());
+            request.setAttribute("contextUserSkills", Database.getAllSkillsByUser(contextUser));
             request.setAttribute("endorseSkills", foundUser.getEndorseSkillsByUser(contextUser));
             request.getRequestDispatcher("/user-profile.jsp").forward(request, response);
         }

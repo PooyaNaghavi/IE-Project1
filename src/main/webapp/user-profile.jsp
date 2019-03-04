@@ -47,7 +47,9 @@ Add Skill:
 <form action="/skill" method="POST">
     <select name="skill">
         <c:forEach var="skill" items="${allSkills}">
-            <option name = "skill" value="<c:out value="${skill.getName()}" />"> <c:out value="${skill.getName()}" /></option>
+            <c:if test="${!contextUserSkills.get(skill.getName())}">
+                <option name = "skill" value="<c:out value="${skill.getName()}" />"> <c:out value="${skill.getName()}" /></option>
+            </c:if>
         </c:forEach>
     </select>
     <input type="hidden" name="user" value="<c:out value="${user.getId()}" />">
