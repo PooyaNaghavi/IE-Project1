@@ -198,6 +198,7 @@ public class Database {
             for (UserSkill userSkill : user.getSkills()){
                 if(skill.getName().equals(userSkill.getName())){
                     allSkills.put(skill.getName(), true);
+                    break;
                 } else {
                     allSkills.put(skill.getName(), false);
                 }
