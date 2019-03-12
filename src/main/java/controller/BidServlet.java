@@ -16,10 +16,12 @@ import java.util.StringTokenizer;
 public class BidServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         User user = (User) request.getAttribute("contextUser");
         Project project = Database.findProjectById(request.getParameter("project"));
         int amount = Integer.valueOf(request.getParameter("bidAmount"));
         Database.insertBid(user, project, amount);
-        request.getRequestDispatcher("/bid-result.jsp").forward(request, response);
+        Utils.sendJSON("{message: \"bid successful\"}", response, 200);
+        //request.getRequestDispatcher("/bid-result.jsp").forward(request, response);
     }
 }

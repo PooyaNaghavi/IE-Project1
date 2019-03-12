@@ -1,5 +1,7 @@
 package controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import exceptions.NotFoundException;
 import model.User;
 import repository.Database;
@@ -16,8 +18,11 @@ public class ProjectListServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User authenticatedUser = (User) request.getAttribute("contextUser");
-        request.setAttribute("projects", authenticatedUser.getQualifiedProjects());
-        request.getRequestDispatcher("/project-list.jsp").forward(request, response);
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String projectsJson = ow.writeValueAsString(authenticatedUser.getQualifiedProjects());
+        Utils.sendJSON(projectsJson, response, 200);
+//        request.setAttribute("projects", authenticatedUser.getQualifiedProjects());
+//        request.getRequestDispatcher("/project-list.jsp").forward(request, response);
     }
 
 }

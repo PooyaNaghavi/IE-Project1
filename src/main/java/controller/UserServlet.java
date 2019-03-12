@@ -1,5 +1,7 @@
 package controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import model.User;
 import repository.Database;
 
@@ -24,12 +26,15 @@ public class UserServlet extends HttpServlet {
         if(st.hasMoreTokens()) {
             String id = st.nextToken();
             User foundUser = Database.findUserById(id);
-            request.setAttribute("user", foundUser);
-            request.setAttribute("userSkills", foundUser.getSkills());
-            request.setAttribute("allSkills", Database.getSkills());
-            request.setAttribute("contextUserSkills", Database.getAllSkillsByUser(contextUser));
-            request.setAttribute("endorseSkills", foundUser.getEndorseSkillsByUser(contextUser));
-            request.getRequestDispatcher("/user-profile.jsp").forward(request, response);
+            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String userJson = ow.writeValueAsString(foundUser);
+            Utils.sendJSON(userJson, response, 200);
+//            request.setAttribute("user", foundUser);
+//            request.setAttribute("userSkills", foundUser.getSkills());
+//            request.setAttribute("allSkills", Database.getSkills());
+//            request.setAttribute("contextUserSkills", Database.getAllSkillsByUser(contextUser));
+//            request.setAttribute("endorseSkills", foundUser.getEndorseSkillsByUser(contextUser));
+//            request.getRequestDispatcher("/user-profile.jsp").forward(request, response);
         }
     }
 }

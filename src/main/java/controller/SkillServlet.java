@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.crypto.Data;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
@@ -24,29 +25,36 @@ public class SkillServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String str, wholeStr = "";
+        BufferedReader br = request.getReader();
+        while ((str = br.readLine()) != null) {
+            wholeStr += str;
+        }
+        System.out.println(request.getParameter("user"));
+
+        System.out.println(wholeStr);
         User contextUser = (User) request.getAttribute("contextUser");
-        String action = request.getParameter("action");
         Skill skill = Database.findSkillByName(request.getParameter("skill"));
         UserSkill userSkill = new UserSkill(skill.getName());
         User user = Database.findUserById(request.getParameter("user"));
-        switch (action){
-            case "add":
-                user.addSkill(userSkill);
-                break;
-            case "delete":
-                user.deleteSkill(userSkill);
-                break;
-            case "endorse":
-                user.endorseSkill(userSkill, contextUser);
-                break;
-            default:
-                break;
-        }
-        request.setAttribute("user", user);
-        request.setAttribute("userSkills", user.getSkills());
-        request.setAttribute("contextUserSkills", Database.getAllSkillsByUser(contextUser));
-        request.setAttribute("allSkills", Database.getSkills());
-        request.setAttribute("endorseSkills", user.getEndorseSkillsByUser(contextUser));
-        request.getRequestDispatcher("/user-profile.jsp").forward(request, response);
+        user.addSkill(userSkill);
+        Utils.sendJSON("{message: \"add skill successful\"}", response, 200);
     }
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User contextUser = (User) request.getAttribute("contextUser");
+        Skill skill = Database.findSkillByName(request.getParameter("skill"));
+        UserSkill userSkill = new UserSkill(skill.getName());
+        User user = Database.findUserById(request.getParameter("user"));
+        user.endorseSkill(userSkill, contextUser);
+        Utils.sendJSON("{message: \"endorse skill successful\"}", response, 200);
+    }
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User contextUser = (User) request.getAttribute("contextUser");
+        Skill skill = Database.findSkillByName(request.getParameter("skill"));
+        UserSkill userSkill = new UserSkill(skill.getName());
+        User user = Database.findUserById(request.getParameter("user"));
+        user.deleteSkill(userSkill);
+        Utils.sendJSON("{message: \"delete skill successful\"}", response, 200);
+    }
+
 }
