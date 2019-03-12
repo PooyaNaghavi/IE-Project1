@@ -25,14 +25,14 @@ public class SkillServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String str, wholeStr = "";
-        BufferedReader br = request.getReader();
-        while ((str = br.readLine()) != null) {
-            wholeStr += str;
-        }
-        System.out.println(request.getParameter("user"));
-
-        System.out.println(wholeStr);
+//        System.out.println(request.getParameter("user"));
+//        String str, wholeStr = "";
+//        BufferedReader br = request.getReader();
+//        while ((str = br.readLine()) != null) {
+//            wholeStr += str;
+//        }
+//
+//        System.out.println(wholeStr);
         User contextUser = (User) request.getAttribute("contextUser");
         Skill skill = Database.findSkillByName(request.getParameter("skill"));
         UserSkill userSkill = new UserSkill(skill.getName());

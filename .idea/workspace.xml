@@ -6,21 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1069b45d-c35b-4971-b11f-5848813e70c1" name="Default Changelist" comment="add skill jsp bug fixed.">
-      <change afterPath="$PROJECT_DIR$/APIRequest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/filters/CorsFilter.java" afterDir="false" />
+    <list default="true" id="1069b45d-c35b-4971-b11f-5848813e70c1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/BidServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/BidServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProjectListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProjectListServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProjectServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProjectServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserListServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/exceptions/BadConditionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/exceptions/BadConditionException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/exceptions/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/exceptions/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filters/ExceptionFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filters/ExceptionFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -89,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state>
+              <caret column="19" lean-forward="true" selection-start-column="19" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -111,20 +99,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/SkillServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="34" column="37" lean-forward="true" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+            <state relative-caret-position="275">
+              <caret line="34" column="39" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="34" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/APIRequest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="47" column="12" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+            <state relative-caret-position="608">
+              <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -250,8 +238,8 @@
         <option value="$PROJECT_DIR$/src/main/java/controller/UserServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/Utils.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/UserListServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" />
         <option value="$PROJECT_DIR$/APIRequest.js" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" />
       </list>
     </option>
   </component>
@@ -357,7 +345,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552423168794" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552424593963" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -491,7 +479,7 @@
       <workItem from="1551798852679" duration="576000" />
       <workItem from="1552048216304" duration="746000" />
       <workItem from="1552075424580" duration="1909000" />
-      <workItem from="1552402278372" duration="14314000" />
+      <workItem from="1552402278372" duration="15337000" />
     </task>
     <task id="LOCAL-00001" summary="endorsement implemented.">
       <created>1551287344781</created>
@@ -549,12 +537,12 @@
       <option name="project" value="LOCAL" />
       <updated>1551683695752</updated>
     </task>
-    <task id="LOCAL-00009" summary="phase2 completed.">
-      <created>1550591782465</created>
+    <task id="LOCAL-00009" summary="phase 5 started">
+      <created>1552423200357</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1550591782465</updated>
+      <updated>1552423200357</updated>
     </task>
     <task id="LOCAL-00010" summary="phase2 completed.">
       <created>1551173182670</created>
@@ -563,11 +551,11 @@
       <option name="project" value="LOCAL" />
       <updated>1551173182670</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81104000" />
+    <option name="totallyTimeSpent" value="82127000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -659,7 +647,8 @@
     <MESSAGE value="encoding bug fixed." />
     <MESSAGE value="phase 3 completed without bonus!" />
     <MESSAGE value="add skill jsp bug fixed." />
-    <option name="LAST_COMMIT_MESSAGE" value="add skill jsp bug fixed." />
+    <MESSAGE value="phase 5 started" />
+    <option name="LAST_COMMIT_MESSAGE" value="phase 5 started" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -976,16 +965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/user-profile.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="332">
@@ -993,17 +972,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/SkillServlet.java">
+    <entry file="file://$PROJECT_DIR$/APIRequest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="34" column="37" lean-forward="true" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+        <state relative-caret-position="608">
+          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/APIRequest.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="47" column="12" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+        <state>
+          <caret column="19" lean-forward="true" selection-start-column="19" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/SkillServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="34" column="39" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="34" selection-end-column="39" />
         </state>
       </provider>
     </entry>
