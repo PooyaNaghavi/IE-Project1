@@ -1,8 +1,10 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.Comparator;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Skill {
 
     protected String name;

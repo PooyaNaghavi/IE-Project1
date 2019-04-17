@@ -1,16 +1,19 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import exceptions.NotFoundException;
 import repository.Database;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
     private String id;
     private String firstName;
     private String lastName;
+    private String password;
     private String jobTitle;
     private String profilePictureURL;
     private String bio;
@@ -21,10 +24,11 @@ public class User {
         this.skills = skills;
     }
 
-    public User(String id, String firstName, String lastName, String jobTitle, String profilePictureURL, String bio, ArrayList<UserSkill> skills) {
+    public User(String id, String firstName, String lastName, String password, String jobTitle, String profilePictureURL, String bio, ArrayList<UserSkill> skills) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
         this.jobTitle = jobTitle;
         this.profilePictureURL = profilePictureURL;
         this.bio = bio;
@@ -90,6 +94,8 @@ public class User {
         return lastName;
     }
 
+    public String getPassword() { return  password; }
+
     public String getJobTitle() {
         return jobTitle;
     }
@@ -109,6 +115,8 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public void setPassword(String password) { this.password = password; }
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;

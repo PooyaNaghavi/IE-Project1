@@ -1,5 +1,7 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
 function requestGet(url, callback) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -37,17 +39,22 @@ function requestPost(url, params, callback) {
 
 }
 
-// requestGet("http://localhost:8080/project", function (res) {
-//     // res = JSON.parse(res)
-//     console.log(res)
-//     console.log("--------------------------------")
-// })
-
 requestPost("http://localhost:8080/skill", {
-    skill : "Javascript",
+    skill : "CSS",
     user : 1
 }, function (res) {
     // res = JSON.parse(res)
+    console.log(baseUrl)
     console.log(res);
     console.log("--------------------------------")
 })
+
+requestGet("http://localhost:8080/project", function (res) {
+    // res = JSON.parse(res)
+    console.log(res)
+    console.log("--------------------------------")
+})
+
+
+
+//run in localhost:8080//run in localhost:8080

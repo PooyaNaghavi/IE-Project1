@@ -29,7 +29,7 @@ public class Database {
         skills.add(new UserSkill("Javascript", endorsers));
         skills.add(new UserSkill("C++", endorsers));
         skills.add(new UserSkill("Java", endorsers));
-        users.add(new User("1", "علی", "شریف‌زاده", "برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت", skills));
+        users.add(new User("1", "علی", "شریف‌زاده","1234" ,"برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت", skills));
     }
 
     public static User findUserById(String id) throws NotFoundException{
@@ -174,6 +174,7 @@ public class Database {
                 "2",
                 "pooya",
                 "naghavi",
+                "1234",
                 "bikar",
                 "https://sample-videos.com/img/Sample-jpg-image-50kb.jpg",
                 "pooooooya hastam",
@@ -185,6 +186,7 @@ public class Database {
                 "3",
                 "mohammad",
                 "ganji",
+                "1234",
                 "bakar",
                 "https://sample-videos.com/img/Sample-jpg-image-50kb.jpg",
                 "mamadam",

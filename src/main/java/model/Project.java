@@ -1,10 +1,11 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import exceptions.NotFoundException;
 import repository.Database;
 
 import java.util.ArrayList;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Project {
 
     private String id;
