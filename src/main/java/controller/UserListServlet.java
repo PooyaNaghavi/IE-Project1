@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/user")
+@WebServlet("/users")
 public class UserListServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,10 +21,7 @@ public class UserListServlet extends HttpServlet {
         User authenticatedUser = Database.findUserById("1");
 
         ObjectWriter ow = new ObjectMapper().writer();
-        String usersJson = ow.writeValueAsString(Database.getUsers() );
+        String usersJson = ow.writeValueAsString(Database.getUsers());
         Utils.sendJSON(usersJson, response, 200);
-//        request.setAttribute("users", Database.getUsers());
-//        response.setStatus(statusCode);
-//        request.getRequestDispatcher("/user-list.jsp").forward(request, response);
     }
 }

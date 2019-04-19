@@ -31,4 +31,3 @@ public class Skill {
         this.point = point;
     }
 }
-

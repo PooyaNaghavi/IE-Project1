@@ -13,21 +13,27 @@ public class User {
     private String id;
     private String firstName;
     private String lastName;
+    private String userName;
     private String password;
     private String jobTitle;
     private String profilePictureURL;
     private String bio;
     private ArrayList<UserSkill> skills;
 
+    public User(){
+
+    }
+
     public User(String name, ArrayList<UserSkill> skills) {
         this.firstName = name;
         this.skills = skills;
     }
 
-    public User(String id, String firstName, String lastName, String password, String jobTitle, String profilePictureURL, String bio, ArrayList<UserSkill> skills) {
+    public User(String id, String firstName, String lastName, String userName, String password, String jobTitle, String profilePictureURL, String bio, ArrayList<UserSkill> skills) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.userName = userName;
         this.password = password;
         this.jobTitle = jobTitle;
         this.profilePictureURL = profilePictureURL;
@@ -42,39 +48,6 @@ public class User {
             }
         }
         throw new NotFoundException("Skill not found");
-    }
-
-    public boolean checkSkillCondtions(Project project){
-
-        ArrayList<Skill> projectSkills = project.getSkills();
-        boolean find;
-
-        for(Skill projectSkill : projectSkills){
-            find = false;
-            for(Skill userSkill : skills){
-                if(projectSkill.getName().equals(userSkill.getName()))
-                {
-                    find = true;
-                    if(projectSkill.getPoint() > userSkill.getPoint()){
-                        return false;
-                    }
-                }
-            }
-            if(!find)
-                return false;
-        }
-        return true;
-    }
-
-    public ArrayList<Project> getQualifiedProjects() {
-        ArrayList<Project> projects = Database.getProjects();
-        ArrayList<Project> qualifiedProjects = new ArrayList<>();
-        for(Project project: projects) {
-            if(checkSkillCondtions(project)) {
-                qualifiedProjects.add(project);
-            }
-        }
-        return qualifiedProjects;
     }
 
     public String getFirstName() {
@@ -100,10 +73,6 @@ public class User {
         return jobTitle;
     }
 
-    public String getProfilePicureURL() {
-        return profilePictureURL;
-    }
-
     public String getBio() {
         return bio;
     }
@@ -122,10 +91,6 @@ public class User {
         this.jobTitle = jobTitle;
     }
 
-    public void setProfilePictureURL(String profilePictureURL) {
-        this.profilePictureURL = profilePictureURL;
-    }
-
     public void setBio(String bio) {
         this.bio = bio;
     }
@@ -139,7 +104,7 @@ public class User {
     }
 
     private boolean hasSkill(UserSkill skill) {
-        for (UserSkill userSkill :skills) {
+        for (UserSkill userSkill : skills) {
             if(userSkill.getName().equals(skill.getName())){
                 return true;
             }
@@ -181,5 +146,21 @@ public class User {
             }
         }
         return endorseSkills;
+    }
+
+    public String getProfilePictureURL() {
+        return profilePictureURL;
+    }
+
+    public void setProfilePictureURL(String profilePictureURL) {
+        this.profilePictureURL = profilePictureURL;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

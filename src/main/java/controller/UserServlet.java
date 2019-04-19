@@ -1,7 +1,9 @@
 package controller;
 
+import DTO.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import model.Skill;
 import model.User;
 import repository.Database;
 
@@ -11,30 +13,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-@WebServlet("/user/*")
+@WebServlet("/user")
 public class UserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String uri = request.getRequestURI().toString();
-        StringTokenizer st = new StringTokenizer(uri, "/");
-//        st.nextToken();
-        String context = st.nextToken();
-        User contextUser = (User) request.getAttribute("contextUser");
+//        String uri = request.getRequestURI().toString();
+//        StringTokenizer st = new StringTokenizer(uri, "/");
+////        st.nextToken();
+//        String context = st.nextToken();
+//        User contextUser = (User) request.getAttribute("contextUser");
 
-        if(st.hasMoreTokens()) {
-            String id = st.nextToken();
-            User foundUser = Database.findUserById(id);
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            String userJson = ow.writeValueAsString(foundUser);
-            Utils.sendJSON(userJson, response, 200);
-//            request.setAttribute("user", foundUser);
-//            request.setAttribute("userSkills", foundUser.getSkills());
-//            request.setAttribute("allSkills", Database.getSkills());
-//            request.setAttribute("contextUserSkills", Database.getAllSkillsByUser(contextUser));
-//            request.setAttribute("endorseSkills", foundUser.getEndorseSkillsByUser(contextUser));
-//            request.getRequestDispatcher("/user-profile.jsp").forward(request, response);
-        }
+//        if(st.hasMoreTokens()) {
+//      String id = st.nextToken();
+        String id = request.getParameter("id");
+        User foundUser = Database.findUserById(id);
+
+        ArrayList<Skill> allSkills = Database.getSkills();
+        UserDTO userDTO = new UserDTO(foundUser, allSkills);
+
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String userJson = ow.writeValueAsString(userDTO);
+
+        Utils.sendJSON(userJson, response, 200);
+//        }
     }
 }

@@ -1,8 +1,9 @@
 package controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.Skill;
 import model.User;
-import repository.Database;
+import model.UserSkill;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,23 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
-@WebServlet("/login")
-public class LoginServlet  extends HttpServlet {
+@WebServlet("/user/skill")
+public class AddSkillServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User contextUser = (User) request.getAttribute("contextUser");
 
         String body = Utils.getBodyOfRequest(request);
-        ArrayList<User> users = Database.getUsers();
         ObjectMapper objectMapper = new ObjectMapper();
-        User loginUser = objectMapper.readValue(body, User.class);
+        Skill skill = objectMapper.readValue(body, Skill.class);
 
-        for(User user : users){
-            if(user.getId().equals(loginUser.getUserName()) && user.getPassword().equals(loginUser.getPassword())) {
-                response.setStatus(200);
-                return;
-            }
-        }
-        response.setStatus(403);
+        UserSkill userSkill = new UserSkill(skill.getName());
+//        User user = Database.findUserById(request.getParameter("user"));
+        contextUser.addSkill(userSkill);
+        Utils.sendJSON("{message: \"add skill successful\"}", response, 200);
     }
+
 }

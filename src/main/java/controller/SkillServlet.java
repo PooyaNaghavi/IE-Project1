@@ -16,7 +16,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-@WebServlet("/skill")
+//user/skill/html?id=userid
+
+@WebServlet("/user/skill/*")
 public class SkillServlet extends HttpServlet {
 
     @Override
@@ -24,28 +26,31 @@ public class SkillServlet extends HttpServlet {
         super.init();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User contextUser = (User) request.getAttribute("contextUser");
-        Skill skill = Database.findSkillByName(request.getParameter("skill"));
-        UserSkill userSkill = new UserSkill(skill.getName());
-        User user = Database.findUserById(request.getParameter("user"));
-        user.addSkill(userSkill);
-        Utils.sendJSON("{message: \"add skill successful\"}", response, 200);
+    public String getSkillName(HttpServletRequest request){
+        String uri = request.getRequestURI().toString();
+        StringTokenizer st = new StringTokenizer(uri, "/");
+        st.nextToken();
+        st.nextToken();
+        String skillName = st.nextToken();
+        return skillName;
     }
+
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String skillName = getSkillName(request);
         User contextUser = (User) request.getAttribute("contextUser");
-        Skill skill = Database.findSkillByName(request.getParameter("skill"));
+        Skill skill = Database.findSkillByName(skillName);
         UserSkill userSkill = new UserSkill(skill.getName());
-        User user = Database.findUserById(request.getParameter("user"));
+        User user = Database.findUserById(request.getParameter("id"));
         user.endorseSkill(userSkill, contextUser);
         Utils.sendJSON("{message: \"endorse skill successful\"}", response, 200);
     }
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String skillName = getSkillName(request);
         User contextUser = (User) request.getAttribute("contextUser");
-        Skill skill = Database.findSkillByName(request.getParameter("skill"));
+        Skill skill = Database.findSkillByName(skillName);
         UserSkill userSkill = new UserSkill(skill.getName());
-        User user = Database.findUserById(request.getParameter("user"));
-        user.deleteSkill(userSkill);
+//        User user = Database.findUserById(request.getParameter("id"));
+        contextUser.deleteSkill(userSkill);
         Utils.sendJSON("{message: \"delete skill successful\"}", response, 200);
     }
 

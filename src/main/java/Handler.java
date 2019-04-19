@@ -37,7 +37,7 @@ class projectHandler extends Handler{
         }
         try {
             Project foundProject = Database.findProjectById(id);
-            if(authenticatedUser.checkSkillCondtions(foundProject)){
+            if(Database.checkSkillConditions(foundProject, authenticatedUser)){
                 viewResult = view.projectView(foundProject);
             } else {
                 statusCode = 403;
@@ -62,7 +62,7 @@ class projectListHandler extends Handler{
             statusCode = 404;
             view.showError(e.getMessage());
         }
-        viewResult = view.projectsListView(authenticatedUser.getQualifiedProjects());
+        viewResult = view.projectsListView(Database.getQualifiedProjects(authenticatedUser));
         sendOutput(t, statusCode, viewResult);
     }
 }

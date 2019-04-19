@@ -13,7 +13,6 @@ public class Project {
     private String description;
     private String imageUrl;
     private ArrayList<Skill> skills;
-    private ArrayList<Bid> bids;
     private int budget;
     private long deadline;
     private User winner;
@@ -24,7 +23,8 @@ public class Project {
         this.budget = budget;
     }
 
-    public Project(){}
+    public Project(){
+    }
 
     public Project(String id, String title, String description, String imageURL, ArrayList<Skill> skills, ArrayList<Bid> bids, int budget, long deadline, User winner) {
         this.id = id;
@@ -32,7 +32,6 @@ public class Project {
         this.description = description;
         this.imageUrl = imageURL;
         this.skills = skills;
-        this.bids = bids;
         this.budget = budget;
         this.deadline = deadline;
         this.winner = winner;
@@ -74,9 +73,6 @@ public class Project {
         return imageUrl;
     }
 
-    public ArrayList<Bid> getBids() {
-        return bids;
-    }
 
     public long getDeadline() {
         return deadline;
@@ -96,10 +92,6 @@ public class Project {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public void setBids(ArrayList<Bid> bids) {
-        this.bids = bids;
     }
 
     public void setDeadline(long deadline) {
@@ -135,3 +127,4 @@ public class Project {
         return maxUser;
     }
 }
+

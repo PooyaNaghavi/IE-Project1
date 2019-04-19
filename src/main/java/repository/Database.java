@@ -22,6 +22,7 @@ public class Database {
     public static void addAuthenticatedUser(){
         ArrayList<UserSkill> skills = new ArrayList<>();
         ArrayList<User> endorsers = new ArrayList<>();
+
         for (User u : users) {
             endorsers.add(u);
         }
@@ -29,7 +30,7 @@ public class Database {
         skills.add(new UserSkill("Javascript", endorsers));
         skills.add(new UserSkill("C++", endorsers));
         skills.add(new UserSkill("Java", endorsers));
-        users.add(new User("1", "علی", "شریف‌زاده","1234" ,"برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت", skills));
+        users.add(new User("1", "علی", "شریف‌زاده","1","1234" ,"برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت", skills));
     }
 
     public static User findUserById(String id) throws NotFoundException{
@@ -52,6 +53,7 @@ public class Database {
 
     public static Project findProjectById(String id) throws NotFoundException{
         for(Project project : projects){
+            System.out.println(project.getId());
             if(project.getId().equals(id)){
                 return project;
             }
@@ -78,6 +80,9 @@ public class Database {
 
     public static void insertBid(User user, Project project, int bidAmount) throws BadConditionException {
         Bid bid = new Bid(user, project, bidAmount);
+        System.out.println(bidAmount);
+        System.out.println(user.getId());
+        System.out.println(project.getId());
         if(!bid.checkBidConditions(project))
             throw new BadConditionException("bid conditions not satistfied");
         for(Bid prev_bid : bids) {
@@ -174,9 +179,10 @@ public class Database {
                 "2",
                 "pooya",
                 "naghavi",
+                "2",
                 "1234",
                 "bikar",
-                "https://sample-videos.com/img/Sample-jpg-image-50kb.jpg",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQAfJWoANWz9aJr2R4ke04WLbaZYrlx3dahOzNYtAiTARLy-KGyw",
                 "pooooooya hastam",
                 pooyaSkills));
         ArrayList<UserSkill> mamadSkills = new ArrayList<>();
@@ -186,9 +192,10 @@ public class Database {
                 "3",
                 "mohammad",
                 "ganji",
+                "3",
                 "1234",
                 "bakar",
-                "https://sample-videos.com/img/Sample-jpg-image-50kb.jpg",
+                "https://www.gstatic.com/webp/gallery/1.jpg",
                 "mamadam",
                 mamadSkills));
         Database.setUsers(initialUsers);
@@ -207,5 +214,47 @@ public class Database {
             }
         }
         return allSkills;
+    }
+
+    public static ArrayList<Bid> findProjectBids(Project project){
+        ArrayList<Bid> projectBids = new ArrayList<>();
+        for(Bid bid : bids){
+            if(bid.getProject().getId().equals(project.getId())){
+                projectBids.add(bid);
+            }
+        }
+        return projectBids;
+    }
+
+    public static boolean checkSkillConditions(Project project, User user){
+
+        ArrayList<Skill> projectSkills = project.getSkills();
+        boolean find;
+
+        for(Skill projectSkill : projectSkills){
+            find = false;
+            for(Skill userSkill : user.getSkills()){
+                if(projectSkill.getName().equals(userSkill.getName()))
+                {
+                    find = true;
+                    if(projectSkill.getPoint() > userSkill.getPoint()){
+                        return false;
+                    }
+                }
+            }
+            if(!find)
+                return false;
+        }
+        return true;
+    }
+
+    public static ArrayList<Project> getQualifiedProjects(User user) {
+        ArrayList<Project> qualifiedProjects = new ArrayList<>();
+        for(Project project: projects) {
+            if(checkSkillConditions(project, user)) {
+                qualifiedProjects.add(project);
+            }
+        }
+        return qualifiedProjects;
     }
 }

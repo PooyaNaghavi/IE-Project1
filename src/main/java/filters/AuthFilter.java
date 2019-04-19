@@ -1,6 +1,7 @@
 package filters;
 
 import exceptions.NotFoundException;
+import model.User;
 import repository.Database;
 
 import javax.servlet.*;
@@ -15,14 +16,18 @@ public class AuthFilter implements Filter {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        String path = ((HttpServletRequest) req).getRequestURI();
-        if (path.startsWith("/login") || path.startsWith("/register")) {
-            chain.doFilter(req, resp); // Just continue chain.
-        } else {
-            req.setCharacterEncoding("UTF-8");
-            //req.setAttribute("contextUser", Database.findUserById("1"));
-            chain.doFilter(req, resp);
-        }
+//        String path = ((HttpServletRequest) req).getRequestURI();
+//        if (path.startsWith("/login") || path.startsWith("/register")) {
+//            chain.doFilter(req, resp); // Just continue chain.
+//        } else {
+//            req.setCharacterEncoding("UTF-8");
+//            //req.setAttribute("contextUser", Database.findUserById("1"));
+//            chain.doFilter(req, resp);
+//        }
+
+        req.setCharacterEncoding("UTF-8");
+        req.setAttribute("contextUser", Database.findUserById("1"));
+        chain.doFilter(req, resp);
     }
 
     public void init(FilterConfig config) throws ServletException {

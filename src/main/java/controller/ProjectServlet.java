@@ -1,5 +1,6 @@
 package controller;
 
+import DTO.ProjectDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import exceptions.NotFoundException;
@@ -15,25 +16,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-@WebServlet("/project/*")
+@WebServlet("/project")
 public class ProjectServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String uri = request.getRequestURI();
 
-        StringTokenizer st = new StringTokenizer(uri, "/");
-//        st.nextToken();
-        String context = st.nextToken();
-        String id = st.nextToken();
-
+        String id = request.getParameter("id");
         User authenticatedUser = (User) request.getAttribute("contextUser");
-
+        System.out.println(Database.getProjects().size());
+        System.out.println(id);
         Project foundProject = Database.findProjectById(id);
-        if (authenticatedUser.checkSkillCondtions(foundProject)) {
-            request.setAttribute("project", foundProject);
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            String projectJson = ow.writeValueAsString(authenticatedUser.getQualifiedProjects());
-            Utils.sendJSON(projectJson, response, 200);
+        System.out.println(foundProject.getTitle());
+        System.out.println(Database.getProjects().size());
+
+        ProjectDTO projectDTO = new ProjectDTO(Database.findProjectBids(foundProject), foundProject);
+
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String projectJson = ow.writeValueAsString(projectDTO);
+        Utils.sendJSON(projectJson, response, 200);
 //            try {
 //                Database.findBid(authenticatedUser, foundProject);
 //                request.setAttribute("userHasBid", true);
@@ -41,8 +41,8 @@ public class ProjectServlet extends HttpServlet {
 //                request.setAttribute("userHasBid", false);
 //            }
 //            request.getRequestDispatcher("/project.jsp").forward(request, response);
-        } else {
-            throw new NotFoundException("403 forbidden", 403);
-        }
+//        } else {
+//            throw new NotFoundException("403 forbidden", 403);
+//        }
     }
 }
