@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 
 //user/skill/html?id=userid
@@ -40,7 +41,12 @@ public class SkillServlet extends HttpServlet {
         User contextUser = (User) request.getAttribute("contextUser");
         Skill skill = Database.findSkillByName(skillName);
         UserSkill userSkill = new UserSkill(skill.getName());
-        User user = Database.findUserById(request.getParameter("id"));
+        User user = null;
+        try {
+            user = Database.findUserById(request.getParameter("id"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         user.endorseSkill(userSkill, contextUser);
         Utils.sendJSON("{message: \"endorse skill successful\"}", response, 200);
     }

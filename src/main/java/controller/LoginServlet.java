@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet("/login")
@@ -17,7 +18,12 @@ public class LoginServlet  extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String body = Utils.getBodyOfRequest(request);
-        ArrayList<User> users = Database.getUsers();
+        ArrayList<User> users = null;
+        try {
+            users = Database.getUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         ObjectMapper objectMapper = new ObjectMapper();
         User loginUser = objectMapper.readValue(body, User.class);
 

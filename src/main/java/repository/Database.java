@@ -2,6 +2,7 @@ package repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dataLayer.dataMappers.UserMapper;
 import exceptions.BadConditionException;
 import exceptions.NotFoundException;
 import model.*;
@@ -9,6 +10,7 @@ import model.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,10 +21,12 @@ public class Database {
     private static ArrayList<Bid> bids = new ArrayList<>();
     private static ArrayList<Skill> skills = new ArrayList<>();
 
-    public static void addAuthenticatedUser(){
+    public static void addAuthenticatedUser() throws SQLException {
+        UserMapper userMapper = new UserMapper();
         ArrayList<UserSkill> skills = new ArrayList<>();
         ArrayList<User> endorsers = new ArrayList<>();
 
+        // TODO: add after the UserSkill Table is created
         for (User u : users) {
             endorsers.add(u);
         }
@@ -30,17 +34,17 @@ public class Database {
         skills.add(new UserSkill("Javascript", endorsers));
         skills.add(new UserSkill("C++", endorsers));
         skills.add(new UserSkill("Java", endorsers));
-        users.add(new User("1", "علی", "شریف‌زاده","1","1234" ,"برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت", skills));
+
+        userMapper.insertUser(new User("1", "علی", "شریف‌زاده","1","1234" ,"برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت"));
     }
 
-    public static User findUserById(String id) throws NotFoundException{
-        for(User user : users){
-            if(user.getId().equals(id)){
-                return user;
-            }
-        }
+    // DONE
+    public static User findUserById(String id) throws NotFoundException, SQLException {
+        UserMapper userMapper = new UserMapper();
+        userMapper.findById(id);
         throw new NotFoundException("User not found!!!");
     }
+
 
     public static Project findProjectByTitle(String title) throws NotFoundException{
         for(Project project : projects){
@@ -61,8 +65,10 @@ public class Database {
         throw new NotFoundException("Project not found!!!");
     }
 
-    public static ArrayList<User> getUsers() {
-        return users;
+    // DONE
+    public static ArrayList<User> getUsers() throws SQLException {
+        UserMapper userMapper = new UserMapper();
+        return userMapper.findAll();
     }
 
     public static ArrayList<Project> getProjects() {

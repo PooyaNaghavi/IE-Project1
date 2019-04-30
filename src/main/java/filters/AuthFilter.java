@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebFilter(filterName = "AuthFilter")
 public class AuthFilter implements Filter {
@@ -26,7 +27,11 @@ public class AuthFilter implements Filter {
 //        }
 
         req.setCharacterEncoding("UTF-8");
-        req.setAttribute("contextUser", Database.findUserById("1"));
+        try {
+            req.setAttribute("contextUser", Database.findUserById("1"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         chain.doFilter(req, resp);
     }
 

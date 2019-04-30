@@ -41,6 +41,17 @@ public class User {
         this.skills = skills;
     }
 
+    public User(String id, String firstName, String lastName, String userName, String password, String jobTitle, String profilePictureURL, String bio) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.jobTitle = jobTitle;
+        this.profilePictureURL = profilePictureURL;
+        this.bio = bio;
+    }
+
     public int getSkillPoint(Skill skill) throws NotFoundException {
         for(Skill user_skill : skills){
             if(user_skill.getName().equals(skill.getName())){

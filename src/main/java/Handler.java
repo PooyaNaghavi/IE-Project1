@@ -7,6 +7,7 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 
 public abstract class Handler implements HttpHandler {
@@ -32,7 +33,7 @@ class projectHandler extends Handler{
         User authenticatedUser = null;
         try {
             authenticatedUser = Database.findUserById("1");
-        } catch (NotFoundException e) {
+        } catch (SQLException e) {
             view.showError(e.getMessage());
         }
         try {
@@ -58,7 +59,7 @@ class projectListHandler extends Handler{
         User authenticatedUser = null;
         try {
             authenticatedUser = Database.findUserById("1");
-        } catch (NotFoundException e) {
+        } catch (SQLException e) {
             statusCode = 404;
             view.showError(e.getMessage());
         }
@@ -82,7 +83,7 @@ class userHandler extends Handler {
             try {
                 User foundUser = Database.findUserById(id);
                 viewResult = view.usersListView(foundUser);
-            } catch (NotFoundException e) {
+            } catch (SQLException e) {
                 statusCode = 404;
                 viewResult = view.showError(e.getMessage());
             }

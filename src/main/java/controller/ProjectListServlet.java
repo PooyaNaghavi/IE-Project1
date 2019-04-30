@@ -27,7 +27,7 @@ public class ProjectListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User authenticatedUser = (User) request.getAttribute("contextUser");
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String projectsJson = ow.writeValueAsString(Database.getQualifiedProjects(authenticatedUser));
+            String projectsJson = ow.writeValueAsString(Database.getQualifiedProjects(authenticatedUser));
         Utils.sendJSON(projectsJson, response, 200);
     }
 }

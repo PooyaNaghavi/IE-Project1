@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -29,7 +30,12 @@ public class UserServlet extends HttpServlet {
 //        if(st.hasMoreTokens()) {
 //      String id = st.nextToken();
         String id = request.getParameter("id");
-        User foundUser = Database.findUserById(id);
+        User foundUser = null;
+        try {
+            foundUser = Database.findUserById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         ArrayList<Skill> allSkills = Database.getSkills();
         UserDTO userDTO = new UserDTO(foundUser, allSkills);
