@@ -1,6 +1,7 @@
 package dataLayer.dataMappers;
 
 import dataLayer.DBCPDBConnectionPool;
+import model.Skill;
 
 import java.sql.*;
 import java.util.HashMap;

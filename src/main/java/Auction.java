@@ -32,7 +32,7 @@ public class Auction {
 //
 //        ArrayList<Skill> userSkills = getSkillsFromJSON(skills);
 //
-//        repository.Database.insertUser(username, userSkills);
+//        repository.Database.insertOne(username, userSkills);
 //
 //    }
 //

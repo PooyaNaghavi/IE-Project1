@@ -1,15 +1,11 @@
 package repository;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dataLayer.dataMappers.UserMapper;
 import exceptions.BadConditionException;
 import exceptions.NotFoundException;
 import model.*;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +31,7 @@ public class Database {
         skills.add(new UserSkill("C++", endorsers));
         skills.add(new UserSkill("Java", endorsers));
 
-        userMapper.insertUser(new User("1", "علی", "شریف‌زاده","1","1234" ,"برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت"));
+        userMapper.insertOne(new User("1", "علی", "شریف‌زاده","1","1234" ,"برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت"));
     }
 
     // DONE
@@ -79,7 +75,7 @@ public class Database {
         return bids;
     }
 
-    public static void insertProject(String title, ArrayList<Skill> projectSkills, int budget) {
+    public static void insertProject(String title, ArrayList<ProjectSkill> projectSkills, int budget) {
         Project project = new Project(title, projectSkills, budget);
         projects.add(project);
     }
@@ -234,12 +230,12 @@ public class Database {
 
     public static boolean checkSkillConditions(Project project, User user){
 
-        ArrayList<Skill> projectSkills = project.getSkills();
+        ArrayList<ProjectSkill> projectSkills = project.getSkills();
         boolean find;
 
-        for(Skill projectSkill : projectSkills){
+        for(ProjectSkill projectSkill : projectSkills){
             find = false;
-            for(Skill userSkill : user.getSkills()){
+            for(UserSkill userSkill : user.getSkills()){
                 if(projectSkill.getName().equals(userSkill.getName()))
                 {
                     find = true;

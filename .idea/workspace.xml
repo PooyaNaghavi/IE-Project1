@@ -7,23 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1069b45d-c35b-4971-b11f-5848813e70c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dataLayer/DBCPDBConnectionPool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/Mapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectSkillMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/SkillMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Endorsement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/ProjectSkill.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProjectListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProjectListServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserListServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filters/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filters/AuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/InitListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/InitListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Auction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Auction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Skill.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/UserSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/UserSkill.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/repository/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/Database.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -71,24 +69,29 @@
     <session id="-630792573">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.54" value="1" />
           <entry key="project.open.time.57" value="1" />
           <entry key="project.open.time.59" value="1" />
           <entry key="project.open.time.61" value="1" />
           <entry key="project.open.time.63" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1497" />
+          <entry key="dummy" value="14" />
+          <entry key="java" value="5079" />
           <entry key="sql" value="53" />
+          <entry key="txt" value="19" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1487" />
+          <entry key="JAVA" value="5069" />
+          <entry key="PLAIN_TEXT" value="33" />
           <entry key="SQL" value="10" />
           <entry key="Scratch" value="53" />
           <entry key="XML" value="2" />
@@ -97,7 +100,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="2" />
-          <entry key="java" value="14" />
+          <entry key="java" value="29" />
           <entry key="sql" value="5" />
           <entry key="sqlite_master" value="1" />
           <entry key="user" value="1" />
@@ -108,7 +111,7 @@
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="Database Element" value="2" />
-          <entry key="JAVA" value="14" />
+          <entry key="JAVA" value="29" />
           <entry key="Scratch" value="5" />
           <entry key="XML" value="2" />
         </counts>
@@ -121,58 +124,31 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/UserServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/repository/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+            <state relative-caret-position="-15">
+              <caret line="235" column="19" selection-start-line="235" selection-start-column="19" selection-end-line="235" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/SkillServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/listeners/InitListener.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+            <state relative-caret-position="135">
+              <caret line="143" column="13" lean-forward="true" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/filters/AuthFilter.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Handler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+            <state relative-caret-position="331">
+              <caret line="73" column="12" lean-forward="true" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -181,19 +157,69 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/UserListServlet.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="331">
+              <caret line="121" column="24" lean-forward="true" selection-start-line="110" selection-start-column="8" selection-end-line="121" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="705">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/model/Endorsement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+              <folding>
+                <element signature="e#136#137#0" expanded="true" />
+                <element signature="e#167#168#0" expanded="true" />
+                <element signature="e#213#214#0" expanded="true" />
+                <element signature="e#253#254#0" expanded="true" />
+                <element signature="e#286#287#0" expanded="true" />
+                <element signature="e#317#318#0" expanded="true" />
+                <element signature="e#363#364#0" expanded="true" />
+                <element signature="e#403#404#0" expanded="true" />
+                <element signature="e#434#435#0" expanded="true" />
+                <element signature="e#462#463#0" expanded="true" />
+                <element signature="e#503#504#0" expanded="true" />
+                <element signature="e#537#538#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectSkillMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/model/ProjectSkill.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/LoginServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="22" column="40" lean-forward="true" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -202,22 +228,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/model/Project.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret line="62" column="44" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+            <state relative-caret-position="1373">
+              <caret line="135" column="43" selection-start-line="135" selection-start-column="34" selection-end-line="135" selection-end-column="43" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#3362#3363#0" expanded="true" />
+                <element signature="e#3394#3395#0" expanded="true" />
+                <element signature="e#3442#3443#0" expanded="true" />
+                <element signature="e#3484#3485#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9dedd406-fa3e-496d-8a5f-11346ac1d59f/console.sql">
+        <entry file="file://$PROJECT_DIR$/src/main/java/model/UserSkill.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="16" />
+            <state relative-caret-position="165">
+              <caret line="19" column="30" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="30" />
+              <folding>
+                <element signature="e#1086#1087#0" expanded="true" />
+                <element signature="e#1114#1115#0" expanded="true" />
+                <element signature="e#1049#1050#0" expanded="true" />
+                <element signature="e#1080#1081#0" expanded="true" />
+                <element signature="e#1144#1145#0" expanded="true" />
+                <element signature="e#1184#1185#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -236,9 +273,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>authen</find>
-      <find>AuthFilter</find>
-      <find>Not</find>
       <find>new Not</find>
       <find>404</find>
       <find>403</find>
@@ -266,6 +300,9 @@
       <find>findBid</find>
       <find>addAuthenticatedUser</find>
       <find>findUserById</find>
+      <find>bio</find>
+      <find>skillMam</find>
+      <find>addEndorseUser</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -274,13 +311,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/model/ProjectSkill.java" />
-        <option value="$PROJECT_DIR$/src/main/java/usersList.json" />
-        <option value="$PROJECT_DIR$/usersList.json" />
-        <option value="$PROJECT_DIR$/src/main/webapp/error.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/project.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/project-list.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/user-list.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/service/APIHelper.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/user-profile.jsp" />
@@ -296,35 +326,42 @@
         <option value="$PROJECT_DIR$/src/main/java/model/LoginDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/BidDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/DTO/BidDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/model/Skill.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/HomeServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/DTO/SkillDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/Bid.java" />
-        <option value="$PROJECT_DIR$/src/main/java/model/Project.java" />
         <option value="$PROJECT_DIR$/src/main/java/DTO/ProjectDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/ProjectServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/BidServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/DTO/UserDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/model/UserSkill.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/AddSkillServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/ProjectListServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/DBCPConnectionPool.java" />
-        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/Mapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/model/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/DBCPDBConnectionPool.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d338d5f7-8fc8-46eb-ae43-c31dc47378c0/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/controller/UserServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/repository/Database.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/Handler.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/UserListServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/LoginServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/filters/AuthFilter.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9dedd406-fa3e-496d-8a5f-11346ac1d59f/console.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/listeners/InitListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/Mapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/SkillMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/Skill.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/ProjectSkill.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/Project.java" />
+        <option value="$PROJECT_DIR$/src/main/java/repository/Database.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/Endorsement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectSkillMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/UserSkill.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/User.java" />
       </list>
     </option>
   </component>
@@ -359,8 +396,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -448,7 +485,7 @@
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556640258877" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556661747197" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -598,7 +635,9 @@
       <workItem from="1555685143360" duration="5450000" />
       <workItem from="1555699296406" duration="1646000" />
       <workItem from="1556562418474" duration="2194000" />
-      <workItem from="1556630904201" duration="8128000" />
+      <workItem from="1556630904201" duration="8328000" />
+      <workItem from="1556641712964" duration="832000" />
+      <workItem from="1556654515664" duration="6491000" />
     </task>
     <task id="LOCAL-00001" summary="endorsement implemented.">
       <created>1551287344781</created>
@@ -684,11 +723,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555483971772</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="db initializations">
+      <created>1556640390939</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1556640390939</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150546000" />
+    <option name="totallyTimeSpent" value="158069000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -705,19 +751,18 @@
     <layout>
       <window_info id="Learn" order="0" />
       <window_info id="Web" order="1" sideWeight="0.5048544" side_tool="true" weight="0.29685265" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.49514562" weight="0.25037935" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49514562" visible="true" weight="0.25417298" />
       <window_info id="Structure" order="3" sideWeight="0.5036145" side_tool="true" weight="0.2811159" />
       <window_info id="Designer" order="4" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="UI Designer" order="7" />
       <window_info id="Favorites" order="8" sideWeight="0.5036145" side_tool="true" weight="0.2811159" />
-      <window_info anchor="bottom" id="Database Console" weight="0.32899022" />
       <window_info anchor="bottom" id="Java Enterprise" order="0" weight="0.32891566" />
       <window_info anchor="bottom" id="Application Servers" order="1" weight="0.32891566" />
       <window_info anchor="bottom" id="Message" order="2" />
-      <window_info anchor="bottom" id="Find" order="3" weight="0.32736155" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.49928468" visible="true" weight="0.42345276" />
+      <window_info anchor="bottom" id="Find" order="3" visible="true" weight="0.32736155" />
+      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49928468" weight="0.42345276" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -731,47 +776,7 @@
       <window_info anchor="bottom" id="Version Control" order="15" weight="0.32891566" />
       <window_info anchor="bottom" id="ANTLR Preview" order="16" weight="0.32891566" />
       <window_info anchor="bottom" id="Duplicate detector" order="17" weight="0.32891566" />
-      <window_info anchor="right" id="Maven Projects" order="0" />
-      <window_info anchor="right" id="PlantUML" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
-      <window_info anchor="right" id="Database" order="5" visible="true" weight="0.32852808" />
-      <window_info anchor="right" id="Maven" order="6" />
-      <window_info anchor="right" id="Palette" order="7" />
-      <window_info anchor="right" id="Capture Analysis" order="8" />
-      <window_info anchor="right" id="Palette&#9;" order="9" />
-      <window_info anchor="right" id="Theme Preview" order="10" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Learn" order="0" />
-      <window_info id="Web" order="1" sideWeight="0.5048544" side_tool="true" weight="0.29685265" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.49514562" visible="true" weight="0.25037935" />
-      <window_info id="Structure" order="3" sideWeight="0.5036145" side_tool="true" weight="0.2811159" />
-      <window_info id="Designer" order="4" />
-      <window_info id="Image Layers" order="5" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="UI Designer" order="7" />
-      <window_info id="Favorites" order="8" sideWeight="0.5036145" side_tool="true" weight="0.2811159" />
-      <window_info anchor="bottom" id="Database Console" order="0" weight="0.32899022" />
-      <window_info anchor="bottom" id="Java Enterprise" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Application Servers" order="2" weight="0.32891566" />
-      <window_info anchor="bottom" id="Message" order="3" />
-      <window_info anchor="bottom" id="Find" order="4" weight="0.32736155" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.49928468" visible="true" weight="0.42345276" />
-      <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="9" sideWeight="0.49928468" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4985694" weight="0.20722891" />
-      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Tool Output" order="12" weight="0.3279483" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50143063" side_tool="true" weight="0.32771084" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.32736155" />
-      <window_info anchor="bottom" id="Database Changes" order="15" />
-      <window_info anchor="bottom" id="Version Control" order="16" weight="0.32891566" />
-      <window_info anchor="bottom" id="ANTLR Preview" order="17" weight="0.32891566" />
-      <window_info anchor="bottom" id="Duplicate detector" order="18" weight="0.32891566" />
+      <window_info anchor="bottom" id="Database Console" order="18" weight="0.32899022" />
       <window_info anchor="right" id="Maven Projects" order="0" />
       <window_info anchor="right" id="PlantUML" order="1" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
@@ -783,7 +788,7 @@
       <window_info anchor="right" id="Capture Analysis" order="8" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info anchor="right" id="Theme Preview" order="10" />
-    </layout-to-restore>
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -813,35 +818,10 @@
     <MESSAGE value="bug fixed ?" />
     <MESSAGE value="Phase 5 completed!" />
     <MESSAGE value="Login backend handled." />
-    <option name="LAST_COMMIT_MESSAGE" value="Login backend handled." />
+    <MESSAGE value="db initializations" />
+    <option name="LAST_COMMIT_MESSAGE" value="db initializations" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sample1.input">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/RequestMapping.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/DataProvider.java" />
-    <entry file="file://$PROJECT_DIR$/APIRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="29" column="19" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/user-profile.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="65" lean-forward="true" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/filters/CorsFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -896,13 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Skill.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Bid.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -948,13 +921,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/UserSkill.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="30" column="20" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/ProjectListServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -969,31 +935,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Project.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1011,23 +952,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/Mapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://d338d5f7-8fc8-46eb-ae43-c31dc47378c0/schema/main/table/sqlite_master">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://d338d5f7-8fc8-46eb-ae43-c31dc47378c0/schema/main/table/sqlite_master" />
     <entry file="jar://$MAVEN_REPOSITORY$/commons-dbcp/commons-dbcp/1.2.2/commons-dbcp-1.2.2.jar!/org/apache/commons/dbcp/BasicDataSource.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -1059,33 +984,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="25" column="25" lean-forward="true" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/UserServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
+        <state relative-caret-position="255">
           <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/SkillServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+        <state relative-caret-position="375">
+          <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/listeners/InitListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/filters/AuthFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Handler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1096,54 +1032,174 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LoginServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="22" column="40" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9dedd406-fa3e-496d-8a5f-11346ac1d59f/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="16" />
+          <caret column="7" selection-start-column="7" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/Mapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
-          <caret line="62" column="44" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+        <state relative-caret-position="502">
+          <caret line="128" column="5" selection-start-line="13" selection-start-column="4" selection-end-line="128" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LoginServlet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Skill.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="22" column="40" lean-forward="true" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+        <state relative-caret-position="270">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding>
+            <element signature="e#271#272#0" expanded="true" />
+            <element signature="e#303#304#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/SkillMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="45" column="21" lean-forward="true" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Handler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/ProjectSkill.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+        <state relative-caret-position="165">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/filters/AuthFilter.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/repository/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="32" />
+        <state relative-caret-position="-15">
+          <caret line="235" column="19" selection-start-line="235" selection-start-column="19" selection-end-line="235" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/listeners/InitListener.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Endorsement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        <state relative-caret-position="135">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding>
+            <element signature="e#136#137#0" expanded="true" />
+            <element signature="e#167#168#0" expanded="true" />
+            <element signature="e#213#214#0" expanded="true" />
+            <element signature="e#253#254#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#317#318#0" expanded="true" />
+            <element signature="e#363#364#0" expanded="true" />
+            <element signature="e#403#404#0" expanded="true" />
+            <element signature="e#434#435#0" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#537#538#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectSkillMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="121" column="24" lean-forward="true" selection-start-line="110" selection-start-column="8" selection-end-line="121" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Project.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1373">
+          <caret line="135" column="43" selection-start-line="135" selection-start-column="34" selection-end-line="135" selection-end-column="43" />
+          <folding>
+            <element signature="e#3362#3363#0" expanded="true" />
+            <element signature="e#3394#3395#0" expanded="true" />
+            <element signature="e#3442#3443#0" expanded="true" />
+            <element signature="e#3484#3485#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="73" column="12" lean-forward="true" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/UserSkill.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="30" />
+          <folding>
+            <element signature="e#1086#1087#0" expanded="true" />
+            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#1049#1050#0" expanded="true" />
+            <element signature="e#1080#1081#0" expanded="true" />
+            <element signature="e#1144#1145#0" expanded="true" />
+            <element signature="e#1184#1185#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="143" column="13" lean-forward="true" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
         </state>
       </provider>
     </entry>

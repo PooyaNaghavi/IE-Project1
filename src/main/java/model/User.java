@@ -53,7 +53,7 @@ public class User {
     }
 
     public int getSkillPoint(Skill skill) throws NotFoundException {
-        for(Skill user_skill : skills){
+        for(UserSkill user_skill : skills){
             if(user_skill.getName().equals(skill.getName())){
                 return user_skill.getPoint();
             }
@@ -140,7 +140,7 @@ public class User {
     public void endorseSkill(UserSkill skill, User contextUser) {
         for (UserSkill userSkill: skills){
             if(userSkill.getName().equals(skill.getName())){
-                userSkill.addEndorseUser(contextUser);
+                userSkill.addEndorseUser(contextUser); // TODO: logic is changed, do something.
             }
         }
     }
@@ -148,8 +148,8 @@ public class User {
     public HashMap<String, Boolean> getEndorseSkillsByUser(User contextUser) {
         HashMap<String, Boolean> endorseSkills = new HashMap<>();
         for (UserSkill skill : skills){
-            for (User user : skill.getEndorseUsers()){
-                if(user.getId().equals(contextUser.getId())){
+            for (Endorsement en : skill.getEndorses()){
+                if(en.getEndorsed().equals(contextUser.getId())){ // TODO: logic is changed. probably easier impl.
                     endorseSkills.put(skill.getName(), true);
                 } else {
                     endorseSkills.put(skill.getName(), false);

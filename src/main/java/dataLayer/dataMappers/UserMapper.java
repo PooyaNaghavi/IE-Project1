@@ -13,13 +13,13 @@ public class UserMapper extends Mapper<User, Integer> {
 
     private static final String COLUMNS =
             "id," +
-            "firstName," +
-            "lastName," +
-            "userName," +
-            "password," +
-            "jobTitle," +
-            "profilePictureURL," +
-            "bio ";
+                    "firstName," +
+                    "lastName," +
+                    "userName," +
+                    "password," +
+                    "jobTitle," +
+                    "profilePictureURL," +
+                    "bio ";
 //            userSkill
 
 
@@ -77,7 +77,7 @@ public class UserMapper extends Mapper<User, Integer> {
         return user;
     }
 
-    public void insertUser(User user) throws SQLException {
+    public void insertOne(User user) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
         String sql = "INSERT OR IGNORE INTO user (" +
                 "id," +

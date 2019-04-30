@@ -8,9 +8,11 @@ import java.util.Comparator;
 public class Skill {
 
     protected String name;
-    private int point = 0;
 
     public Skill(String name, int point) {
+        this.name = name;
+    }
+    public Skill(String name) {
         this.name = name;
     }
 
@@ -23,11 +25,5 @@ public class Skill {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getPoint() {return point;}
-
-    public void setPoint(int point) {
-        this.point = point;
     }
 }

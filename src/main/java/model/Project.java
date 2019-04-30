@@ -12,12 +12,13 @@ public class Project {
     private String title;
     private String description;
     private String imageUrl;
-    private ArrayList<Skill> skills;
     private int budget;
     private long deadline;
+    private long createdAt;
     private User winner;
+    private ArrayList<ProjectSkill> skills;
 
-    public Project(String title, ArrayList<Skill> skills, int budget){
+    public Project(String title, ArrayList<ProjectSkill> skills, int budget){
         this.title = title;
         this.skills = skills;
         this.budget = budget;
@@ -26,7 +27,7 @@ public class Project {
     public Project(){
     }
 
-    public Project(String id, String title, String description, String imageURL, ArrayList<Skill> skills, ArrayList<Bid> bids, int budget, long deadline, User winner) {
+    public Project(String id, String title, String description, String imageURL, ArrayList<ProjectSkill> skills, int budget, long deadline, long createdAt, User winner) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -34,6 +35,7 @@ public class Project {
         this.skills = skills;
         this.budget = budget;
         this.deadline = deadline;
+        this.createdAt = createdAt;
         this.winner = winner;
     }
 
@@ -41,7 +43,7 @@ public class Project {
         return title;
     }
 
-    public ArrayList<Skill> getSkills() {
+    public ArrayList<ProjectSkill> getSkills() {
         return skills;
     }
 
@@ -53,7 +55,7 @@ public class Project {
         this.title = title;
     }
 
-    public void setSkills(ArrayList<Skill> skills) {
+    public void setSkills(ArrayList<ProjectSkill> skills) {
         this.skills = skills;
     }
 
@@ -104,7 +106,7 @@ public class Project {
 
     private static int calcBidValue(User biddingUser, Project project) throws NotFoundException {
         int sum = 0;
-        for(Skill skill : project.getSkills()){
+        for(ProjectSkill skill : project.getSkills()){
             sum += Math.pow((biddingUser.getSkillPoint(skill) - skill.getPoint()), 2) * 10000;
         }
         sum += project.getBudget() - Database.findUserOffer(biddingUser, project).getAmount();
@@ -125,6 +127,14 @@ public class Project {
             }
         }
         return maxUser;
+    }
+
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 }
 

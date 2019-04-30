@@ -7,32 +7,33 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserSkill extends Skill {
 
-    private ArrayList<User> endorseUsers;
+    private User user;
+    private Skill skill;
+    private ArrayList<Endorsement> endorses;
 
-    public UserSkill(String name) {
-        this.name = name;
-        this.endorseUsers = new ArrayList<>();
-    }
-
-    public UserSkill(String name, ArrayList<User> endorseUsers) {
-        this.name = name;
-        this.endorseUsers = endorseUsers;
-    }
-
-    public ArrayList<User> getEndorseUsers() {
-        return endorseUsers;
-    }
-
-    public void setEndorseUsers(ArrayList<User> endorseUsers) {
-        this.endorseUsers = endorseUsers;
+    public UserSkill(User user, Skill skill, ArrayList<Endorsement> endorses){
+        this.user = user;
+        this.skill = skill;
+        this.endorses = endorses;
     }
 
     public void addEndorseUser(User user) {
-        endorseUsers.add(user);
-    }
+        endorses.add(user);
+    } // TODO: change this to somewhere in database or Mapper.
 
     public int getPoint() {
-        return endorseUsers.size();
+        return endorses.size();
     }
 
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public ArrayList<Endorsement> getEndorses() {
+        return endorses;
+    }
+
+    public void setEndorses(ArrayList<Endorsement> endorses) {
+        this.endorses = endorses;
+    }
 }
