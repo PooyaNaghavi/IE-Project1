@@ -7,7 +7,11 @@ import java.util.Comparator;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Skill {
 
-    protected String name;
+    private String name;
+
+    public int getPoint(){
+        return 0;
+    }
 
     public Skill(String name, int point) {
         this.name = name;
@@ -16,8 +20,7 @@ public class Skill {
         this.name = name;
     }
 
-    public Skill() {
-    }
+    public Skill() { }
 
     public String getName() {
         return name;

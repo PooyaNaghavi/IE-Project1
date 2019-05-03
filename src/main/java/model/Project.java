@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import exceptions.NotFoundException;
 import repository.Database;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Project {
@@ -24,8 +25,7 @@ public class Project {
         this.budget = budget;
     }
 
-    public Project(){
-    }
+    public Project(){ }
 
     public Project(String id, String title, String description, String imageURL, ArrayList<ProjectSkill> skills, int budget, long deadline, long createdAt, User winner) {
         this.id = id;
@@ -75,7 +75,6 @@ public class Project {
         return imageUrl;
     }
 
-
     public long getDeadline() {
         return deadline;
     }
@@ -102,31 +101,6 @@ public class Project {
 
     public void setWinner(User winner) {
         this.winner = winner;
-    }
-
-    private static int calcBidValue(User biddingUser, Project project) throws NotFoundException {
-        int sum = 0;
-        for(ProjectSkill skill : project.getSkills()){
-            sum += Math.pow((biddingUser.getSkillPoint(skill) - skill.getPoint()), 2) * 10000;
-        }
-        sum += project.getBudget() - Database.findUserOffer(biddingUser, project).getAmount();
-        return sum;
-
-    }
-
-    public User findAuctionWinner(ArrayList<User> biddingUsers, Project project) throws NotFoundException{
-        if(biddingUsers.size() == 0){
-            throw new NotFoundException("No bid for this project");
-        }
-        int max = calcBidValue(biddingUsers.get(0), project);
-        User maxUser = biddingUsers.get(0);
-        for(User biddingUser : biddingUsers){
-            if(calcBidValue(biddingUser, project) > max){
-                max = calcBidValue(biddingUser, project);
-                maxUser = biddingUser;
-            }
-        }
-        return maxUser;
     }
 
     public long getCreatedAt() {

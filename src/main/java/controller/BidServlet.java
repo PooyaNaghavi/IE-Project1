@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/project/bid")
 public class BidServlet extends HttpServlet {
@@ -20,15 +21,16 @@ public class BidServlet extends HttpServlet {
 
         User user = (User) request.getAttribute("contextUser");
         String projectId = request.getParameter("id");
-
-        Project project = Database.findProjectById(projectId);
-
         String body = Utils.getBodyOfRequest(request);
         ObjectMapper objectMapper = new ObjectMapper();
         Bid bid = objectMapper.readValue(body, Bid.class);
         int amount = bid.getAmount();
-
-        Database.insertBid(user, project, amount);
+        try {
+            Project project = Database.findProjectById(projectId);
+            Database.insertBid(user, project, amount);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         Utils.sendJSON("{message: \"bid successful\"}", response, 200);
         //request.getRequestDispatcher("/bid-result.jsp").forward(request, response);
     }

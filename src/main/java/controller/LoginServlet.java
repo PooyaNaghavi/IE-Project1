@@ -18,20 +18,12 @@ public class LoginServlet  extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String body = Utils.getBodyOfRequest(request);
-        ArrayList<User> users = null;
-        try {
-            users = Database.getUsers();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         ObjectMapper objectMapper = new ObjectMapper();
         User loginUser = objectMapper.readValue(body, User.class);
 
-        for(User user : users){
-            if(user.getId().equals(loginUser.getUserName()) && user.getPassword().equals(loginUser.getPassword())) {
-                response.setStatus(200);
-                return;
-            }
+        if(Database.AuthenticateUser(loginUser)) {
+            response.setStatus(200);
+            return;
         }
         response.setStatus(403);
     }

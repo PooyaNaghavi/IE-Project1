@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 public class ProjectMapper extends Mapper<Project, Integer> {
 
+    UserMapper userMapper;
+    ProjectSkillMapper projectSkillMapper;
+
     private static final String COLUMNS =
                     "id," +
                     "title," +
@@ -32,9 +35,15 @@ public class ProjectMapper extends Mapper<Project, Integer> {
                 "deadline DATE, " + // TODO: date or number? how to save data?
                 "createdAt DATE," + // TODO: like above
                 "winnerId TEXT, " +
+                "FOREIGN KEY (winnerId) REFERENCES user(id)" +
                 ")");
         st.close();
         con.close();
+    }
+
+    public void setMapper(UserMapper userMapper, ProjectSkillMapper projectSkillMapper){
+        this.userMapper = userMapper;
+        this.projectSkillMapper = projectSkillMapper;
     }
 
     @Override
@@ -46,18 +55,16 @@ public class ProjectMapper extends Mapper<Project, Integer> {
 
     @Override
     protected Project convertResultSetToDomainModel(ResultSet rs) throws SQLException {
-        UserMapper userMapper = new UserMapper();
-        ProjectSkillMapper projectSkillMapper = new ProjectSkillMapper();
         Project project = new Project(
-                rs.getString("id"),
-                rs.getString("title"),
-                rs.getString("description"),
-                rs.getString("imageUrl"),
-                projectSkillMapper.getProjectSkills(rs.getString("id")),
-                rs.getInt("budget"),
-                rs.getLong("deadline"), // TODO: do something about this( if keeping date, change to long)
-                rs.getLong("createdAt"),
-                userMapper.findById(rs.getString("winnerId"))
+            rs.getString("id"),
+            rs.getString("title"),
+            rs.getString("description"),
+            rs.getString("imageUrl"),
+            projectSkillMapper.getProjectSkills(rs.getString("id")),
+            rs.getInt("budget"),
+            rs.getLong("deadline"),
+            rs.getLong("createdAt"),
+            userMapper.findById(rs.getString("winnerId"))
         );
         return project;
     }
@@ -85,6 +92,7 @@ public class ProjectMapper extends Mapper<Project, Integer> {
                 "createdAt," +
                 "winnerId" +
                 ") VALUES (" +
+                "" +
                 "?," +
                 "?," +
                 "?," +
@@ -112,6 +120,21 @@ public class ProjectMapper extends Mapper<Project, Integer> {
         Statement st =
                 con.createStatement();
         ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM project");
+        ArrayList<Project> projects = new ArrayList<>();
+        while(rs.next()){
+            Project pr = convertResultSetToDomainModel(rs);
+            projects.add(pr);
+        }
+        st.close();
+        con.close();
+        return projects;
+    }
+
+    public ArrayList<Project> getProjectsPage(int limit, int nextPageToken) throws SQLException {
+        Connection con = DBCPDBConnectionPool.getConnection();
+        Statement st =
+                con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM project ORDER BY createdAt DESC LIMIT " + limit + " OFFSET " + nextPageToken);
         ArrayList<Project> projects = new ArrayList<>();
         while(rs.next()){
             Project pr = convertResultSetToDomainModel(rs);

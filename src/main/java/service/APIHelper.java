@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class APIHelper {
@@ -30,12 +31,12 @@ public class APIHelper {
         in.close();
         return content;
     }
-    public void updateProjects() throws IOException {
+    public void updateProjects() throws IOException, SQLException {
         String projectContent = APIRequest("http://142.93.134.194:8000/joboonja/project");
         ObjectMapper mapper = new ObjectMapper();
-        Database.setProjects(mapper.readValue(projectContent, new TypeReference<ArrayList<Project>>(){}));
+        Database.insertMultipleProjects(mapper.readValue(projectContent, new TypeReference<ArrayList<Project>>(){}));
     }
-    public void updateSkills() throws IOException {
+    public void updateSkills() throws IOException, SQLException {
         String skillContent = APIRequest("http://142.93.134.194:8000/joboonja/skill");
         ObjectMapper mapper = new ObjectMapper();
         Database.setSkills(mapper.readValue(skillContent, new TypeReference<ArrayList<Skill>>(){}));

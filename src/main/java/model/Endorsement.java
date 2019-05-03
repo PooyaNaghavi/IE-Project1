@@ -4,6 +4,8 @@ public class Endorsement {
     private User endorser, endorsed;
     private Skill skill;
 
+    public Endorsement(){ }
+
     public Endorsement(User endorser, User endorsed, Skill skill){
         this.endorser = endorser;
         this.endorsed = endorsed;

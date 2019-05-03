@@ -1,7 +1,7 @@
 package repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dataLayer.dataMappers.UserMapper;
+import dataLayer.dataMappers.*;
 import exceptions.BadConditionException;
 import exceptions.NotFoundException;
 import model.*;
@@ -17,225 +17,168 @@ public class Database {
     private static ArrayList<Bid> bids = new ArrayList<>();
     private static ArrayList<Skill> skills = new ArrayList<>();
 
+    private static BidMapper bidMapper;
+    private static EndorsementMapper endorsementMapper;
+    private static ProjectMapper projectMapper;
+    private static ProjectSkillMapper projectSkillMapper;
+    private static SkillMapper skillMapper;
+    private static UserMapper userMapper;
+    private static UserSkillMapper userSkillMapper;
+
+    public static void setMapper() throws SQLException {
+        bidMapper = new BidMapper();
+        endorsementMapper = new EndorsementMapper();
+        projectMapper = new ProjectMapper();
+        projectSkillMapper = new ProjectSkillMapper();
+        skillMapper = new SkillMapper();
+        userMapper = new UserMapper();
+        userSkillMapper = new UserSkillMapper();
+
+        bidMapper.setMapper(userMapper, projectMapper);
+        endorsementMapper.setMapper(userMapper, skillMapper);
+        projectMapper.setMapper(userMapper, projectSkillMapper);
+        userMapper.setMapper(userSkillMapper);
+        userSkillMapper.setMapper(endorsementMapper);
+    }
+
+    //Done
     public static void addAuthenticatedUser() throws SQLException {
-        UserMapper userMapper = new UserMapper();
-        ArrayList<UserSkill> skills = new ArrayList<>();
-        ArrayList<User> endorsers = new ArrayList<>();
-
-        // TODO: add after the UserSkill Table is created
-        for (User u : users) {
-            endorsers.add(u);
+        User user = new User("1", "علی", "شریف‌زاده","1","1234" ,"برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت");
+        userMapper.insertOne(user);
+        userSkillMapper.insertOne(new Skill("HTML"), user);
+        userSkillMapper.insertOne(new Skill("Javascript"), user);
+        userSkillMapper.insertOne(new Skill("C++"), user);
+        userSkillMapper.insertOne(new Skill("Java"), user);
+        ArrayList<User> users = userMapper.findAll();
+        for(User u : users){
+            endorsementMapper.insertOne(new Endorsement(u, user, new Skill("HTML")));
+            endorsementMapper.insertOne(new Endorsement(u, user, new Skill("Javascript")));
+            endorsementMapper.insertOne(new Endorsement(u, user, new Skill("C++")));
+            endorsementMapper.insertOne(new Endorsement(u, user, new Skill("Java")));
         }
-        skills.add(new UserSkill("HTML", endorsers));
-        skills.add(new UserSkill("Javascript", endorsers));
-        skills.add(new UserSkill("C++", endorsers));
-        skills.add(new UserSkill("Java", endorsers));
-
-        userMapper.insertOne(new User("1", "علی", "شریف‌زاده","1","1234" ,"برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت"));
     }
 
     // DONE
     public static User findUserById(String id) throws NotFoundException, SQLException {
-        UserMapper userMapper = new UserMapper();
-        userMapper.findById(id);
-        throw new NotFoundException("User not found!!!");
+        return userMapper.findById(id);
+//        throw new NotFoundException("User not found!!!");
     }
-
-
-    public static Project findProjectByTitle(String title) throws NotFoundException{
-        for(Project project : projects){
-            if(project.getTitle().equals(title)){
-                return project;
-            }
-        }
-        throw new NotFoundException("Project not found!!!");
+    // DONE
+    public static Project findProjectById(String id) throws NotFoundException, SQLException {
+        return projectMapper.findById(id);
+//        throw new NotFoundException("Project not found!!!");
     }
-
-    public static Project findProjectById(String id) throws NotFoundException{
-        for(Project project : projects){
-            System.out.println(project.getId());
-            if(project.getId().equals(id)){
-                return project;
-            }
-        }
-        throw new NotFoundException("Project not found!!!");
-    }
-
     // DONE
     public static ArrayList<User> getUsers() throws SQLException {
-        UserMapper userMapper = new UserMapper();
         return userMapper.findAll();
     }
-
-    public static ArrayList<Project> getProjects() {
-        return projects;
+    // DONE
+    public static ArrayList<Project> getProjects() throws SQLException {
+        return projectMapper.findAll();
     }
-
-    public static ArrayList<Bid> getBids() {
-        return bids;
+    // DONE
+    public static ArrayList<Bid> getBids() throws SQLException {
+        return bidMapper.findAll();
     }
+    //DONE
+    public static boolean checkBidConditions(Bid bid, Project project) throws SQLException {
+        if(bid.getAmount() <= 0 || bid.getAmount() > project.getBudget())
+            return false;
 
-    public static void insertProject(String title, ArrayList<ProjectSkill> projectSkills, int budget) {
-        Project project = new Project(title, projectSkills, budget);
-        projects.add(project);
+        return checkSkillConditions(project, bid.getUser());
     }
-
-    public static void insertBid(User user, Project project, int bidAmount) throws BadConditionException {
+    // Done
+    public static void insertBid(User user, Project project, int bidAmount) throws BadConditionException, SQLException {
         Bid bid = new Bid(user, project, bidAmount);
-        System.out.println(bidAmount);
-        System.out.println(user.getId());
-        System.out.println(project.getId());
-        if(!bid.checkBidConditions(project))
+        if(!checkBidConditions(bid, project))
             throw new BadConditionException("bid conditions not satistfied");
-        for(Bid prev_bid : bids) {
-            if(prev_bid.getUser().getFirstName().equals(bid.getUser().getFirstName()) && prev_bid.getProject().getTitle().equals(bid.getProject().getTitle())) {
-                prev_bid.setAmount(bid.getAmount());
-                return;
-            }
+        bidMapper.insertOne(bid);
+    }
+    // Done
+    public static Bid findBid(User user, Project project) throws SQLException {
+        return bidMapper.findBid(user, project);
+    }
+    // Done
+    public static ArrayList<User> findBiddingUserInProject(Project project) throws SQLException {
+        return bidMapper.findBiddingUserInProject(project);
+    }
+    // Done
+    public static void insertMultipleUsers(ArrayList<User> users) throws SQLException {
+        for (User user : users){
+            userMapper.insertOne(user);
         }
-        bids.add(bid);
     }
-
-    public static void insertUser(String username, ArrayList<UserSkill> userSkills) {
-        User user = new User(username, userSkills);
-        users.add(user);
-    }
-
-    public static Bid findBid(User user, Project project){
-
-        for(Bid bid : bids){
-            if(bid.getProject().getId().equals(project.getId()) && bid.getUser().getId().equals(user.getId())){
-                return bid;
+    // Done
+    public static void insertMultipleProjects(ArrayList<Project> projects) throws SQLException {
+        for (Project project : projects){
+            for(ProjectSkill projectSkill : project.getSkills()) {
+                projectSkillMapper.insertOne(projectSkill, project);
             }
+            projectMapper.insertOne(project);
         }
-        throw new NotFoundException("Bid not found");
     }
-
-    public static ArrayList<User> findBiddingUserInProject(Project project){
-        ArrayList<User> biddingUser = new ArrayList<>();
-
-        for(Bid bid : bids){
-            if(bid.getProject().getTitle().equals(project.getTitle())){
-                biddingUser.add(bid.getUser());
-            }
+    // Done
+    public static void insetMultipleBids(ArrayList<Bid> bids) throws SQLException {
+        for (Bid bid : bids){
+            bidMapper.insertOne(bid);
         }
-        return biddingUser;
     }
-
-    public static Bid findUserOffer(User biddingUser, Project project) throws NotFoundException {
-        for(Bid bid : bids){
-            if(bid.getUser().getFirstName().equals(biddingUser.getFirstName()) && bid.getProject().getTitle().equals(project.getTitle())){
-                return bid;
-            }
-        }
-        throw new NotFoundException("Bid not found");
+    // Done
+    public static ArrayList<Skill> getSkills() throws SQLException {
+        return skillMapper.findAll();
     }
-
-    public static void insertMultipleUsers(ArrayList<User> users) {
-        Database.users.addAll(users);
-    }
-
-    public static void insertMultipleProjects(ArrayList<Project> projects) {
-        Database.projects.addAll(projects);
-    }
-
-    public static void insetMultipleBids(ArrayList<Bid> bids) {
-        Database.bids.addAll(bids);
-    }
-
-    public static void setUsers(ArrayList<User> users) {
-        Database.users = users;
-    }
-
-    public static void setProjects(ArrayList<Project> projects) {
-        Database.projects = projects;
-    }
-
-    public static void setBids(ArrayList<Bid> bids) {
-        Database.bids = bids;
-    }
-
-    public static ArrayList<Skill> getSkills() {
-        return skills;
-    }
-
-    public static void setSkills(ArrayList<Skill> skills) {
-        Database.skills = skills;
-    }
-
-    public static Skill findSkillByName(String skillName) {
-        for(Skill skill : skills){
-            if(skill.getName().equals(skillName)){
-                return skill;
-            }
-        }
-        throw new NotFoundException("Skill not found");
-    }
-
-    public static void addSomeUsersAndEndorsements() {
-        ObjectMapper mapper = new ObjectMapper();
-        ArrayList<User> initialUsers = new ArrayList<>();
-        ArrayList<UserSkill> pooyaSkills = new ArrayList<>();
-        pooyaSkills.add(new UserSkill("C"));
-        initialUsers.add(new User(
-                "2",
-                "pooya",
-                "naghavi",
-                "2",
-                "1234",
-                "bikar",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQAfJWoANWz9aJr2R4ke04WLbaZYrlx3dahOzNYtAiTARLy-KGyw",
-                "pooooooya hastam",
-                pooyaSkills));
-        ArrayList<UserSkill> mamadSkills = new ArrayList<>();
-        mamadSkills.add(new UserSkill("C"));
-        mamadSkills.add(new UserSkill("C++"));
-        initialUsers.add(new User(
-                "3",
-                "mohammad",
-                "ganji",
-                "3",
-                "1234",
-                "bakar",
-                "https://www.gstatic.com/webp/gallery/1.jpg",
-                "mamadam",
-                mamadSkills));
-        Database.setUsers(initialUsers);
-    }
-
-    public static HashMap<String, Boolean> getAllSkillsByUser(User user) {
-        HashMap<String, Boolean> allSkills = new HashMap<>();
+    // Done
+    public static void setSkills(ArrayList<Skill> skills) throws SQLException {
         for (Skill skill : skills){
-            for (UserSkill userSkill : user.getSkills()){
-                if(skill.getName().equals(userSkill.getName())){
-                    allSkills.put(skill.getName(), true);
-                    break;
-                } else {
-                    allSkills.put(skill.getName(), false);
-                }
-            }
+            skillMapper.insertOne(skill);
         }
-        return allSkills;
     }
-
-    public static ArrayList<Bid> findProjectBids(Project project){
-        ArrayList<Bid> projectBids = new ArrayList<>();
-        for(Bid bid : bids){
-            if(bid.getProject().getId().equals(project.getId())){
-                projectBids.add(bid);
-            }
-        }
-        return projectBids;
+    // Done
+    public static Skill findSkillByName(String skillName) throws SQLException {
+        return skillMapper.findByName(skillName);
+//        throw new NotFoundException("Skill not found");
     }
+    // Done
+    public static void addSomeUsersAndEndorsements() throws SQLException {
+        User pooya = new User(
+            "2",
+            "pooya",
+            "naghavi",
+            "2",
+            "1234",
+            "bikar",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQAfJWoANWz9aJr2R4ke04WLbaZYrlx3dahOzNYtAiTARLy-KGyw",
+            "pooooooya hastam");
+        userMapper.insertOne(pooya);
+        userSkillMapper.insertOne(new Skill("C"), pooya);
 
-    public static boolean checkSkillConditions(Project project, User user){
+        User mamad = new User(
+            "3",
+            "mohammad",
+            "ganji",
+            "3",
+            "1234",
+            "bakar",
+            "https://www.gstatic.com/webp/gallery/1.jpg",
+            "mamadam");
+        userMapper.insertOne(mamad);
+        userSkillMapper.insertOne(new Skill("C"), mamad);
+        userSkillMapper.insertOne(new Skill("C++"), mamad);
+    }
+    // Done
+    public static ArrayList<Bid> findProjectBids(Project project) throws SQLException {
+        return bidMapper.findProjectBids(project);
+    }
+    // Done
+    public static boolean checkSkillConditions(Project project, User user) throws SQLException {
 
-        ArrayList<ProjectSkill> projectSkills = project.getSkills();
         boolean find;
+        ArrayList<ProjectSkill> projectSkills = projectSkillMapper.getProjectSkills(project.getId());
+        ArrayList<UserSkill> userSkills = userSkillMapper.getUserSkills(user.getId());
 
         for(ProjectSkill projectSkill : projectSkills){
             find = false;
-            for(UserSkill userSkill : user.getSkills()){
+            for(UserSkill userSkill : userSkills){
                 if(projectSkill.getName().equals(userSkill.getName()))
                 {
                     find = true;
@@ -249,14 +192,70 @@ public class Database {
         }
         return true;
     }
-
-    public static ArrayList<Project> getQualifiedProjects(User user) {
+    //Done
+    public static ArrayList<Project> getQualifiedProjects(User user) throws SQLException {
         ArrayList<Project> qualifiedProjects = new ArrayList<>();
+        ArrayList<Project> projects = projectMapper.findAll();
         for(Project project: projects) {
             if(checkSkillConditions(project, user)) {
                 qualifiedProjects.add(project);
             }
         }
         return qualifiedProjects;
+    }
+    // Done
+    public static void addSkillToUser(User user, Skill skill) throws SQLException {
+        userSkillMapper.insertOne(skill, user);
+    }
+    // Done
+    public static void deleteSkillOfUser(User user, Skill skill) throws SQLException {
+        userSkillMapper.deleteSkill(skill, user);
+    }
+    // Done
+    public static void endorseSkillOfUser(User endorserUser, User endorsedUser, Skill skill) throws SQLException {
+        endorsementMapper.insertOne(new Endorsement(endorserUser, endorsedUser, skill));
+    }
+    // Done
+    public static int getSkillPoint(User user, Skill skill) throws NotFoundException, SQLException {
+        return  userSkillMapper.findUserSkill(skill.getName(), user).getPoint();
+    }
+    // Done
+    public static int calcBidValue(User biddingUser, Project project) throws NotFoundException, SQLException {
+        int sum = 0;
+        for(ProjectSkill skill : project.getSkills()){
+            sum += Math.pow((getSkillPoint(biddingUser, skill) - skill.getPoint()), 2) * 10000;
+        }
+        sum += project.getBudget() - findBid(biddingUser, project).getAmount();
+        return sum;
+
+    }
+    // Done
+    public static User findAuctionWinner(ArrayList<User> biddingUsers, Project project) throws NotFoundException, SQLException {
+        if(biddingUsers.size() == 0){
+            throw new NotFoundException("No bid for this project");
+        }
+        int max = calcBidValue(biddingUsers.get(0), project);
+        User maxUser = biddingUsers.get(0);
+        for(User biddingUser : biddingUsers){
+            if(calcBidValue(biddingUser, project) > max){
+                max = calcBidValue(biddingUser, project);
+                maxUser = biddingUser;
+            }
+        }
+        return maxUser;
+    }
+
+    public static boolean AuthenticateUser(User user){
+        try {
+            userMapper.findByUsernameAndPassword(user);
+            // TODO : set Context User
+            return true;
+        }catch(SQLException e){
+            return false;
+        }
+    }
+
+    public static ArrayList<Project> getProjectsPage(int limit, int nextPageToken) throws SQLException {
+        return projectMapper.getProjectsPage(limit, nextPageToken);
     }
 }

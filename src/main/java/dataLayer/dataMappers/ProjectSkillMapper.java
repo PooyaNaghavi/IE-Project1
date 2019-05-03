@@ -1,13 +1,12 @@
 package dataLayer.dataMappers;
 
 import dataLayer.DBCPDBConnectionPool;
+import model.Project;
 import model.ProjectSkill;
 import model.Skill;
+import model.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ProjectSkillMapper extends Mapper<ProjectSkill, Integer> {
@@ -18,10 +17,12 @@ public class ProjectSkillMapper extends Mapper<ProjectSkill, Integer> {
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "projectSkill" + " " + "(" +
-                "skillName TEXT " +
-                "projectId TEXT" +
-                "point INTEGER " +
-                "PRIMARY KEY (skillName, projectId)" +
+                "skillName TEXT," +
+                "projectId TEXT," +
+                "point INTEGER," +
+                "PRIMARY KEY (skillName, projectId)," +
+                "FOREIGN KEY (projectId) REFERENCES project(id)," +
+                "FOREIGN KEY (skillName) REFERENCES skill(name)" +
                 ")");
         st.close();
         con.close();
@@ -36,20 +37,37 @@ public class ProjectSkillMapper extends Mapper<ProjectSkill, Integer> {
 
     @Override
     protected ProjectSkill convertResultSetToDomainModel(ResultSet rs) throws SQLException {
-        ProjectMapper projectMapper = new ProjectMapper();
         ProjectSkill projectSkill = new ProjectSkill(
                 rs.getString("skillName"),
-                projectMapper.findById(rs.getString("projectId")),
                 rs.getInt("point")
         );
         return projectSkill;
     }
 
-    public ArrayList<ProjectSkill> getProjectSkills(String projectId) throws SQLException {
+    public void insertOne(ProjectSkill skill, Project project) throws SQLException {
+        Connection con = DBCPDBConnectionPool.getConnection();
+        String sql = "INSERT OR IGNORE INTO projectSkill (" +
+                "skillName," +
+                "projectId," +
+                "point" +
+                ") VALUES (" +
+                "" +
+                "?," +
+                "?," +
+                "?)";
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setString(1, skill.getName());
+        st.setString(2, project.getId());
+        st.setInt(3, skill.getPoint());
+        st.executeUpdate();
+        st.close();
+        con.close();
+    }
+    public ArrayList<ProjectSkill> getProjectSkills(String id) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM projectSkill WHERE projectId = " + projectId);
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM projectSkill WHERE projectId = " + id);
         ArrayList<ProjectSkill> projectSkills = new ArrayList<>();
         while(rs.next()){
             ProjectSkill ps = convertResultSetToDomainModel(rs);

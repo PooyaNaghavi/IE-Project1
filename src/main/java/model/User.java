@@ -20,14 +20,7 @@ public class User {
     private String bio;
     private ArrayList<UserSkill> skills;
 
-    public User(){
-
-    }
-
-    public User(String name, ArrayList<UserSkill> skills) {
-        this.firstName = name;
-        this.skills = skills;
-    }
+    public User(){ }
 
     public User(String id, String firstName, String lastName, String userName, String password, String jobTitle, String profilePictureURL, String bio, ArrayList<UserSkill> skills) {
         this.id = id;
@@ -52,17 +45,7 @@ public class User {
         this.bio = bio;
     }
 
-    public int getSkillPoint(Skill skill) throws NotFoundException {
-        for(UserSkill user_skill : skills){
-            if(user_skill.getName().equals(skill.getName())){
-                return user_skill.getPoint();
-            }
-        }
-        throw new NotFoundException("Skill not found");
-    }
-
     public String getFirstName() {
-
         return firstName;
     }
 
@@ -112,51 +95,6 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    private boolean hasSkill(UserSkill skill) {
-        for (UserSkill userSkill : skills) {
-            if(userSkill.getName().equals(skill.getName())){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void addSkill(UserSkill skill) {
-        if(hasSkill(skill)) return;
-        skills.add(skill);
-    }
-
-    public void deleteSkill(UserSkill skill) {
-        for (UserSkill userSkill : skills){
-            if(userSkill.getName().equals(skill.getName())){
-               skills.remove(userSkill);
-               return;
-            }
-        }
-    }
-
-    public void endorseSkill(UserSkill skill, User contextUser) {
-        for (UserSkill userSkill: skills){
-            if(userSkill.getName().equals(skill.getName())){
-                userSkill.addEndorseUser(contextUser); // TODO: logic is changed, do something.
-            }
-        }
-    }
-
-    public HashMap<String, Boolean> getEndorseSkillsByUser(User contextUser) {
-        HashMap<String, Boolean> endorseSkills = new HashMap<>();
-        for (UserSkill skill : skills){
-            for (Endorsement en : skill.getEndorses()){
-                if(en.getEndorsed().equals(contextUser.getId())){ // TODO: logic is changed. probably easier impl.
-                    endorseSkills.put(skill.getName(), true);
-                } else {
-                    endorseSkills.put(skill.getName(), false);
-                }
-            }
-        }
-        return endorseSkills;
     }
 
     public String getProfilePictureURL() {

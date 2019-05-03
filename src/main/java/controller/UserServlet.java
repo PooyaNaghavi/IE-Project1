@@ -21,29 +21,17 @@ import java.util.StringTokenizer;
 public class UserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String uri = request.getRequestURI().toString();
-//        StringTokenizer st = new StringTokenizer(uri, "/");
-////        st.nextToken();
-//        String context = st.nextToken();
-//        User contextUser = (User) request.getAttribute("contextUser");
-
-//        if(st.hasMoreTokens()) {
-//      String id = st.nextToken();
         String id = request.getParameter("id");
         User foundUser = null;
         try {
             foundUser = Database.findUserById(id);
+            ArrayList<Skill> allSkills = Database.getSkills();
+            UserDTO userDTO = new UserDTO(foundUser, allSkills);
+            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String userJson = ow.writeValueAsString(userDTO);
+            Utils.sendJSON(userJson, response, 200);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        ArrayList<Skill> allSkills = Database.getSkills();
-        UserDTO userDTO = new UserDTO(foundUser, allSkills);
-
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String userJson = ow.writeValueAsString(userDTO);
-
-        Utils.sendJSON(userJson, response, 200);
-//        }
     }
 }

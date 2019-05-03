@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="joboonja.db" uuid="9dedd406-fa3e-496d-8a5f-11346ac1d59f">
+    <data-source source="LOCAL" name="joboonja.db" uuid="2c27cb14-6457-4b78-8ce9-cd1696538a8c">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$USER_HOME$/Apps/Tomcat/apache-tomcat-9.0.16/bin/joboonja.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$USER_HOME$/Desktop/University/Term 8(S 98)/Internet Engineering/apache-tomcat-9.0.16/bin/joboonja.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>

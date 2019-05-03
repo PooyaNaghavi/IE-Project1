@@ -24,73 +24,73 @@ public abstract class Handler implements HttpHandler {
 
 class projectHandler extends Handler{
     public void handle(HttpExchange t) throws IOException {
-        String viewResult;
-        int statusCode = 200;
-        String uri = t.getRequestURI().toString();
-        StringTokenizer st = new StringTokenizer(uri, "/");
-        String context = st.nextToken();
-        String id = st.nextToken();
-        User authenticatedUser = null;
-        try {
-            authenticatedUser = Database.findUserById("1");
-        } catch (SQLException e) {
-            view.showError(e.getMessage());
-        }
-        try {
-            Project foundProject = Database.findProjectById(id);
-            if(Database.checkSkillConditions(foundProject, authenticatedUser)){
-                viewResult = view.projectView(foundProject);
-            } else {
-                statusCode = 403;
-                viewResult = view.showError("Forbidden!");
-            }
-        } catch (NotFoundException e) {
-            statusCode = 404;
-            viewResult = view.showError(e.getMessage());
-        }
-        sendOutput(t, statusCode, viewResult);
+//        String viewResult;
+//        int statusCode = 200;
+//        String uri = t.getRequestURI().toString();
+//        StringTokenizer st = new StringTokenizer(uri, "/");
+//        String context = st.nextToken();
+//        String id = st.nextToken();
+//        User authenticatedUser = null;
+//        try {
+//            authenticatedUser = Database.findUserById("1");
+//        } catch (SQLException e) {
+//            view.showError(e.getMessage());
+//        }
+//        try {
+//            Project foundProject = Database.findProjectById(id);
+//            if(Database.checkSkillConditions(foundProject, authenticatedUser)){
+//                viewResult = view.projectView(foundProject);
+//            } else {
+//                statusCode = 403;
+//                viewResult = view.showError("Forbidden!");
+//            }
+//        } catch (NotFoundException e) {
+//            statusCode = 404;
+//            viewResult = view.showError(e.getMessage());
+//        }
+//        sendOutput(t, statusCode, viewResult);
     }
 }
 
 class projectListHandler extends Handler{
     public void handle(HttpExchange t) throws IOException {
-        String viewResult;
-        int statusCode = 200;
-        User authenticatedUser = null;
-        try {
-            authenticatedUser = Database.findUserById("1");
-        } catch (SQLException e) {
-            statusCode = 404;
-            view.showError(e.getMessage());
-        }
-        viewResult = view.projectsListView(Database.getQualifiedProjects(authenticatedUser));
-        sendOutput(t, statusCode, viewResult);
+//        String viewResult;
+//        int statusCode = 200;
+//        User authenticatedUser = null;
+//        try {
+//            authenticatedUser = Database.findUserById("1");
+//        } catch (SQLException e) {
+//            statusCode = 404;
+//            view.showError(e.getMessage());
+//        }
+//        viewResult = view.projectsListView(Database.getQualifiedProjects(authenticatedUser));
+//        sendOutput(t, statusCode, viewResult);
     }
 }
 
 
 class userHandler extends Handler {
     public void handle(HttpExchange t) throws IOException {
-        String viewResult;
-        int statusCode = 200;
-        String uri = t.getRequestURI().toString();
-        StringTokenizer st = new StringTokenizer(uri, "/");
-        String context = st.nextToken();
-
-        if(st.hasMoreTokens())
-        {
-            String id = st.nextToken();
-            try {
-                User foundUser = Database.findUserById(id);
-                viewResult = view.usersListView(foundUser);
-            } catch (SQLException e) {
-                statusCode = 404;
-                viewResult = view.showError(e.getMessage());
-            }
-        }else{
-            statusCode = 404;
-            viewResult = view.showError("Page Not Found");
-        }
-        sendOutput(t, statusCode, viewResult);
+//        String viewResult;
+//        int statusCode = 200;
+//        String uri = t.getRequestURI().toString();
+//        StringTokenizer st = new StringTokenizer(uri, "/");
+//        String context = st.nextToken();
+//
+//        if(st.hasMoreTokens())
+//        {
+//            String id = st.nextToken();
+//            try {
+//                User foundUser = Database.findUserById(id);
+//                viewResult = view.usersListView(foundUser);
+//            } catch (SQLException e) {
+//                statusCode = 404;
+//                viewResult = view.showError(e.getMessage());
+//            }
+//        }else{
+//            statusCode = 404;
+//            viewResult = view.showError("Page Not Found");
+//        }
+//        sendOutput(t, statusCode, viewResult);
     }
 }

@@ -39,25 +39,25 @@ public class SkillServlet extends HttpServlet {
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String skillName = getSkillName(request);
         User contextUser = (User) request.getAttribute("contextUser");
-        Skill skill = Database.findSkillByName(skillName);
-        UserSkill userSkill = new UserSkill(skill.getName());
-        User user = null;
         try {
-            user = Database.findUserById(request.getParameter("id"));
+            Skill skill = Database.findSkillByName(skillName);
+            User user = Database.findUserById(request.getParameter("id"));
+            Database.endorseSkillOfUser(contextUser, user, skill);
+            Utils.sendJSON("{message: \"endorse skill successful\"}", response, 200);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        user.endorseSkill(userSkill, contextUser);
-        Utils.sendJSON("{message: \"endorse skill successful\"}", response, 200);
     }
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String skillName = getSkillName(request);
         User contextUser = (User) request.getAttribute("contextUser");
-        Skill skill = Database.findSkillByName(skillName);
-        UserSkill userSkill = new UserSkill(skill.getName());
-//        User user = Database.findUserById(request.getParameter("id"));
-        contextUser.deleteSkill(userSkill);
-        Utils.sendJSON("{message: \"delete skill successful\"}", response, 200);
+        try {
+            Skill skill = Database.findSkillByName(skillName);
+            Database.deleteSkillOfUser(contextUser, skill);
+            Utils.sendJSON("{message: \"delete skill successful\"}", response, 200);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -2,6 +2,7 @@ package dataLayer.dataMappers;
 
 import dataLayer.DBCPDBConnectionPool;
 import dataLayer.dataMappers.Mapper;
+import exceptions.NotFoundException;
 import model.User;
 import model.UserSkill;
 
@@ -10,18 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserMapper extends Mapper<User, Integer> {
-
+    UserSkillMapper userSkillMapper;
     private static final String COLUMNS =
             "id," +
-                    "firstName," +
-                    "lastName," +
-                    "userName," +
-                    "password," +
-                    "jobTitle," +
-                    "profilePictureURL," +
-                    "bio ";
+            "firstName," +
+            "lastName," +
+            "userName," +
+            "password," +
+            "jobTitle," +
+            "profilePictureURL," +
+            "bio ";
 //            userSkill
-
 
     public UserMapper() throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
@@ -41,6 +41,10 @@ public class UserMapper extends Mapper<User, Integer> {
         con.close();
     }
 
+    public void setMapper(UserSkillMapper userSkillMapper){
+        this.userSkillMapper = userSkillMapper;
+    }
+
     @Override
     protected String getFindStatement() {
         return "SELECT " + COLUMNS +
@@ -58,7 +62,8 @@ public class UserMapper extends Mapper<User, Integer> {
                 rs.getString("password"),
                 rs.getString("jobTitle"),
                 rs.getString("profilePictureURL"),
-                rs.getString("bio")
+                rs.getString("bio"),
+                userSkillMapper.getUserSkills(rs.getString("id"))
         );
         // TODO: get skills from UserSkills.
 //        ArrayList<UserSkill> userSkills = getUserSkills(userId);
@@ -126,5 +131,16 @@ public class UserMapper extends Mapper<User, Integer> {
         st.close();
         con.close();
         return users;
+    }
+
+    public User findByUsernameAndPassword(User user) throws SQLException {
+        Connection con = DBCPDBConnectionPool.getConnection();
+        Statement st =
+                con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE userName = " + user.getUserName() + "AND password = " + user.getPassword());
+        User foundUser = convertResultSetToDomainModel(rs);
+        st.close();
+        con.close();
+        return foundUser;
     }
 }

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class EndorsementMapper extends Mapper<Endorsement, Integer> {
 
+    UserMapper userMapper;
+    SkillMapper skillMapper;
     private static final String COLUMNS =
             "endorserId," +
             "endorsedId," +
@@ -23,23 +25,29 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
                 "endorserId TEXT, " +
                 "endorsedId TEXT, " +
                 "skillName TEXT, " +
-                "PRIMARY KEY (endorserId, endorsedId, skillName)" +
+                "PRIMARY KEY (endorserId, endorsedId, skillName)," +
+                "FOREIGN KEY (endorserId) REFERENCES user(id)," +
+                "FOREIGN KEY (endorsedId) REFERENCES user(id)," +
+                "FOREIGN KEY (skillName) REFERENCES userSkill(skillName)" +
                 ")");
         st.close();
         con.close();
     }
 
+    public void setMapper(UserMapper userMapper, SkillMapper skillMapper){
+        this.userMapper = userMapper;
+        this.skillMapper = skillMapper;
+    }
+
     @Override
     protected String getFindStatement() {
         return "SELECT " + COLUMNS +
-                " FROM userSkill" +
+                " FROM endorsement" +
                 " WHERE endorserId = ?";
     }
 
     @Override
     protected Endorsement convertResultSetToDomainModel(ResultSet rs) throws SQLException {
-        UserMapper userMapper = new UserMapper();
-        SkillMapper skillMapper = new SkillMapper();
         Endorsement endorsement = new Endorsement(
                 userMapper.findById(rs.getString("endorserId")),
                 userMapper.findById(rs.getString("endorsedId")),
@@ -48,13 +56,14 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
         return endorsement;
     }
 
-    public void insertEndorsement(Endorsement endorsement) throws SQLException {
+    public void insertOne(Endorsement endorsement) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        String sql = "INSERT OR IGNORE INTO userSkill (" +
+        String sql = "INSERT OR IGNORE INTO endorsement (" +
                 "endorserId," +
-                "endorsedId" +
-                "skillName," +
+                "endorsedId," +
+                "skillName" +
                 ") VALUES (" +
+                "" +
                 "?," +
                 "?," +
                 "?)";
