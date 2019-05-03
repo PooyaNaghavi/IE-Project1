@@ -96,17 +96,13 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
     }
 
     public ArrayList<UserSkill> getUserSkills(String id) throws SQLException {
-        System.out.println("================================1");
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
         ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE userId = " + id);
-        System.out.println("================================2");
         ArrayList<UserSkill> userSkills = new ArrayList<>();
-        System.out.println("================================3");
         while(rs.next()){
             UserSkill userSkill = convertResultSetToDomainModel(rs);
-            System.out.println("================================4");
             userSkills.add(userSkill);
         }
         st.close();
