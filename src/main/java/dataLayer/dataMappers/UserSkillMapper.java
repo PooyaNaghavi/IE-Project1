@@ -7,7 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class UserSkillMapper extends Mapper<UserSkill, Integer> {
-    private static final String COLUMNS = "name";
+    private static final String COLUMNS =
+            "userId," +
+            "skillName";
     EndorsementMapper endorsementMapper;
 
     public UserSkillMapper() throws SQLException {
@@ -94,13 +96,17 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
     }
 
     public ArrayList<UserSkill> getUserSkills(String id) throws SQLException {
+        System.out.println("================================1");
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
         ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE userId = " + id);
+        System.out.println("================================2");
         ArrayList<UserSkill> userSkills = new ArrayList<>();
+        System.out.println("================================3");
         while(rs.next()){
             UserSkill userSkill = convertResultSetToDomainModel(rs);
+            System.out.println("================================4");
             userSkills.add(userSkill);
         }
         st.close();

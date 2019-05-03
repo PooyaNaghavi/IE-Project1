@@ -80,7 +80,7 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM endorsement WHERE userId = " + userId);
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM endorsement WHERE endorsedId = " + userId);
         ArrayList<Endorsement> endorses = new ArrayList<>();
         while(rs.next()){
             Endorsement en = convertResultSetToDomainModel(rs);

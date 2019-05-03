@@ -7,37 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1069b45d-c35b-4971-b11f-5848813e70c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/DTO/ProjectsPaginationDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ProjectSearchServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/UserSearchServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/BidMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AddSkillServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AddSkillServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/BidServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/BidServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProjectListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProjectListServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProjectServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProjectServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SkillServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectSkillMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectSkillMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/SkillMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/SkillMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listeners/InitListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/InitListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Bid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Bid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Endorsement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Endorsement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/ProjectSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ProjectSkill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Skill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/UserSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/UserSkill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/APIHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/APIHelper.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/repository/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+            <state relative-caret-position="159">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="92" column="21" lean-forward="true" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
+            <state relative-caret-position="19">
+              <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#936#937#0" expanded="true" />
@@ -127,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectSkillMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+            <state relative-caret-position="180">
+              <caret line="12" column="71" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -139,8 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+            <state relative-caret-position="945">
+              <caret line="65" column="40" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1318#1319#0" expanded="true" />
@@ -150,11 +122,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="38" column="21" lean-forward="true" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+            <state relative-caret-position="1620">
+              <caret line="108" column="17" selection-start-line="108" selection-start-column="11" selection-end-line="108" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -174,11 +146,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+            <state relative-caret-position="264">
+              <caret line="82" column="89" lean-forward="true" selection-start-line="82" selection-start-column="89" selection-end-line="82" selection-end-column="89" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -189,7 +161,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/BidMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
+            <state relative-caret-position="570">
               <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -212,8 +184,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>qualif</find>
-      <find>quali</find>
       <find>System</find>
       <find>setBi</find>
       <find>findBid</find>
@@ -242,6 +212,8 @@
       <find>Class.for</find>
       <find>users</find>
       <find>insertOne</find>
+      <find>getUserEndorses</find>
+      <find>getString</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -297,10 +269,10 @@
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/BidMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/repository/Database.java" />
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/DBCPDBConnectionPool.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java" />
       </list>
     </option>
   </component>
@@ -465,7 +437,7 @@
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556897642664" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556908094589" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -711,11 +683,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556640390939</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="DB tables created!">
+      <created>1556897666441</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1556897666441</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192843000" />
+    <option name="totallyTimeSpent" value="193771000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -732,7 +711,7 @@
     <layout>
       <window_info id="Learn" order="0" />
       <window_info id="Web" order="1" sideWeight="0.5048544" side_tool="true" weight="0.29685265" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49514562" visible="true" weight="0.33547926" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.49514562" visible="true" weight="0.33547926" />
       <window_info id="Structure" order="3" sideWeight="0.5036145" side_tool="true" weight="0.2811159" />
       <window_info id="Designer" order="4" />
       <window_info id="Image Layers" order="5" />
@@ -743,7 +722,7 @@
       <window_info anchor="bottom" id="Application Servers" order="1" weight="0.32891566" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32650602" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49928468" visible="true" weight="0.42289156" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.49928468" visible="true" weight="0.42289156" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -813,7 +792,8 @@
     <MESSAGE value="Phase 5 completed!" />
     <MESSAGE value="Login backend handled." />
     <MESSAGE value="db initializations" />
-    <option name="LAST_COMMIT_MESSAGE" value="db initializations" />
+    <MESSAGE value="DB tables created!" />
+    <option name="LAST_COMMIT_MESSAGE" value="DB tables created!" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1126,9 +1106,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/repository/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/BidMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
+        <state relative-caret-position="570">
           <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1136,22 +1126,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+        <state relative-caret-position="945">
+          <caret line="65" column="40" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectSkillMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1318#1319#0" expanded="true" />
+            <element signature="e#1372#1373#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1166,22 +1148,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1318#1319#0" expanded="true" />
-            <element signature="e#1372#1373#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/repository/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+        <state relative-caret-position="1620">
+          <caret line="108" column="17" selection-start-line="108" selection-start-column="11" selection-end-line="108" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1208,10 +1178,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectSkillMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="71" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="92" column="21" lean-forward="true" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
+        <state relative-caret-position="19">
+          <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#936#937#0" expanded="true" />
@@ -1220,10 +1200,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="38" column="21" lean-forward="true" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+        <state relative-caret-position="264">
+          <caret line="82" column="89" lean-forward="true" selection-start-line="82" selection-start-column="89" selection-end-line="82" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
