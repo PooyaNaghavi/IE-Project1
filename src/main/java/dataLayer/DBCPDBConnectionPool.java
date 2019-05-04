@@ -23,7 +23,7 @@ public class DBCPDBConnectionPool {
     static {
         ds.setUrl(dbURL);
         ds.setMinIdle(1);
-        ds.setMaxIdle(2);
+        ds.setMaxIdle(10);
     }
 
     public static Connection getConnection() throws SQLException {

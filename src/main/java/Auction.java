@@ -8,19 +8,19 @@ import java.util.ArrayList;
 
 public class Auction {
 
-    private static ArrayList<Skill> getSkillsFromJSON(JSONArray inputJSON) {
-        ArrayList<Skill> skills = new ArrayList<>();
-
-        for(int i = 0; i < inputJSON.length(); i++){
-            JSONObject skill = inputJSON.getJSONObject(i);
-            String skillName = skill.getString("name");
-            int skillPoint = skill.getInt("points");
-
-            Skill temp = new Skill(skillName, skillPoint);
-            skills.add(temp);
-        }
-        return skills;
-    }
+//    private static ArrayList<Skill> getSkillsFromJSON(JSONArray inputJSON) {
+//        ArrayList<Skill> skills = new ArrayList<>();
+//
+//        for(int i = 0; i < inputJSON.length(); i++){
+//            JSONObject skill = inputJSON.getJSONObject(i);
+//            String skillName = skill.getString("name");
+//            int skillPoint = skill.getInt("points");
+//
+//            Skill temp = new Skill(skillName, skillPoint);
+//            skills.add(temp);
+//        }
+//        return skills;
+//    }
 
 //    public static void register(String commandData) {
 //

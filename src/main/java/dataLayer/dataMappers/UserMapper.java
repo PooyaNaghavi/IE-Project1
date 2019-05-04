@@ -75,7 +75,7 @@ public class UserMapper extends Mapper<User, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE id = " + id);
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE id = \"" + id + "\"");
         User user = convertResultSetToDomainModel(rs);
         st.close();
         con.close();
@@ -137,7 +137,7 @@ public class UserMapper extends Mapper<User, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE userName = " + user.getUserName() + "AND password = " + user.getPassword());
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE userName = \"" + user.getUserName() + "\" AND password = \"" + user.getPassword() + "\"");
         User foundUser = convertResultSetToDomainModel(rs);
         st.close();
         con.close();

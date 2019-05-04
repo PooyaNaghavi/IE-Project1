@@ -21,7 +21,7 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
                 "userId TEXT," +
                 "PRIMARY KEY (skillName, userId)," +
                 "FOREIGN KEY (userId) REFERENCES user(id)," +
-                "FOREIGN KEY (skillName) REFERENCES skill(name)" +
+                "FOREIGN KEY (skillName) REFERENCES skill(skillName)" +
                 ")");
         st.close();
         con.close();
@@ -68,7 +68,7 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE userId = " + user.getId() + "AND skillName = " + skillName);
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE userId = \"" + user.getId() + "\"AND skillName = \"" + skillName + "\"");
         UserSkill userSkill = convertResultSetToDomainModel(rs);
         st.close();
         con.close();
@@ -79,7 +79,8 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("Delete " + COLUMNS + " FROM userSkill WHERE userId = " + user.getId() + "AND skillName = " + skill.getName());
+        //TODO : is this ok ?
+        ResultSet rs = st.executeQuery("Delete " + COLUMNS + " FROM userSkill WHERE userId = \"" + user.getId() + "\"AND skillName = \"" + skill.getName() + "\"");
         st.close();
         con.close();
     }
@@ -88,7 +89,7 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE skillName = " + skillName);
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE skillName = \"" + skillName + "\"");
         UserSkill skill = convertResultSetToDomainModel(rs);
         st.close();
         con.close();
@@ -99,7 +100,7 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE userId = " + id);
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE userId = \"" + id + "\"");
         ArrayList<UserSkill> userSkills = new ArrayList<>();
         while(rs.next()){
             UserSkill userSkill = convertResultSetToDomainModel(rs);

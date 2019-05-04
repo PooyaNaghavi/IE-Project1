@@ -32,13 +32,21 @@ public class APIHelper {
         return content;
     }
     public void updateProjects() throws IOException, SQLException {
+        System.out.println("---------------------------*****_________1");
         String projectContent = APIRequest("http://142.93.134.194:8000/joboonja/project");
+        System.out.println("---------------------------*****_________2");
         ObjectMapper mapper = new ObjectMapper();
+        System.out.println("---------------------------*****_________3");
         Database.insertMultipleProjects(mapper.readValue(projectContent, new TypeReference<ArrayList<Project>>(){}));
+        System.out.println("---------------------------*****_________4");
     }
     public void updateSkills() throws IOException, SQLException {
+        System.out.println("=====================================1");
         String skillContent = APIRequest("http://142.93.134.194:8000/joboonja/skill");
+        System.out.println("=====================================2");
         ObjectMapper mapper = new ObjectMapper();
+        System.out.println("=====================================3");
         Database.setSkills(mapper.readValue(skillContent, new TypeReference<ArrayList<Skill>>(){}));
+        System.out.println("=====================================4");
     }
 }

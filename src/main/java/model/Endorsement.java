@@ -1,30 +1,30 @@
 package model;
 
 public class Endorsement {
-    private User endorser, endorsed;
+    private String endorser, endorsed;
     private Skill skill;
 
     public Endorsement(){ }
 
-    public Endorsement(User endorser, User endorsed, Skill skill){
+    public Endorsement(String endorser, String endorsed, Skill skill){
         this.endorser = endorser;
         this.endorsed = endorsed;
         this.skill = skill;
     }
 
-    public User getEndorser() {
+    public String getEndorser() {
         return endorser;
     }
 
-    public void setEndorser(User endorser) {
+    public void setEndorser(String endorser) {
         this.endorser = endorser;
     }
 
-    public User getEndorsed() {
+    public String getEndorsed() {
         return endorsed;
     }
 
-    public void setEndorsed(User endorsed) {
+    public void setEndorsed(String endorsed) {
         this.endorsed = endorsed;
     }
 

@@ -9,14 +9,14 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class SkillMapper extends Mapper<Skill, Integer> {
-    private static final String COLUMNS = "name";
+    private static final String COLUMNS = "skillName";
 
     public SkillMapper() throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "skill" + " " + "(" +
-                "name TEXT PRIMARY KEY " +
+                "skillName TEXT PRIMARY KEY " +
                 ")");
         st.close();
         con.close();
@@ -26,13 +26,13 @@ public class SkillMapper extends Mapper<Skill, Integer> {
     protected String getFindStatement() {
         return "SELECT " + COLUMNS +
                 " FROM skill" +
-                " WHERE name = ?";
+                " WHERE skillName = ?";
     }
 
     @Override
     protected Skill convertResultSetToDomainModel(ResultSet rs) throws SQLException {
         Skill skill = new Skill(
-            rs.getString("name")
+            rs.getString("skillName")
         );
         return skill;
     }
@@ -40,7 +40,7 @@ public class SkillMapper extends Mapper<Skill, Integer> {
     public void insertOne(Skill skill) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
         String sql = "INSERT OR IGNORE INTO skill (" +
-                "name" +
+                "skillName" +
                 ") VALUES (" +
                 "" +
                 "?)";
@@ -55,7 +55,7 @@ public class SkillMapper extends Mapper<Skill, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM skill WHERE name = " + skillName);
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM skill WHERE skillName = \"" + skillName + "\"");
         Skill skill = convertResultSetToDomainModel(rs);
         st.close();
         con.close();

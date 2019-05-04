@@ -49,13 +49,16 @@ public class Database {
         userSkillMapper.insertOne(new Skill("Javascript"), user);
         userSkillMapper.insertOne(new Skill("C++"), user);
         userSkillMapper.insertOne(new Skill("Java"), user);
+        System.out.println("------------------------1");
         ArrayList<User> users = userMapper.findAll();
+        System.out.println("------------------------2");
         for(User u : users){
-            endorsementMapper.insertOne(new Endorsement(u, user, new Skill("HTML")));
-            endorsementMapper.insertOne(new Endorsement(u, user, new Skill("Javascript")));
-            endorsementMapper.insertOne(new Endorsement(u, user, new Skill("C++")));
-            endorsementMapper.insertOne(new Endorsement(u, user, new Skill("Java")));
+            endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("HTML")));
+            endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("Javascript")));
+            endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("C++")));
+            endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("Java")));
         }
+        System.out.println("saallaammmm");
     }
 
     // DONE
@@ -110,11 +113,15 @@ public class Database {
     }
     // Done
     public static void insertMultipleProjects(ArrayList<Project> projects) throws SQLException {
+        System.out.println(projects.size());
         for (Project project : projects){
+            System.out.println(project.getSkills().size());
+            projectMapper.insertOne(project);
+            System.out.println("-==-=-=-=-=-=-=-=-=-=-=-=-=");
             for(ProjectSkill projectSkill : project.getSkills()) {
                 projectSkillMapper.insertOne(projectSkill, project);
             }
-            projectMapper.insertOne(project);
+
         }
     }
     // Done
@@ -129,6 +136,7 @@ public class Database {
     }
     // Done
     public static void setSkills(ArrayList<Skill> skills) throws SQLException {
+        System.out.println(skills.size());
         for (Skill skill : skills){
             skillMapper.insertOne(skill);
         }
@@ -140,6 +148,7 @@ public class Database {
     }
     // Done
     public static void addSomeUsersAndEndorsements() throws SQLException {
+        System.out.println("========================1");
         User pooya = new User(
             "2",
             "pooya",
@@ -149,9 +158,11 @@ public class Database {
             "bikar",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQAfJWoANWz9aJr2R4ke04WLbaZYrlx3dahOzNYtAiTARLy-KGyw",
             "pooooooya hastam");
+        System.out.println("========================2");
         userMapper.insertOne(pooya);
+        System.out.println("========================3");
         userSkillMapper.insertOne(new Skill("C"), pooya);
-
+        System.out.println("========================4");
         User mamad = new User(
             "3",
             "mohammad",
@@ -161,9 +172,13 @@ public class Database {
             "bakar",
             "https://www.gstatic.com/webp/gallery/1.jpg",
             "mamadam");
+        System.out.println("========================5");
         userMapper.insertOne(mamad);
+        System.out.println("========================6");
         userSkillMapper.insertOne(new Skill("C"), mamad);
+        System.out.println("========================7");
         userSkillMapper.insertOne(new Skill("C++"), mamad);
+        System.out.println("========================8");
     }
     // Done
     public static ArrayList<Bid> findProjectBids(Project project) throws SQLException {
@@ -213,7 +228,7 @@ public class Database {
     }
     // Done
     public static void endorseSkillOfUser(User endorserUser, User endorsedUser, Skill skill) throws SQLException {
-        endorsementMapper.insertOne(new Endorsement(endorserUser, endorsedUser, skill));
+        endorsementMapper.insertOne(new Endorsement(endorserUser.getId(), endorsedUser.getId(), skill));
     }
     // Done
     public static int getSkillPoint(User user, Skill skill) throws NotFoundException, SQLException {

@@ -73,7 +73,7 @@ public class ProjectMapper extends Mapper<Project, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM project WHERE id = " + id);
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM project WHERE id = \"" + id + "\"");
         Project user = convertResultSetToDomainModel(rs);
         st.close();
         con.close();
@@ -109,7 +109,7 @@ public class ProjectMapper extends Mapper<Project, Integer> {
         st.setInt(5, project.getBudget());
         st.setLong(6, project.getDeadline()); // TODO: do something about this again
         st.setLong(7, project.getCreatedAt()); // TODO: do something about this again
-        st.setString(8, project.getWinner().getId());
+        st.setString(8, "1"); //TODO : Winner isn't in api
         st.executeUpdate();
         st.close();
         con.close();

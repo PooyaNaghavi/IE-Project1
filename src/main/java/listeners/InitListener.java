@@ -29,14 +29,20 @@ public class InitListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent arg0) {
         try {
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
             Class.forName("org.sqlite.JDBC");
             Database.setMapper();
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
             apiHelper.updateSkills();
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
             scheduler = Executors.newSingleThreadScheduledExecutor();
             scheduler.scheduleAtFixedRate(new MinJob(), 0, 5, TimeUnit.MINUTES);
-            // apiHelper.updateProjects();
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
             Database.addSomeUsersAndEndorsements();
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
             Database.addAuthenticatedUser();
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
+            apiHelper.updateProjects();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (SQLException e) {

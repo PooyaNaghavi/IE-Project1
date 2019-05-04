@@ -22,7 +22,7 @@ public class ProjectSkillMapper extends Mapper<ProjectSkill, Integer> {
                 "point INTEGER," +
                 "PRIMARY KEY (skillName, projectId)," +
                 "FOREIGN KEY (projectId) REFERENCES project(id)," +
-                "FOREIGN KEY (skillName) REFERENCES skill(name)" +
+                "FOREIGN KEY (skillName) REFERENCES skill(skillName)" +
                 ")");
         st.close();
         con.close();
@@ -45,6 +45,9 @@ public class ProjectSkillMapper extends Mapper<ProjectSkill, Integer> {
     }
 
     public void insertOne(ProjectSkill skill, Project project) throws SQLException {
+        System.out.println(project.getId());
+        System.out.println(skill.getName());
+        System.out.println(skill.getPoint());
         Connection con = DBCPDBConnectionPool.getConnection();
         String sql = "INSERT OR IGNORE INTO projectSkill (" +
                 "skillName," +
@@ -67,7 +70,7 @@ public class ProjectSkillMapper extends Mapper<ProjectSkill, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM projectSkill WHERE projectId = " + id);
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM projectSkill WHERE projectId = \"" + id + "\"");
         ArrayList<ProjectSkill> projectSkills = new ArrayList<>();
         while(rs.next()){
             ProjectSkill ps = convertResultSetToDomainModel(rs);

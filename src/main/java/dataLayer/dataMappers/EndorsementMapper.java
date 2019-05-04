@@ -49,8 +49,8 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
     @Override
     protected Endorsement convertResultSetToDomainModel(ResultSet rs) throws SQLException {
         Endorsement endorsement = new Endorsement(
-                userMapper.findById(rs.getString("endorserId")),
-                userMapper.findById(rs.getString("endorsedId")),
+                rs.getString("endorserId"),
+                rs.getString("endorsedId"),
                 skillMapper.findByName(rs.getString("skillName"))
         );
         return endorsement;
@@ -68,8 +68,8 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
                 "?," +
                 "?)";
         PreparedStatement st = con.prepareStatement(sql);
-        st.setString(1, endorsement.getEndorser().getId());
-        st.setString(2, endorsement.getEndorsed().getId());
+        st.setString(1, endorsement.getEndorser());
+        st.setString(2, endorsement.getEndorsed());
         st.setString(3, endorsement.getSkill().getName());
         st.executeUpdate();
         st.close();
@@ -80,7 +80,7 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM endorsement WHERE endorsedId = " + userId);
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM endorsement WHERE endorsedId = \"" + userId + "\"");
         ArrayList<Endorsement> endorses = new ArrayList<>();
         while(rs.next()){
             Endorsement en = convertResultSetToDomainModel(rs);

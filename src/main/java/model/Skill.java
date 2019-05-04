@@ -13,9 +13,6 @@ public class Skill {
         return 0;
     }
 
-    public Skill(String name, int point) {
-        this.name = name;
-    }
     public Skill(String name) {
         this.name = name;
     }
