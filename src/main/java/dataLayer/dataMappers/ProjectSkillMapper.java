@@ -45,9 +45,6 @@ public class ProjectSkillMapper extends Mapper<ProjectSkill, Integer> {
     }
 
     public void insertOne(ProjectSkill skill, Project project) throws SQLException {
-        System.out.println(project.getId());
-        System.out.println(skill.getName());
-        System.out.println(skill.getPoint());
         Connection con = DBCPDBConnectionPool.getConnection();
         String sql = "INSERT OR IGNORE INTO projectSkill (" +
                 "skillName," +

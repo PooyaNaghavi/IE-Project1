@@ -16,20 +16,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
-@WebServlet("/user")
-public class UserServlet extends HttpServlet {
-
+@WebServlet("/userssearch")
+public class UsersSearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
+        String searchContent = request.getParameter("search");
         try {
-            User foundUser = Database.findUserById(id);
-            ArrayList<Skill> allSkills = Database.getSkills();
-            System.out.println(allSkills.size());
-            UserDTO userDTO = new UserDTO(foundUser, allSkills);
+            ArrayList<User> searchedUsers = Database.getSearchedUsers(searchContent);
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            String userJson = ow.writeValueAsString(userDTO);
+            String userJson = ow.writeValueAsString(searchedUsers);
             Utils.sendJSON(userJson, response, 200);
         } catch (SQLException e) {
             e.printStackTrace();

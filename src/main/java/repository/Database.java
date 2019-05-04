@@ -43,22 +43,21 @@ public class Database {
 
     //Done
     public static void addAuthenticatedUser() throws SQLException {
-        User user = new User("1", "علی", "شریف‌زاده","1","1234" ,"برنامه‌نویس وب", null, "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت");
+        User user = new User("1", "علی", "شریف‌زاده","1","1234" ,"برنامه‌نویس وب", "https://fararu.com/files/fa/news/1393/2/29/126158_220.jpg", "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت");
         userMapper.insertOne(user);
         userSkillMapper.insertOne(new Skill("HTML"), user);
         userSkillMapper.insertOne(new Skill("Javascript"), user);
         userSkillMapper.insertOne(new Skill("C++"), user);
         userSkillMapper.insertOne(new Skill("Java"), user);
-        System.out.println("------------------------1");
+
         ArrayList<User> users = userMapper.findAll();
-        System.out.println("------------------------2");
+
         for(User u : users){
             endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("HTML")));
             endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("Javascript")));
             endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("C++")));
             endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("Java")));
         }
-        System.out.println("saallaammmm");
     }
 
     // DONE
@@ -113,11 +112,8 @@ public class Database {
     }
     // Done
     public static void insertMultipleProjects(ArrayList<Project> projects) throws SQLException {
-        System.out.println(projects.size());
         for (Project project : projects){
-            System.out.println(project.getSkills().size());
             projectMapper.insertOne(project);
-            System.out.println("-==-=-=-=-=-=-=-=-=-=-=-=-=");
             for(ProjectSkill projectSkill : project.getSkills()) {
                 projectSkillMapper.insertOne(projectSkill, project);
             }
@@ -148,7 +144,6 @@ public class Database {
     }
     // Done
     public static void addSomeUsersAndEndorsements() throws SQLException {
-        System.out.println("========================1");
         User pooya = new User(
             "2",
             "pooya",
@@ -158,11 +153,8 @@ public class Database {
             "bikar",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQAfJWoANWz9aJr2R4ke04WLbaZYrlx3dahOzNYtAiTARLy-KGyw",
             "pooooooya hastam");
-        System.out.println("========================2");
         userMapper.insertOne(pooya);
-        System.out.println("========================3");
         userSkillMapper.insertOne(new Skill("C"), pooya);
-        System.out.println("========================4");
         User mamad = new User(
             "3",
             "mohammad",
@@ -172,13 +164,9 @@ public class Database {
             "bakar",
             "https://www.gstatic.com/webp/gallery/1.jpg",
             "mamadam");
-        System.out.println("========================5");
         userMapper.insertOne(mamad);
-        System.out.println("========================6");
         userSkillMapper.insertOne(new Skill("C"), mamad);
-        System.out.println("========================7");
         userSkillMapper.insertOne(new Skill("C++"), mamad);
-        System.out.println("========================8");
     }
     // Done
     public static ArrayList<Bid> findProjectBids(Project project) throws SQLException {
@@ -259,7 +247,7 @@ public class Database {
         }
         return maxUser;
     }
-
+    // Done
     public static boolean AuthenticateUser(User user){
         try {
             userMapper.findByUsernameAndPassword(user);
@@ -269,8 +257,16 @@ public class Database {
             return false;
         }
     }
-
+    // Done
     public static ArrayList<Project> getProjectsPage(int limit, int nextPageToken) throws SQLException {
         return projectMapper.getProjectsPage(limit, nextPageToken);
+    }
+    // Done
+    public static ArrayList<User> getSearchedUsers(String searchContent) throws SQLException{
+        return userMapper.getSearchedUsers(searchContent);
+    }
+    // Done
+    public static ArrayList<Project> getSearchedProjects(String searchContent) throws SQLException{
+        return projectMapper.getSearchedProjects(searchContent);
     }
 }

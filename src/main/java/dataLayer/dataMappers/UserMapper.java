@@ -143,4 +143,19 @@ public class UserMapper extends Mapper<User, Integer> {
         con.close();
         return foundUser;
     }
+
+    public  ArrayList<User> getSearchedUsers(String searchContent) throws SQLException {
+        Connection con = DBCPDBConnectionPool.getConnection();
+        Statement st =
+                con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE firstName LIKE \"%" + searchContent + "%\" OR lastName LIKE \"%" + searchContent + "%\"");
+        ArrayList<User> searchedUsers = new ArrayList<>();
+        while(rs.next()){
+            User user = convertResultSetToDomainModel(rs);
+            searchedUsers.add(user);
+        }
+        st.close();
+        con.close();
+        return searchedUsers;
+    }
 }

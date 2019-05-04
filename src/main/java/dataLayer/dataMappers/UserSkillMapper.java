@@ -42,7 +42,7 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
     protected UserSkill convertResultSetToDomainModel(ResultSet rs) throws SQLException {
         UserSkill userSkill = new UserSkill(
                 rs.getString("skillName"),
-                endorsementMapper.getUserEndorses(rs.getString("userId"))
+                endorsementMapper.getUserEndorses(rs.getString("userId"), rs.getString("skillName"))
         );
         return userSkill;
     }
@@ -79,8 +79,9 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        //TODO : is this ok ?
-        ResultSet rs = st.executeQuery("Delete " + COLUMNS + " FROM userSkill WHERE userId = \"" + user.getId() + "\"AND skillName = \"" + skill.getName() + "\"");
+        //TODO : endorse user bug
+        //TODO : add Skill null has bug
+        st.execute("Delete FROM userSkill WHERE userId = \"" + user.getId() + "\"AND skillName = \"" + skill.getName() + "\"");
         st.close();
         con.close();
     }

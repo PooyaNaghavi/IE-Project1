@@ -3,6 +3,7 @@ package listeners;
 
 import dataLayer.dataMappers.*;
 import model.Bid;
+import model.Project;
 import model.User;
 import repository.Database;
 import service.APIHelper;
@@ -12,6 +13,7 @@ import javax.servlet.ServletContextListener;
 import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -43,6 +45,7 @@ public class InitListener implements ServletContextListener {
             Database.addAuthenticatedUser();
             System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
             apiHelper.updateProjects();
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (SQLException e) {

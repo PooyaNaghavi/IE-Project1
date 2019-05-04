@@ -144,4 +144,19 @@ public class ProjectMapper extends Mapper<Project, Integer> {
         con.close();
         return projects;
     }
+
+    public ArrayList<Project> getSearchedProjects(String searchContent) throws SQLException {
+        Connection con = DBCPDBConnectionPool.getConnection();
+        Statement st =
+                con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM project WHERE title LIKE \"%" + searchContent + "%\" OR description LIKE \"%" + searchContent + "%\"");
+        ArrayList<Project> searchedProjects = new ArrayList<>();
+        while(rs.next()){
+            Project project = convertResultSetToDomainModel(rs);
+            searchedProjects.add(project);
+        }
+        st.close();
+        con.close();
+        return searchedProjects;
+    }
 }

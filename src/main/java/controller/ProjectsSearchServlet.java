@@ -1,11 +1,10 @@
 package controller;
 
-import DTO.UserDTO;
+import DTO.ProjectDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import model.Skill;
+import model.Project;
 import model.User;
-import model.UserSkill;
 import repository.Database;
 
 import javax.servlet.ServletException;
@@ -16,20 +15,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
-@WebServlet("/user")
-public class UserServlet extends HttpServlet {
-
+@WebServlet("/projectssearch")
+public class ProjectsSearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
+        String searchContent = request.getParameter("search");
         try {
-            User foundUser = Database.findUserById(id);
-            ArrayList<Skill> allSkills = Database.getSkills();
-            System.out.println(allSkills.size());
-            UserDTO userDTO = new UserDTO(foundUser, allSkills);
+            ArrayList<Project> searchedProject = Database.getSearchedProjects(searchContent);
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            String userJson = ow.writeValueAsString(userDTO);
+            String userJson = ow.writeValueAsString(searchedProject);
             Utils.sendJSON(userJson, response, 200);
         } catch (SQLException e) {
             e.printStackTrace();

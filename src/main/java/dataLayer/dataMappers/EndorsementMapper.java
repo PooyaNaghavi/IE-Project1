@@ -76,11 +76,11 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
         con.close();
     }
 
-    public ArrayList<Endorsement> getUserEndorses(String userId) throws SQLException {
+    public ArrayList<Endorsement> getUserEndorses(String userId, String skillName) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM endorsement WHERE endorsedId = \"" + userId + "\"");
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM endorsement WHERE endorsedId = \"" + userId + "\" AND skillName = \"" + skillName +"\"");
         ArrayList<Endorsement> endorses = new ArrayList<>();
         while(rs.next()){
             Endorsement en = convertResultSetToDomainModel(rs);
