@@ -91,7 +91,7 @@ public class BidMapper extends Mapper<Bid, Integer>{
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE projectBid = \"" + project.getId() + "\"");
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE projectId = \"" + project.getId() + "\"");
         ArrayList<Bid> bids = new ArrayList<>();
         while(rs.next()){
             Bid bid = convertResultSetToDomainModel(rs);
