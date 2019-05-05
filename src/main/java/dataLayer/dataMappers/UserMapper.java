@@ -65,9 +65,6 @@ public class UserMapper extends Mapper<User, Integer> {
                 rs.getString("bio"),
                 userSkillMapper.getUserSkills(rs.getString("id"))
         );
-        // TODO: get skills from UserSkills.
-//        ArrayList<UserSkill> userSkills = getUserSkills(userId);
-//        user.setSkills([]);
         return user;
     }
 

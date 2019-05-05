@@ -59,6 +59,9 @@ public class BidMapper extends Mapper<Bid, Integer>{
     }
 
     public void insertOne(Bid bid) throws SQLException {
+        System.out.println(bid.getProject().getId());
+        System.out.println(bid.getUser().getId());
+        System.out.println(bid.getAmount());
         Connection con = DBCPDBConnectionPool.getConnection();
         String sql = "INSERT OR IGNORE INTO bid (" +
                 "userId," +

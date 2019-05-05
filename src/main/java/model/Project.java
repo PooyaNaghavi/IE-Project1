@@ -15,7 +15,7 @@ public class Project {
     private String imageUrl;
     private int budget;
     private long deadline;
-    private long createdAt;
+    private long creationDate;
     private User winner;
     private ArrayList<ProjectSkill> skills;
 
@@ -27,7 +27,7 @@ public class Project {
 
     public Project(){ }
 
-    public Project(String id, String title, String description, String imageURL, ArrayList<ProjectSkill> skills, int budget, long deadline, long createdAt, User winner) {
+    public Project(String id, String title, String description, String imageURL, ArrayList<ProjectSkill> skills, int budget, long deadline, long creationDate, User winner) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -35,7 +35,7 @@ public class Project {
         this.skills = skills;
         this.budget = budget;
         this.deadline = deadline;
-        this.createdAt = createdAt;
+        this.creationDate = creationDate;
         this.winner = winner;
     }
 
@@ -103,12 +103,12 @@ public class Project {
         this.winner = winner;
     }
 
-    public long getCreatedAt() {
-        return createdAt;
+    public long getCreationDate() {
+        return creationDate;
     }
 
-    public void setCreatedAt(long createdAt) {
-        this.createdAt = createdAt;
+    public void setCreationDate(long creationDate) {
+        this.creationDate = creationDate;
     }
 }
 

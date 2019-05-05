@@ -79,7 +79,6 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        //TODO : endorse user bug
         //TODO : add Skill null has bug
         st.execute("Delete FROM userSkill WHERE userId = \"" + user.getId() + "\"AND skillName = \"" + skill.getName() + "\"");
         st.close();

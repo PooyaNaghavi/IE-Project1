@@ -45,18 +45,21 @@ public class Database {
     public static void addAuthenticatedUser() throws SQLException {
         User user = new User("1", "علی", "شریف‌زاده","1","1234" ,"برنامه‌نویس وب", "https://fararu.com/files/fa/news/1393/2/29/126158_220.jpg", "روی سنگ قبرم بنویسید: خدا بیامرز میخواست خیلی کارا بکنه ولی پول نداشت");
         userMapper.insertOne(user);
-        userSkillMapper.insertOne(new Skill("HTML"), user);
-        userSkillMapper.insertOne(new Skill("Javascript"), user);
+        userSkillMapper.insertOne(new Skill("Photoshop"), user);
+        userSkillMapper.insertOne(new Skill("Python"), user);
         userSkillMapper.insertOne(new Skill("C++"), user);
         userSkillMapper.insertOne(new Skill("Java"), user);
 
         ArrayList<User> users = userMapper.findAll();
 
         for(User u : users){
-            endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("HTML")));
-            endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("Javascript")));
-            endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("C++")));
-            endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("Java")));
+
+            if(!u.getId().equals("1")) {
+                endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("Photoshop")));
+                endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("Python")));
+                endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("C++")));
+                endorsementMapper.insertOne(new Endorsement(u.getId(), user.getId(), new Skill("Java")));
+            }
         }
     }
 
@@ -92,8 +95,9 @@ public class Database {
     // Done
     public static void insertBid(User user, Project project, int bidAmount) throws BadConditionException, SQLException {
         Bid bid = new Bid(user, project, bidAmount);
-        if(!checkBidConditions(bid, project))
+        if(!checkBidConditions(bid, project)) {
             throw new BadConditionException("bid conditions not satistfied");
+        }
         bidMapper.insertOne(bid);
     }
     // Done
@@ -260,7 +264,7 @@ public class Database {
     // Done
     public static ArrayList<Project> getProjectsPage(int limit, int nextPageToken) throws SQLException {
         return projectMapper.getProjectsPage(limit, nextPageToken);
-    }
+}
     // Done
     public static ArrayList<User> getSearchedUsers(String searchContent) throws SQLException{
         return userMapper.getSearchedUsers(searchContent);
