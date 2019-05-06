@@ -149,7 +149,7 @@ public class ProjectMapper extends Mapper<Project, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM project WHERE title LIKE \"%" + searchContent + "%\" OR description LIKE \"%" + searchContent + "%\"");
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM project WHERE title LIKE \"%" + searchContent + "%\" OR description LIKE \"%" + searchContent + "%\" ORDER BY creationDate DESC");
         ArrayList<Project> searchedProjects = new ArrayList<>();
         while(rs.next()){
             Project project = convertResultSetToDomainModel(rs);
