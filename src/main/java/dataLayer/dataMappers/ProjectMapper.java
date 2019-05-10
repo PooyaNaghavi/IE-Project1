@@ -47,13 +47,6 @@ public class ProjectMapper extends Mapper<Project, Integer> {
     }
 
     @Override
-    protected String getFindStatement() {
-        return "SELECT " + COLUMNS +
-                " FROM project" +
-                " WHERE id = ?";
-    }
-
-    @Override
     protected Project convertResultSetToDomainModel(ResultSet rs) throws SQLException {
         Project project = new Project(
             rs.getString("id"),

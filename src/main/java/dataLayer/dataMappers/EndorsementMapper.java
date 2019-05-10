@@ -40,13 +40,6 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
     }
 
     @Override
-    protected String getFindStatement() {
-        return "SELECT " + COLUMNS +
-                " FROM endorsement" +
-                " WHERE endorserId = ?";
-    }
-
-    @Override
     protected Endorsement convertResultSetToDomainModel(ResultSet rs) throws SQLException {
         Endorsement endorsement = new Endorsement(
                 rs.getString("endorserId"),

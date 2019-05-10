@@ -46,13 +46,6 @@ public class UserMapper extends Mapper<User, Integer> {
     }
 
     @Override
-    protected String getFindStatement() {
-        return "SELECT " + COLUMNS +
-                " FROM user, userSkill" +
-                " WHERE id = ?";
-    }
-
-    @Override
     protected User convertResultSetToDomainModel(ResultSet rs) throws SQLException {
         User user = new User(
                 rs.getString("id"),
@@ -111,7 +104,6 @@ public class UserMapper extends Mapper<User, Integer> {
         st.setString(8, user.getBio());
         st.executeUpdate();
         st.close();
-        System.out.println("added to db?");
         con.close();
     }
 

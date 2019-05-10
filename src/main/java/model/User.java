@@ -115,13 +115,6 @@ public class User {
     }
 
     public boolean hasRequiredFields() {
-        System.out.println(firstName );
-        System.out.println(lastName );
-        System.out.println(userName );
-        System.out.println(password );
-        System.out.println(jobTitle );
-        System.out.println(profilePictureURL );
-        System.out.println(bio );
         return firstName != null &&
                 lastName != null &&
                 userName != null &&

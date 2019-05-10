@@ -26,7 +26,6 @@ public class UserServlet extends HttpServlet {
         try {
             User foundUser = Database.findUserById(id);
             ArrayList<Skill> allSkills = Database.getSkills();
-            System.out.println(allSkills.size());
             UserDTO userDTO = new UserDTO(foundUser, allSkills);
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             String userJson = ow.writeValueAsString(userDTO);

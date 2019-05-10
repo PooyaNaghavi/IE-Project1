@@ -23,13 +23,6 @@ public class SkillMapper extends Mapper<Skill, Integer> {
     }
 
     @Override
-    protected String getFindStatement() {
-        return "SELECT " + COLUMNS +
-                " FROM skill" +
-                " WHERE skillName = ?";
-    }
-
-    @Override
     protected Skill convertResultSetToDomainModel(ResultSet rs) throws SQLException {
         Skill skill = new Skill(
             rs.getString("skillName")

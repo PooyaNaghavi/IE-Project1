@@ -59,8 +59,7 @@ public class AuthFilter implements Filter {
         if ( jwt == null || jwt.isEmpty() ) {
             LOG.info("No JWT provided, go on unauthenticated");
             HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
-            httpResponse.setContentLength(0);
-            httpResponse.setStatus(STATUS_CODE_UNAUTHORIZED);
+            Utils.sendJSON("{}", httpResponse, STATUS_CODE_UNAUTHORIZED);
         } else {
             try{
                 DecodedJWT decodedJwt = Utils.verifyJWT(jwt);
@@ -70,13 +69,11 @@ public class AuthFilter implements Filter {
             } catch (JWTVerificationException e) {
                 LOG.info("JWT Verify Error " + e.getMessage());
                 HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
-                httpResponse.setContentLength( 0 );
-                httpResponse.setStatus(STATUS_CODE_FORBIDDEN);
+                Utils.sendJSON("{}", httpResponse, STATUS_CODE_FORBIDDEN);
             } catch (SQLException e) {
                 LOG.info("SQLException " + e.getMessage());
                 HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
-                httpResponse.setContentLength( 0 );
-                httpResponse.setStatus(STATUS_CODE_FORBIDDEN);
+                Utils.sendJSON("{}", httpResponse, STATUS_CODE_FORBIDDEN);
             }
         }
     }

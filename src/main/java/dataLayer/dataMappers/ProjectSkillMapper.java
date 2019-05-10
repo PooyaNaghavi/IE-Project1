@@ -29,13 +29,6 @@ public class ProjectSkillMapper extends Mapper<ProjectSkill, Integer> {
     }
 
     @Override
-    protected String getFindStatement() {
-        return "SELECT " + COLUMNS +
-                " FROM projectSkill" +
-                " WHERE projectId = ?";
-    }
-
-    @Override
     protected ProjectSkill convertResultSetToDomainModel(ResultSet rs) throws SQLException {
         ProjectSkill projectSkill = new ProjectSkill(
                 rs.getString("skillName"),

@@ -42,13 +42,6 @@ public class BidMapper extends Mapper<Bid, Integer>{
     }
 
     @Override
-    protected String getFindStatement() {
-        return "SELECT " + COLUMNS +
-                " FROM bid" +
-                " WHERE userId = ?";
-    }
-
-    @Override
     protected Bid convertResultSetToDomainModel(ResultSet rs) throws SQLException {
         Bid bid = new Bid(
                 userMapper.findById(rs.getString("userId")),
@@ -59,9 +52,6 @@ public class BidMapper extends Mapper<Bid, Integer>{
     }
 
     public void insertOne(Bid bid) throws SQLException {
-        System.out.println(bid.getProject().getId());
-        System.out.println(bid.getUser().getId());
-        System.out.println(bid.getAmount());
         Connection con = DBCPDBConnectionPool.getConnection();
         String sql = "INSERT OR IGNORE INTO bid (" +
                 "userId," +

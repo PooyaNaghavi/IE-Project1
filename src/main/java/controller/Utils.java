@@ -22,6 +22,7 @@ import java.util.Map;
 
 public class Utils {
     private static String JWT_SECRET = "joboonja";
+
     public static void sendJSON(String jsonString, HttpServletResponse response, int status) throws IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

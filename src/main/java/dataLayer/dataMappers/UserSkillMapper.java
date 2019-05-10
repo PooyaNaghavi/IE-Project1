@@ -32,13 +32,6 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
     }
 
     @Override
-    protected String getFindStatement() {
-        return "SELECT " + COLUMNS +
-                " FROM userSkill" +
-                " WHERE userId = ?";
-    }
-
-    @Override
     protected UserSkill convertResultSetToDomainModel(ResultSet rs) throws SQLException {
         UserSkill userSkill = new UserSkill(
                 rs.getString("skillName"),

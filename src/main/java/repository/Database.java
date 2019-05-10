@@ -136,7 +136,6 @@ public class Database {
     }
     // Done
     public static void setSkills(ArrayList<Skill> skills) throws SQLException {
-        System.out.println(skills.size());
         for (Skill skill : skills){
             skillMapper.insertOne(skill);
         }

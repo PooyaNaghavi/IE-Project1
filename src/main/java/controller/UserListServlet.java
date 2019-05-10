@@ -17,11 +17,9 @@ import java.sql.SQLException;
 @WebServlet("/users")
 public class UserListServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("fuck this shitto");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int statusCode = 200;
         try {
-            User authenticatedUser = Database.findUserById("1");
             ObjectWriter ow = new ObjectMapper().writer();
             String usersJson = ow.writeValueAsString(Database.getUsers());
             Utils.sendJSON(usersJson, response, 200);
