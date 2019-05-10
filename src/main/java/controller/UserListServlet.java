@@ -18,6 +18,7 @@ import java.sql.SQLException;
 public class UserListServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("fuck this shitto");
         int statusCode = 200;
         try {
             User authenticatedUser = Database.findUserById("1");

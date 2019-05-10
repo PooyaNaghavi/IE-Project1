@@ -1,38 +1,35 @@
 package controller;
-
 import DTO.RegisterDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import model.User;
 import repository.Database;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
-@WebServlet("/login")
-public class LoginServlet  extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String body = Utils.getBodyOfRequest(request);
         ObjectMapper objectMapper = new ObjectMapper();
-        User loginUser = objectMapper.readValue(body, User.class);
-        User foundUser;
-
+        User registerUser = objectMapper.readValue(body, User.class);
         try {
-            response.setStatus(200);
-            foundUser = Database.AuthenticateUser(loginUser);
-            String JWTToken = Utils.signJWT(foundUser.getId());
-            RegisterDTO registerDTO = new RegisterDTO(JWTToken, foundUser.getId());
+            Database.insertUser(registerUser);
+            String JWTToken = Utils.signJWT(registerUser.getUserName());
+            RegisterDTO registerDTO = new RegisterDTO(JWTToken, registerUser.getUserName());
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             String registerJson = ow.writeValueAsString(registerDTO);
             Utils.sendJSON(registerJson, response, 200);
-        } catch (SQLException e) {
-            response.setStatus(403);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(400);
         }
     }
 }
+

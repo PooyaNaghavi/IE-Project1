@@ -81,7 +81,7 @@ public class UserMapper extends Mapper<User, Integer> {
 
     public void insertOne(User user) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        String sql = "INSERT OR IGNORE INTO user (" +
+        String sql = "INSERT INTO user (" +
                 "id," +
                 "firstName," +
                 "lastName," +
@@ -101,7 +101,7 @@ public class UserMapper extends Mapper<User, Integer> {
                 "?," +
                 "?)";
         PreparedStatement st = con.prepareStatement(sql);
-        st.setString(1, user.getId());
+        st.setString(1, user.getId() != null ? user.getId() : user.getUserName());
         st.setString(2, user.getFirstName());
         st.setString(3, user.getLastName());
         st.setString(4, user.getUserName());
@@ -134,7 +134,7 @@ public class UserMapper extends Mapper<User, Integer> {
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE userName = \"" + user.getUserName() + "\" AND password = \"" + user.getPassword() + "\"");
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE userName = \"" + user.getUserName() + "\" AND password = \"" + user.getHashedPassword() + "\"");
         User foundUser = convertResultSetToDomainModel(rs);
         st.close();
         con.close();

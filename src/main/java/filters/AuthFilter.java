@@ -1,42 +1,100 @@
 package filters;
 
-import exceptions.NotFoundException;
-import model.User;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import controller.Utils;
 import repository.Database;
 
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.crypto.Data;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-@WebFilter(filterName = "AuthFilter")
+@WebFilter( "/*" )
 public class AuthFilter implements Filter {
-    public void destroy() {
+
+    private static final java.util.logging.Logger LOG = Logger.getLogger( AuthFilter.class.getName() );
+
+    private static final String AUTH_HEADER_KEY = "Authorization";
+    private static final String AUTH_HEADER_VALUE_PREFIX = "Bearer "; // with trailing space to separate token
+
+    private static final int STATUS_CODE_UNAUTHORIZED = 401;
+    private static final int STATUS_CODE_FORBIDDEN = 403;
+
+    @Override
+    public void init( FilterConfig filterConfig ) {
+        LOG.info( "AuthFilter initialized" );
     }
 
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-//        String path = ((HttpServletRequest) req).getRequestURI();
-//        if (path.startsWith("/login") || path.startsWith("/register")) {
-//            chain.doFilter(req, resp); // Just continue chain.
-//        } else {
-//            req.setCharacterEncoding("UTF-8");
-//            //req.setAttribute("contextUser", Database.findUserById("1"));
-//            chain.doFilter(req, resp);
-//        }
+    @Override
+    public void doFilter( final ServletRequest servletRequest,
+                          final ServletResponse servletResponse,
+                          final FilterChain filterChain ) throws IOException, ServletException {
 
-        req.setCharacterEncoding("UTF-8");
-        try {
-            req.setAttribute("contextUser", Database.findUserById("1"));
-        } catch (SQLException e) {
-            e.printStackTrace();
+        String path = ((HttpServletRequest) servletRequest).getRequestURI();
+        if (
+                path.startsWith("/login") ||
+                path.startsWith("/register") ||
+                ((HttpServletRequest) servletRequest).getMethod().equals("OPTIONS")
+        ) {
+            filterChain.doFilter(servletRequest, servletResponse); // Just continue chain.
+            return;
         }
-        chain.doFilter(req, resp);
+        HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
+        servletRequest.setCharacterEncoding("UTF-8");
+
+        String jwt = getBearerToken( httpRequest );
+
+        if ( jwt == null || jwt.isEmpty() ) {
+            LOG.info("No JWT provided, go on unauthenticated");
+            HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
+            httpResponse.setContentLength(0);
+            httpResponse.setStatus(STATUS_CODE_UNAUTHORIZED);
+        } else {
+            try{
+                DecodedJWT decodedJwt = Utils.verifyJWT(jwt);
+                servletRequest.setAttribute("contextUser", Database.findUserById(decodedJwt.getId()));
+                LOG.info( "Logged in using JWT" );
+                filterChain.doFilter( servletRequest, servletResponse );
+            } catch (JWTVerificationException e) {
+                LOG.info("JWT Verify Error " + e.getMessage());
+                HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
+                httpResponse.setContentLength( 0 );
+                httpResponse.setStatus(STATUS_CODE_FORBIDDEN);
+            } catch (SQLException e) {
+                LOG.info("SQLException " + e.getMessage());
+                HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
+                httpResponse.setContentLength( 0 );
+                httpResponse.setStatus(STATUS_CODE_FORBIDDEN);
+            }
+        }
     }
 
-    public void init(FilterConfig config) throws ServletException {
-
+    @Override
+    public void destroy() {
+        LOG.info( "JwtAuthenticationFilter destroyed" );
     }
 
+    /**
+     * Get the bearer token from the HTTP request.
+     * The token is in the HTTP request "Authorization" header in the form of: "Bearer [token]"
+     */
+    private String getBearerToken( HttpServletRequest request ) {
+        String authHeader = request.getHeader( AUTH_HEADER_KEY );
+        if ( authHeader != null && authHeader.startsWith( AUTH_HEADER_VALUE_PREFIX ) ) {
+            return authHeader.substring( AUTH_HEADER_VALUE_PREFIX.length() );
+        }
+        return null;
+    }
 }

@@ -252,14 +252,8 @@ public class Database {
         return maxUser;
     }
     // Done
-    public static boolean AuthenticateUser(User user){
-        try {
-            userMapper.findByUsernameAndPassword(user);
-            // TODO : set Context User
-            return true;
-        }catch(SQLException e){
-            return false;
-        }
+    public static User AuthenticateUser(User user) throws SQLException {
+        return userMapper.findByUsernameAndPassword(user);
     }
     // Done
     public static ArrayList<Project> getProjectsPage(int limit, int nextPageToken) throws SQLException {
@@ -272,5 +266,11 @@ public class Database {
     // Done
     public static ArrayList<Project> getSearchedProjects(String searchContent) throws SQLException{
         return projectMapper.getSearchedProjects(searchContent);
+    }
+
+    public static void insertUser(User user) throws Exception {
+        if(!user.hasRequiredFields()) throw new Exception("Required Fields Incomplete");
+        user.hashPassword();
+        userMapper.insertOne(user);
     }
 }

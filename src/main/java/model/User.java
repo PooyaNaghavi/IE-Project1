@@ -1,6 +1,7 @@
 package model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import controller.Utils;
 import exceptions.NotFoundException;
 import repository.Database;
 
@@ -10,14 +11,14 @@ import java.util.HashMap;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String userName;
-    private String password;
-    private String jobTitle;
-    private String profilePictureURL;
-    private String bio;
+    private String id = null;
+    private String firstName = null;
+    private String lastName = null;
+    private String userName = null;
+    private String password = null;
+    private String jobTitle = null;
+    private String profilePictureURL = null;
+    private String bio = null;
     private ArrayList<UserSkill> skills;
 
     public User(){ }
@@ -111,5 +112,31 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public boolean hasRequiredFields() {
+        System.out.println(firstName );
+        System.out.println(lastName );
+        System.out.println(userName );
+        System.out.println(password );
+        System.out.println(jobTitle );
+        System.out.println(profilePictureURL );
+        System.out.println(bio );
+        return firstName != null &&
+                lastName != null &&
+                userName != null &&
+                password != null &&
+                jobTitle != null &&
+                profilePictureURL != null &&
+                bio != null;
+    }
+
+    public void hashPassword() {
+        this.password = Utils.getMd5(this.password);
+    }
+
+
+    public String getHashedPassword() {
+        return Utils.getMd5(this.password);
     }
 }
