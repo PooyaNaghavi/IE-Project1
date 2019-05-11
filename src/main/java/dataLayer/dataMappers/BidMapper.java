@@ -72,55 +72,66 @@ public class BidMapper extends Mapper<Bid, Integer>{
     }
     public Bid findBid(User user, Project project) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        String query = "SELECT " + COLUMNS + " FROM bid WHERE userId = \"" + user.getId() + "\" AND projectId = \""+ project.getId() + "\"";
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE userId = \"" + user.getId() + "\" AND projectId = \""+ project.getId() + "\"");
+        String query = "SELECT " + COLUMNS + " FROM bid WHERE userId = ? AND projectId = ?";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, user.getId());
+        statement.setString(2,  project.getId());
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE userId = \"" + user.getId() + "\" AND projectId = \""+ project.getId() + "\"");
         Bid bid = convertResultSetToDomainModel(rs);
-        st.close();
+        statement.close();
         con.close();
         return bid;
     }
     public ArrayList<Bid> findProjectBids(Project project) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE projectId = \"" + project.getId() + "\"");
+        String query = "SELECT " + COLUMNS + " FROM bid WHERE projectId = ?";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, project.getId());
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE projectId = \"" + project.getId() + "\"");
         ArrayList<Bid> bids = new ArrayList<>();
         while(rs.next()){
             Bid bid = convertResultSetToDomainModel(rs);
             bids.add(bid);
         }
-        st.close();
+        statement.close();
         con.close();
         return bids;
     }
     public ArrayList<User> findBiddingUserInProject(Project project) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE projectId = \"" + project.getId() + "\"");
+        String query = "SELECT " + COLUMNS + " FROM bid WHERE projectId = ?";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, project.getId());
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE projectId = \"" + project.getId() + "\"");
         ArrayList<User> biddingUsers = new ArrayList<>();
         while(rs.next()){
             User user = userMapper.findById(rs.getString("userId"));
             biddingUsers.add(user);
         }
-        st.close();
+        statement.close();
         con.close();
         return biddingUsers;
     }
 
     public ArrayList<Bid> findAll() throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid");
+        String query = "SELECT " + COLUMNS + " FROM bid";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid");
         ArrayList<Bid> bids = new ArrayList<>();
         while(rs.next()){
             Bid bid = convertResultSetToDomainModel(rs);
             bids.add(bid);
         }
-        st.close();
+        statement.close();
         con.close();
         return bids;
     }

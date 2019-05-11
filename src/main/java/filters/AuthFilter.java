@@ -55,7 +55,6 @@ public class AuthFilter implements Filter {
         servletRequest.setCharacterEncoding("UTF-8");
 
         String jwt = getBearerToken( httpRequest );
-        System.out.println(jwt);
         if ( jwt == null || jwt.isEmpty() ) {
             LOG.info("No JWT provided, go on unauthenticated");
             HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
@@ -89,9 +88,7 @@ public class AuthFilter implements Filter {
      */
     private String getBearerToken( HttpServletRequest request ) {
         String authHeader = request.getHeader( AUTH_HEADER_KEY );
-        System.out.println("authHeader " + authHeader);
         if ( authHeader != null && authHeader.startsWith( AUTH_HEADER_VALUE_PREFIX ) ) {
-            System.out.println("Salam");
             return authHeader.substring( AUTH_HEADER_VALUE_PREFIX.length() );
         }
         return null;

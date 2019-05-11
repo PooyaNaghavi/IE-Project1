@@ -32,7 +32,6 @@ public class APIHelper {
         return content;
     }
     public void updateProjects() throws IOException, SQLException {
-        System.out.println("run now");
         String projectContent = APIRequest("http://142.93.134.194:8000/joboonja/project");
         ObjectMapper mapper = new ObjectMapper();
         Database.insertMultipleProjects(mapper.readValue(projectContent, new TypeReference<ArrayList<Project>>(){}));

@@ -61,17 +61,6 @@ public class UserMapper extends Mapper<User, Integer> {
         return user;
     }
 
-    public User findById(String id) throws SQLException {
-        Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE id = \"" + id + "\"");
-        User user = convertResultSetToDomainModel(rs);
-        st.close();
-        con.close();
-        return user;
-    }
-
     public void insertOne(User user) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
         String sql = "INSERT INTO user (" +
@@ -107,43 +96,67 @@ public class UserMapper extends Mapper<User, Integer> {
         con.close();
     }
 
+    public User findById(String id) throws SQLException {
+        Connection con = DBCPDBConnectionPool.getConnection();
+        String query = "SELECT " + COLUMNS + " FROM user WHERE id = ? ";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, id);
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE id = \"" + id + "\"");
+        User user = convertResultSetToDomainModel(rs);
+        statement.close();
+        con.close();
+        return user;
+    }
+
     public ArrayList<User> findAll() throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user");
+        String query = "SELECT " + COLUMNS + " FROM user";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user");
         ArrayList<User> users = new ArrayList<>();
         while(rs.next()){
             User user = convertResultSetToDomainModel(rs);
             users.add(user);
         }
-        st.close();
+        statement.close();
         con.close();
         return users;
     }
 
     public User findByUsernameAndPassword(User user) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE userName = \"" + user.getUserName() + "\" AND password = \"" + user.getHashedPassword() + "\"");
+        String query = "SELECT " + COLUMNS + " FROM user WHERE userName = ? AND password = ? ";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, user.getUserName());
+        statement.setString(2, user.getHashedPassword());
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE userName = \"" + user.getUserName() + "\" AND password = \"" + user.getHashedPassword() + "\"");
         User foundUser = convertResultSetToDomainModel(rs);
-        st.close();
+        statement.close();
         con.close();
         return foundUser;
     }
 
     public  ArrayList<User> getSearchedUsers(String searchContent) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE firstName LIKE \"%" + searchContent + "%\" OR lastName LIKE \"%" + searchContent + "%\"");
+        String query = "SELECT " + COLUMNS + " FROM user WHERE firstName LIKE ? OR lastName LIKE ? ";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, "%" + searchContent + "%");
+        statement.setString(2, "%" + searchContent + "%");
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE firstName LIKE \"%" + searchContent + "%\" OR lastName LIKE \"%" + searchContent + "%\"");
         ArrayList<User> searchedUsers = new ArrayList<>();
         while(rs.next()){
             User user = convertResultSetToDomainModel(rs);
             searchedUsers.add(user);
         }
-        st.close();
+        statement.close();
         con.close();
         return searchedUsers;
     }

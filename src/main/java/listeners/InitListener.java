@@ -59,7 +59,6 @@ class projectScheduler implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println("lkpoasfkjijifasjijsaofijoiasfj");
             apiHelper.updateProjects();
         } catch (IOException e) {
             e.printStackTrace();
@@ -74,8 +73,8 @@ class auctionScheduler implements Runnable {
     public void run() {
         try {
             ArrayList<Project> projects = Database.getUnresolvedProjects();
+            System.out.println("SIZE NOWWW = " + projects.size());
             for (Project project : projects){
-                System.out.println(project.getId());
                 Database.auction(project);
             }
         } catch (SQLException e) {

@@ -117,7 +117,6 @@ public class Database {
     }
     // Done
     public static void insertMultipleProjects(ArrayList<Project> projects) throws SQLException {
-        System.out.println("nowoww " +projects.size());
         for (Project project : projects){
             projectMapper.insertOne(project);
             for(ProjectSkill projectSkill : project.getSkills()) {
