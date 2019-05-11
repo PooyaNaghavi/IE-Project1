@@ -17,6 +17,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/filters/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filters/AuthFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/listeners/InitListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listeners/InitListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/APIHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/APIHelper.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,8 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/repository/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="281" column="42" selection-start-line="281" selection-start-column="26" selection-end-line="281" selection-end-column="42" />
+            <state relative-caret-position="139">
+              <caret line="118" column="96" selection-start-line="118" selection-start-column="96" selection-end-line="118" selection-end-column="96" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,11 +129,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/listeners/InitListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="75" column="64" selection-start-line="75" selection-start-column="64" selection-end-line="75" selection-end-column="64" />
+            <state relative-caret-position="209">
+              <caret line="76" column="45" selection-start-line="76" selection-start-column="45" selection-end-line="76" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -140,10 +142,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/service/APIHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="33" column="67" selection-start-line="33" selection-start-column="67" selection-end-line="33" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="175" column="61" selection-start-line="175" selection-start-column="61" selection-end-line="175" selection-end-column="61" />
+            <state relative-caret-position="400">
+              <caret line="163" column="8" selection-start-line="163" selection-start-column="8" selection-end-line="163" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -160,19 +171,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/BidMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="das://ab772f92-b0e1-4b27-877f-8f95d4f4c9dd/schema/main/table/project">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
@@ -195,10 +194,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>name</find>
-      <find>AND</find>
-      <find>MIMM</find>
-      <find>koo</find>
       <find>getUserEndorses</find>
       <find>Dele</find>
       <find>Syste</find>
@@ -225,6 +220,10 @@
       <find>con.</find>
       <find>Sal</find>
       <find>winner :</find>
+      <find>run</find>
+      <find>nowo</find>
+      <find>Sys</find>
+      <find>System.ou</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -276,8 +275,6 @@
         <option value="$PROJECT_DIR$/src/main/java/model/Project.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/ProjectListServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/DTO/ProjectsPaginationDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/repository/Database.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/APIHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/DBCPDBConnectionPool.java" />
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/EndorsementMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectSkillMapper.java" />
@@ -285,9 +282,11 @@
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/UserSkillMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/BidMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/filters/AuthFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/APIHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/repository/Database.java" />
         <option value="$PROJECT_DIR$/src/main/java/listeners/InitListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java" />
       </list>
     </option>
   </component>
@@ -452,7 +451,7 @@
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557556938312" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557557147397" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -725,7 +724,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="275288000" />
+    <option name="totallyTimeSpent" value="275539000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -738,11 +737,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Learn" order="0" />
       <window_info id="Web" order="1" sideWeight="0.5048544" side_tool="true" weight="0.29685265" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49514562" visible="true" weight="0.17811158" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.49514562" visible="true" weight="0.17811158" />
       <window_info id="Structure" order="3" sideWeight="0.5036145" side_tool="true" weight="0.2811159" />
       <window_info id="Designer" order="4" />
       <window_info id="Image Layers" order="5" />
@@ -753,12 +751,12 @@
       <window_info anchor="bottom" id="Application Servers" order="1" weight="0.32891566" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32650602" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.4985694" visible="true" weight="0.38433734" />
+      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.4985694" weight="0.38433734" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.3987952" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="8" sideWeight="0.49928468" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49713877" weight="0.2554217" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49713877" visible="true" weight="0.2554217" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Tool Output" order="11" weight="0.32771084" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50143063" side_tool="true" weight="0.42168674" />
@@ -1052,13 +1050,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/APIHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="33" column="25" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/DBCPDBConnectionPool.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -1147,16 +1138,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="175" column="61" selection-start-line="175" selection-start-column="61" selection-end-line="175" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/filters/AuthFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-181">
@@ -1167,10 +1148,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/APIHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="33" column="67" selection-start-line="33" selection-start-column="67" selection-end-line="33" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/repository/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="281" column="42" selection-start-line="281" selection-start-column="26" selection-end-line="281" selection-end-column="42" />
+        <state relative-caret-position="139">
+          <caret line="118" column="96" selection-start-line="118" selection-start-column="96" selection-end-line="118" selection-end-column="96" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/listeners/InitListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="76" column="45" selection-start-line="76" selection-start-column="45" selection-end-line="76" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dataLayer/dataMappers/ProjectMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="163" column="8" selection-start-line="163" selection-start-column="8" selection-end-line="163" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1181,16 +1189,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/listeners/InitListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="75" column="64" selection-start-line="75" selection-start-column="64" selection-end-line="75" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
