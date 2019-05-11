@@ -72,6 +72,7 @@ public class BidMapper extends Mapper<Bid, Integer>{
     }
     public Bid findBid(User user, Project project) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
+        String query = "SELECT " + COLUMNS + " FROM bid WHERE userId = \"" + user.getId() + "\" AND projectId = \""+ project.getId() + "\"";
         Statement st =
                 con.createStatement();
         ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE userId = \"" + user.getId() + "\" AND projectId = \""+ project.getId() + "\"");
@@ -98,7 +99,7 @@ public class BidMapper extends Mapper<Bid, Integer>{
         Connection con = DBCPDBConnectionPool.getConnection();
         Statement st =
                 con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE projectBid = \"" + project.getId() + "\"");
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE projectId = \"" + project.getId() + "\"");
         ArrayList<User> biddingUsers = new ArrayList<>();
         while(rs.next()){
             User user = userMapper.findById(rs.getString("userId"));

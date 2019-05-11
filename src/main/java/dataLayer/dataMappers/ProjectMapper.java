@@ -2,6 +2,7 @@ package dataLayer.dataMappers;
 
 import dataLayer.DBCPDBConnectionPool;
 import model.Project;
+import model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class ProjectMapper extends Mapper<Project, Integer> {
                 "budget INTEGER, " +
                 "deadline DATE, " +
                 "creationDate DATE," +
-                "winnerId TEXT, " +
+                "winnerId TEXT nullable , " +
                 "FOREIGN KEY (winnerId) REFERENCES user(id)" +
                 ")");
         st.close();
@@ -56,9 +57,12 @@ public class ProjectMapper extends Mapper<Project, Integer> {
             projectSkillMapper.getProjectSkills(rs.getString("id")),
             rs.getInt("budget"),
             rs.getLong("deadline"),
-            rs.getLong("creationDate"),
-            userMapper.findById(rs.getString("winnerId"))
+            rs.getLong("creationDate")
+            //userMapper.findById(rs.getString("winnerId"))
         );
+        if(rs.getString("winnerId") != null){
+            project.setWinner(userMapper.findById(rs.getString("winnerId")));
+        }
         return project;
     }
 
@@ -67,10 +71,10 @@ public class ProjectMapper extends Mapper<Project, Integer> {
         Statement st =
                 con.createStatement();
         ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM project WHERE id = \"" + id + "\"");
-        Project user = convertResultSetToDomainModel(rs);
+        Project project = convertResultSetToDomainModel(rs);
         st.close();
         con.close();
-        return user;
+        return project;
     }
 
     public void insertOne(Project project) throws SQLException {
@@ -102,7 +106,7 @@ public class ProjectMapper extends Mapper<Project, Integer> {
         st.setInt(5, project.getBudget());
         st.setLong(6, project.getDeadline());
         st.setLong(7, project.getCreationDate());
-        st.setString(8, "1"); //TODO : Winner isn't in api
+        st.setString(8, null);
         st.executeUpdate();
         st.close();
         con.close();
@@ -131,6 +135,7 @@ public class ProjectMapper extends Mapper<Project, Integer> {
         ArrayList<Project> projects = new ArrayList<>();
         while(rs.next()){
             Project pr = convertResultSetToDomainModel(rs);
+            System.out.println(pr.getId());
             projects.add(pr);
         }
         st.close();
@@ -151,5 +156,30 @@ public class ProjectMapper extends Mapper<Project, Integer> {
         st.close();
         con.close();
         return searchedProjects;
+    }
+
+    public void setProjectWinner(User winner, Project project) throws SQLException {
+        Connection con = DBCPDBConnectionPool.getConnection();
+        Statement st =
+                con.createStatement();
+        String sql = "UPDATE project SET winnerId = \"" + winner.getId() + "\" WHERE id = \"" + project.getId() + "\"";
+        ResultSet rs = st.executeQuery(sql);
+        st.close();
+        con.close();
+    }
+
+    public ArrayList<Project> getUnresolvedProjects() throws SQLException {
+        Connection con = DBCPDBConnectionPool.getConnection();
+        Statement st =
+                con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM project WHERE winnerId IS null AND deadline < " + System.currentTimeMillis());
+        ArrayList<Project> projects = new ArrayList<>();
+        while(rs.next()){
+            Project pr = convertResultSetToDomainModel(rs);
+            projects.add(pr);
+        }
+        st.close();
+        con.close();
+        return projects;
     }
 }

@@ -21,7 +21,8 @@ import java.util.concurrent.TimeUnit;
 public class InitListener implements ServletContextListener {
 
     public APIHelper apiHelper = new APIHelper();
-    private ScheduledExecutorService scheduler;
+    private ScheduledExecutorService getProjectScheduler;
+    private ScheduledExecutorService auctionScheduler;
 
     @Override
     public void contextDestroyed(ServletContextEvent arg0) {
@@ -34,11 +35,15 @@ public class InitListener implements ServletContextListener {
             Class.forName("org.sqlite.JDBC");
             Database.setMapper();
             apiHelper.updateSkills();
-            Database.addSomeUsersAndEndorsements();
-            Database.addAuthenticatedUser();
+            //Database.addSomeUsersAndEndorsements();
+            //Database.addAuthenticatedUser();
             apiHelper.updateProjects();
-            scheduler = Executors.newSingleThreadScheduledExecutor();
-            scheduler.scheduleAtFixedRate(new MinJob(), 5, 5, TimeUnit.MINUTES);
+
+            getProjectScheduler = Executors.newSingleThreadScheduledExecutor();
+            auctionScheduler = Executors.newSingleThreadScheduledExecutor();
+
+            getProjectScheduler.scheduleAtFixedRate(new projectScheduler(), 5, 5, TimeUnit.MINUTES);
+            auctionScheduler.scheduleAtFixedRate(new auctionScheduler(), 1, 1, TimeUnit.MINUTES);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (SQLException e) {
@@ -49,17 +54,35 @@ public class InitListener implements ServletContextListener {
     }
 }
 
-class MinJob implements Runnable {
+class projectScheduler implements Runnable {
     public APIHelper apiHelper = new APIHelper();
     @Override
     public void run() {
         try {
+            System.out.println("lkpoasfkjijifasjijsaofijoiasfj");
             apiHelper.updateProjects();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+}
+
+class auctionScheduler implements Runnable {
+    @Override
+    public void run() {
+        try {
+            ArrayList<Project> projects = Database.getUnresolvedProjects();
+            for (Project project : projects){
+                System.out.println(project.getId());
+                Database.auction(project);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
 

@@ -34,11 +34,9 @@ public class ProjectListServlet extends HttpServlet {
         limit = request.getParameter("limit");
         nextPageToken = request.getParameter("nextPageToken");
         try {
-//            int projectSize = Database.getProjects().size();
-            boolean showLoadMoreFlag = true; //(Integer.parseInt(nextPageToken) <= projectSize) && (projectSize < Integer.parseInt(nextPageToken) + Integer.parseInt(limit));
             ProjectsPaginationDTO projectsPaginationDTO = new ProjectsPaginationDTO(
                     Database.getProjectsPage(Integer.parseInt(limit), Integer.parseInt(nextPageToken)),
-                    Integer.parseInt(limit) + Integer.parseInt(nextPageToken), showLoadMoreFlag);
+                    Integer.parseInt(limit) + Integer.parseInt(nextPageToken), Integer.parseInt(limit));
             String projectsJson = ow.writeValueAsString(projectsPaginationDTO);
             Utils.sendJSON(projectsJson, response, 200);
 
