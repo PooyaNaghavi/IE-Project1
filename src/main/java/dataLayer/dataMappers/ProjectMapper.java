@@ -28,15 +28,16 @@ public class ProjectMapper extends Mapper<Project, Integer> {
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "project" + " " + "(" +
-                "id TEXT PRIMARY KEY, " +
-                "title TEXT, " +
-                "description TEXT, " +
-                "imageUrl TEXT, " +
-                "budget INTEGER, " +
+                "id VARCHAR(100), " +
+                "title VARCHAR(100), " +
+                "description VARCHAR(10000), " +
+                "imageUrl VARCHAR(1000), " +
+                "budget INT, " +
                 "deadline DATE, " +
                 "creationDate DATE," +
-                "winnerId TEXT nullable , " +
-                "FOREIGN KEY (winnerId) REFERENCES user(id)" +
+                "winnerId VARCHAR(100) , " +
+                "PRIMARY KEY (id), " +
+                "FOREIGN KEY (winnerId) REFERENCES user(id) ON DELETE CASCADE" +
                 ")");
         st.close();
         con.close();

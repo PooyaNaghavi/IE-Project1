@@ -28,14 +28,16 @@ public class UserMapper extends Mapper<User, Integer> {
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "user" + " " + "(" +
-                "id TEXT PRIMARY KEY, " +
-                "firstName TEXT, " +
-                "lastName TEXT, " +
-                "userName TEXT UNIQUE , " +
-                "password TEXT, " +
-                "jobTitle TEXT, " +
-                "profilePictureURL TEXT, " +
-                "bio TEXT " +
+                "id VARCHAR(100), " +
+                "firstName VARCHAR(100), " +
+                "lastName VARCHAR(100), " +
+                "userName VARCHAR(100) , " +
+                "password VARCHAR(500), " +
+                "jobTitle VARCHAR(100), " +
+                "profilePictureURL VARCHAR(1000), " +
+                "bio VARCHAR(10000), " +
+                "PRIMARY KEY (id)," +
+                "UNIQUE KEY (userName)" +
                 ")");
         st.close();
         con.close();

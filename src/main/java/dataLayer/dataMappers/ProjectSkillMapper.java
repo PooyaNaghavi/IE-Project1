@@ -17,12 +17,12 @@ public class ProjectSkillMapper extends Mapper<ProjectSkill, Integer> {
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "projectSkill" + " " + "(" +
-                "skillName TEXT," +
-                "projectId TEXT," +
-                "point INTEGER," +
+                "skillName VARCHAR(100)," +
+                "projectId VARCHAR(100)," +
+                "point INT," +
                 "PRIMARY KEY (skillName, projectId)," +
-                "FOREIGN KEY (projectId) REFERENCES project(id)," +
-                "FOREIGN KEY (skillName) REFERENCES skill(skillName)" +
+                "FOREIGN KEY (projectId) REFERENCES project(id) ON DELETE CASCADE," +
+                "FOREIGN KEY (skillName) REFERENCES skill(skillName) ON DELETE CASCADE " +
                 ")");
         st.close();
         con.close();

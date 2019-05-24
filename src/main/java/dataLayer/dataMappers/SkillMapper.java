@@ -17,7 +17,8 @@ public class SkillMapper extends Mapper<Skill, Integer> {
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "skill" + " " + "(" +
-                "skillName TEXT PRIMARY KEY " +
+                "skillName VARCHAR(100), " +
+                "PRIMARY KEY (skillName) " +
                 ")");
         st.close();
         con.close();

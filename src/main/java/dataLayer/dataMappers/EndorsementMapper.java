@@ -22,13 +22,13 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "endorsement" + " " + "(" +
-                "endorserId TEXT, " +
-                "endorsedId TEXT, " +
-                "skillName TEXT, " +
+                "endorserId VARCHAR(100), " +
+                "endorsedId VARCHAR(100), " +
+                "skillName VARCHAR(100), " +
                 "PRIMARY KEY (endorserId, endorsedId, skillName)," +
-                "FOREIGN KEY (endorserId) REFERENCES user(id)," +
-                "FOREIGN KEY (endorsedId) REFERENCES user(id)," +
-                "FOREIGN KEY (skillName) REFERENCES userSkill(skillName)" +
+                "FOREIGN KEY (endorserId) REFERENCES user(id) ON DELETE CASCADE," +
+                "FOREIGN KEY (endorsedId) REFERENCES user(id) ON DELETE CASCADE," +
+                "FOREIGN KEY (skillName) REFERENCES userSkill(skillName) ON DELETE CASCADE" +
                 ")");
         st.close();
         con.close();

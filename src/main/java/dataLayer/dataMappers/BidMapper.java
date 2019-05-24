@@ -25,12 +25,12 @@ public class BidMapper extends Mapper<Bid, Integer>{
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "bid" + " " + "(" +
-                "userId TEXT, " +
-                "projectId TEXT, " +
-                "amount INTEGER, " +
+                "userId VARCHAR(100), " +
+                "projectId VARCHAR(100), " +
+                "amount INT, " +
                 "PRIMARY KEY (userId, projectId)," +
-                "FOREIGN KEY (userId) REFERENCES user(id)," +
-                "FOREIGN KEY (projectId) REFERENCES project(id)" +
+                "FOREIGN KEY (userId) REFERENCES user(id) ON DELETE CASCADE," +
+                "FOREIGN KEY (projectId) REFERENCES project(id) ON DELETE  CASCADE" +
                 ")");
         st.close();
         con.close();

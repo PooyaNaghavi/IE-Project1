@@ -17,11 +17,11 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "userSkill" + " " + "(" +
-                "skillName TEXT," +
-                "userId TEXT," +
+                "skillName VARCHAR(100)," +
+                "userId VARCHAR(100)," +
                 "PRIMARY KEY (skillName, userId)," +
-                "FOREIGN KEY (userId) REFERENCES user(id)," +
-                "FOREIGN KEY (skillName) REFERENCES skill(skillName)" +
+                "FOREIGN KEY (userId) REFERENCES user(id) ON DELETE CASCADE ," +
+                "FOREIGN KEY (skillName) REFERENCES skill(skillName) ON DELETE CASCADE " +
                 ")");
         st.close();
         con.close();
