@@ -4,7 +4,6 @@ import dataLayer.DBCPDBConnectionPool;
 import model.Project;
 import model.Skill;
 import model.User;
-import org.python.antlr.ast.Str;
 
 import java.sql.*;
 import java.util.ArrayList;
