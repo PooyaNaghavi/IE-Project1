@@ -105,6 +105,7 @@ public class UserMapper extends Mapper<User, Integer> {
         PreparedStatement statement = con.prepareStatement(query);
         statement.setString(1, id);
         ResultSet rs = statement.executeQuery();
+        rs.next();
 //        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE id = \"" + id + "\"");
         User user = convertResultSetToDomainModel(rs);
         statement.close();
@@ -138,6 +139,7 @@ public class UserMapper extends Mapper<User, Integer> {
         statement.setString(2, user.getHashedPassword());
         ResultSet rs = statement.executeQuery();
 //        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM user WHERE userName = \"" + user.getUserName() + "\" AND password = \"" + user.getHashedPassword() + "\"");
+        rs.next();
         User foundUser = convertResultSetToDomainModel(rs);
         statement.close();
         con.close();

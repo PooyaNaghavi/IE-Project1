@@ -79,6 +79,7 @@ public class BidMapper extends Mapper<Bid, Integer>{
         statement.setString(2,  project.getId());
         ResultSet rs = statement.executeQuery();
 //        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM bid WHERE userId = \"" + user.getId() + "\" AND projectId = \""+ project.getId() + "\"");
+        rs.next();
         Bid bid = convertResultSetToDomainModel(rs);
         statement.close();
         con.close();

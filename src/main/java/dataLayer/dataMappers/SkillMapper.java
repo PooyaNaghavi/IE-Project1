@@ -4,7 +4,6 @@ import dataLayer.DBCPDBConnectionPool;
 import model.Project;
 import model.Skill;
 import model.User;
-import org.python.antlr.ast.Str;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -54,6 +53,7 @@ public class SkillMapper extends Mapper<Skill, Integer> {
         statement.setString(1, skillName);
         ResultSet rs = statement.executeQuery();
 //        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM skill WHERE skillName = \"" + skillName + "\"");
+        rs.next();
         Skill skill = convertResultSetToDomainModel(rs);
         statement.close();
         con.close();

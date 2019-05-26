@@ -66,6 +66,7 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
         statement.setString(2, skillName);
         ResultSet rs = statement.executeQuery();
 //        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE userId = \"" + user.getId() + "\"AND skillName = \"" + skillName + "\"");
+        rs.next();
         UserSkill userSkill = convertResultSetToDomainModel(rs);
         statement.close();
         con.close();
@@ -93,6 +94,7 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
         statement.setString(1, skillName);
         ResultSet rs = statement.executeQuery();
 //        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE skillName = \"" + skillName + "\"");
+        rs.next();
         UserSkill skill = convertResultSetToDomainModel(rs);
         statement.close();
         con.close();

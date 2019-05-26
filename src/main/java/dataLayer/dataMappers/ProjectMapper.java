@@ -110,6 +110,7 @@ public class ProjectMapper extends Mapper<Project, Integer> {
         statement.setString(1, id);
         ResultSet rs = statement.executeQuery();
 //        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM project WHERE id = \"" + id + "\"");
+        rs.next();
         Project project = convertResultSetToDomainModel(rs);
         statement.close();
         con.close();

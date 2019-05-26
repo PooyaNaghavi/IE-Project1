@@ -17,15 +17,16 @@ import java.sql.SQLException;
 @WebServlet("/login")
 public class LoginServlet  extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        System.out.println("safkjsalkfjlkasjflkasjflkjasflkjaslkfjasflkj ----------------------------");
         String body = Utils.getBodyOfRequest(request);
         ObjectMapper objectMapper = new ObjectMapper();
         User loginUser = objectMapper.readValue(body, User.class);
-        User foundUser;
-
+        System.out.println(loginUser.getUserName());
+        System.out.println(loginUser.getPassword());
+        System.out.println(loginUser.getHashedPassword());
         try {
             response.setStatus(200);
-            foundUser = Database.AuthenticateUser(loginUser);
+            User foundUser = Database.AuthenticateUser(loginUser);
             String JWTToken = Utils.signJWT(foundUser.getId());
             RegisterDTO registerDTO = new RegisterDTO(JWTToken, foundUser.getId());
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
