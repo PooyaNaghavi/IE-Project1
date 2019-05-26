@@ -17,12 +17,12 @@ public class ProjectSkillMapper extends Mapper<ProjectSkill, Integer> {
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "projectSkill" + " " + "(" +
-                "skillName TEXT," +
-                "projectId TEXT," +
-                "point INTEGER," +
+                "skillName VARCHAR(100)," +
+                "projectId VARCHAR(100)," +
+                "point INT," +
                 "PRIMARY KEY (skillName, projectId)," +
-                "FOREIGN KEY (projectId) REFERENCES project(id)," +
-                "FOREIGN KEY (skillName) REFERENCES skill(skillName)" +
+                "FOREIGN KEY (projectId) REFERENCES project(id) ON DELETE CASCADE," +
+                "FOREIGN KEY (skillName) REFERENCES skill(skillName) ON DELETE CASCADE " +
                 ")");
         st.close();
         con.close();
@@ -58,15 +58,18 @@ public class ProjectSkillMapper extends Mapper<ProjectSkill, Integer> {
     }
     public ArrayList<ProjectSkill> getProjectSkills(String id) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM projectSkill WHERE projectId = \"" + id + "\"");
+        String query = "SELECT " + COLUMNS + " FROM projectSkill WHERE projectId = ?";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, id);
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM projectSkill WHERE projectId = \"" + id + "\"");
         ArrayList<ProjectSkill> projectSkills = new ArrayList<>();
         while(rs.next()){
             ProjectSkill ps = convertResultSetToDomainModel(rs);
             projectSkills.add(ps);
         }
-        st.close();
+        statement.close();
         con.close();
         return projectSkills;
     }

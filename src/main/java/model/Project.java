@@ -27,7 +27,7 @@ public class Project {
 
     public Project(){ }
 
-    public Project(String id, String title, String description, String imageURL, ArrayList<ProjectSkill> skills, int budget, long deadline, long creationDate, User winner) {
+    public Project(String id, String title, String description, String imageURL, ArrayList<ProjectSkill> skills, int budget, long deadline, long creationDate) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -36,7 +36,6 @@ public class Project {
         this.budget = budget;
         this.deadline = deadline;
         this.creationDate = creationDate;
-        this.winner = winner;
     }
 
     public String getTitle() {

@@ -22,13 +22,13 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "endorsement" + " " + "(" +
-                "endorserId TEXT, " +
-                "endorsedId TEXT, " +
-                "skillName TEXT, " +
+                "endorserId VARCHAR(100), " +
+                "endorsedId VARCHAR(100), " +
+                "skillName VARCHAR(100), " +
                 "PRIMARY KEY (endorserId, endorsedId, skillName)," +
-                "FOREIGN KEY (endorserId) REFERENCES user(id)," +
-                "FOREIGN KEY (endorsedId) REFERENCES user(id)," +
-                "FOREIGN KEY (skillName) REFERENCES userSkill(skillName)" +
+                "FOREIGN KEY (endorserId) REFERENCES user(id) ON DELETE CASCADE," +
+                "FOREIGN KEY (endorsedId) REFERENCES user(id) ON DELETE CASCADE," +
+                "FOREIGN KEY (skillName) REFERENCES userSkill(skillName) ON DELETE CASCADE" +
                 ")");
         st.close();
         con.close();
@@ -71,15 +71,19 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
 
     public ArrayList<Endorsement> getUserEndorses(String userId, String skillName) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM endorsement WHERE endorsedId = \"" + userId + "\" AND skillName = \"" + skillName +"\"");
+        String query = "SELECT " + COLUMNS + " FROM endorsement WHERE endorsedId = ? AND skillName = ?";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, userId);
+        statement.setString(2, skillName);
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM endorsement WHERE endorsedId = \"" + userId + "\" AND skillName = \"" + skillName +"\"");
         ArrayList<Endorsement> endorses = new ArrayList<>();
         while(rs.next()){
             Endorsement en = convertResultSetToDomainModel(rs);
             endorses.add(en);
         }
-        st.close();
+        statement.close();
         con.close();
         return endorses;
     }

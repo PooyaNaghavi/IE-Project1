@@ -23,11 +23,12 @@ public class DBCPDBConnectionPool {
     static {
         ds.setUrl(dbURL);
         ds.setMinIdle(1);
-        ds.setMaxActive(30);
-        ds.setMaxIdle(30);
+        ds.setMaxActive(100);
+        ds.setMaxIdle(100);
     }
 
     public static Connection getConnection() throws SQLException {
+        System.out.println(ds.getNumActive());
         return ds.getConnection();
     }
 

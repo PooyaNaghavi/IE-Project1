@@ -10,10 +10,10 @@ public class ProjectsPaginationDTO {
     private boolean showLoadMoreFlag;
 
     public ProjectsPaginationDTO(){ }
-    public ProjectsPaginationDTO(ArrayList<Project> projects, int nextPageToken, boolean showLoadMoreFlag) {
+    public ProjectsPaginationDTO(ArrayList<Project> projects, int nextPageToken, int limit) {
         this.projects = projects;
         this.nextPageToken = nextPageToken;
-        this.showLoadMoreFlag = showLoadMoreFlag;
+        this.showLoadMoreFlag = limit != projects.size();
     }
 
     public ArrayList<Project> getProjects() {

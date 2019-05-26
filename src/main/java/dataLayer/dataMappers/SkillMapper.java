@@ -4,6 +4,7 @@ import dataLayer.DBCPDBConnectionPool;
 import model.Project;
 import model.Skill;
 import model.User;
+import org.python.antlr.ast.Str;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ public class SkillMapper extends Mapper<Skill, Integer> {
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "skill" + " " + "(" +
-                "skillName TEXT PRIMARY KEY " +
+                "skillName VARCHAR(100), " +
+                "PRIMARY KEY (skillName) " +
                 ")");
         st.close();
         con.close();
@@ -46,26 +48,31 @@ public class SkillMapper extends Mapper<Skill, Integer> {
 
     public Skill findByName(String skillName) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM skill WHERE skillName = \"" + skillName + "\"");
+        String query = "SELECT " + COLUMNS + " FROM skill WHERE skillName = ? ";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, skillName);
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM skill WHERE skillName = \"" + skillName + "\"");
         Skill skill = convertResultSetToDomainModel(rs);
-        st.close();
+        statement.close();
         con.close();
         return skill;
     }
 
     public ArrayList<Skill> findAll() throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM skill");
+        String query = "SELECT " + COLUMNS + " FROM skill";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM skill");
         ArrayList<Skill> skills = new ArrayList<>();
         while(rs.next()){
             Skill skill = convertResultSetToDomainModel(rs);
             skills.add(skill);
         }
-        st.close();
+        statement.close();
         con.close();
         return skills;
     }

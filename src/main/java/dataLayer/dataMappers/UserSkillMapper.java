@@ -17,11 +17,11 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
         Statement st =
                 con.createStatement();
         st.executeUpdate("CREATE TABLE IF NOT EXISTS " + "userSkill" + " " + "(" +
-                "skillName TEXT," +
-                "userId TEXT," +
+                "skillName VARCHAR(100)," +
+                "userId VARCHAR(100)," +
                 "PRIMARY KEY (skillName, userId)," +
-                "FOREIGN KEY (userId) REFERENCES user(id)," +
-                "FOREIGN KEY (skillName) REFERENCES skill(skillName)" +
+                "FOREIGN KEY (userId) REFERENCES user(id) ON DELETE CASCADE ," +
+                "FOREIGN KEY (skillName) REFERENCES skill(skillName) ON DELETE CASCADE " +
                 ")");
         st.close();
         con.close();
@@ -59,47 +59,60 @@ public class UserSkillMapper extends Mapper<UserSkill, Integer> {
 
     public UserSkill findUserSkill(String skillName, User user) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE userId = \"" + user.getId() + "\"AND skillName = \"" + skillName + "\"");
+        String query = "SELECT " + COLUMNS + " FROM userSkill WHERE userId = ? AND skillName = ? ";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, user.getId());
+        statement.setString(2, skillName);
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE userId = \"" + user.getId() + "\"AND skillName = \"" + skillName + "\"");
         UserSkill userSkill = convertResultSetToDomainModel(rs);
-        st.close();
+        statement.close();
         con.close();
         return userSkill;
     }
 
     public void deleteSkill(Skill skill, User user) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        //TODO : add Skill null has bug
-        st.execute("Delete FROM userSkill WHERE userId = \"" + user.getId() + "\"AND skillName = \"" + skill.getName() + "\"");
-        st.close();
+        String query = "Delete FROM userSkill WHERE userId = ? AND skillName = ? ";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, user.getId());
+        statement.setString(2, skill.getName());
+        statement.execute();
+//        st.execute("Delete FROM userSkill WHERE userId = \"" + user.getId() + "\"AND skillName = \"" + skill.getName() + "\"");
+        statement.close();
         con.close();
     }
 
     public UserSkill findByName(String skillName) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE skillName = \"" + skillName + "\"");
+        String query = "SELECT " + COLUMNS + " FROM userSkill WHERE skillName = ? ";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, skillName);
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE skillName = \"" + skillName + "\"");
         UserSkill skill = convertResultSetToDomainModel(rs);
-        st.close();
+        statement.close();
         con.close();
         return skill;
     }
 
     public ArrayList<UserSkill> getUserSkills(String id) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        Statement st =
-                con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE userId = \"" + id + "\"");
+        String query = "SELECT " + COLUMNS + " FROM userSkill WHERE userId = ? ";
+//        Statement st = con.createStatement();
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setString(1, id);
+        ResultSet rs = statement.executeQuery();
+//        ResultSet rs = st.executeQuery("SELECT " + COLUMNS + " FROM userSkill WHERE userId = \"" + id + "\"");
         ArrayList<UserSkill> userSkills = new ArrayList<>();
         while(rs.next()){
             UserSkill userSkill = convertResultSetToDomainModel(rs);
             userSkills.add(userSkill);
         }
-        st.close();
+        statement.close();
         con.close();
         return userSkills;
     }

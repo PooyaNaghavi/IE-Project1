@@ -5,6 +5,7 @@ import dataLayer.dataMappers.*;
 import exceptions.BadConditionException;
 import exceptions.NotFoundException;
 import model.*;
+import org.json.JSONObject;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -272,4 +273,23 @@ public class Database {
         user.hashPassword();
         userMapper.insertOne(user);
     }
+
+    public static void auction(Project project) {
+        try {
+            ArrayList<User> biddingUsers = findBiddingUserInProject(project);
+            User winner = findAuctionWinner(biddingUsers, project);
+            projectMapper.setProjectWinner(winner, project);
+            System.out.println("winner : " + winner.getFirstName());
+        }
+        catch(NotFoundException e){
+            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Project> getUnresolvedProjects() throws SQLException {
+        return projectMapper.getUnresolvedProjects();
+    }
+
 }

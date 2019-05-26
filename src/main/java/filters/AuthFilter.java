@@ -55,7 +55,6 @@ public class AuthFilter implements Filter {
         servletRequest.setCharacterEncoding("UTF-8");
 
         String jwt = getBearerToken( httpRequest );
-
         if ( jwt == null || jwt.isEmpty() ) {
             LOG.info("No JWT provided, go on unauthenticated");
             HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
