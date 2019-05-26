@@ -34,7 +34,7 @@ public class SkillMapper extends Mapper<Skill, Integer> {
 
     public void insertOne(Skill skill) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        String sql = "INSERT OR IGNORE INTO skill (" +
+        String sql = "INSERT IGNORE INTO skill (" +
                 "skillName" +
                 ") VALUES (" +
                 "" +

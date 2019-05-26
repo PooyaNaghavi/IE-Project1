@@ -51,7 +51,7 @@ public class EndorsementMapper extends Mapper<Endorsement, Integer> {
 
     public void insertOne(Endorsement endorsement) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        String sql = "INSERT OR IGNORE INTO endorsement (" +
+        String sql = "INSERT IGNORE INTO endorsement (" +
                 "endorserId," +
                 "endorsedId," +
                 "skillName" +

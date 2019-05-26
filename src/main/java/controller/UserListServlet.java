@@ -18,6 +18,7 @@ import java.sql.SQLException;
 public class UserListServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("salamasmfmasmfkasjfkljsaflkjaslkfjlkasfjlkasjlkfjsalkfjlks----------------------");
         int statusCode = 200;
         try {
             ObjectWriter ow = new ObjectMapper().writer();

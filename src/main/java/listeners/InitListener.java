@@ -32,7 +32,7 @@ public class InitListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent arg0) {
         try {
-            Class.forName("org.sqlite.JDBC");
+            //            Class.forName("org.sqlite.JDBC");
             Database.setMapper();
             apiHelper.updateSkills();
             //Database.addSomeUsersAndEndorsements();
@@ -47,8 +47,6 @@ public class InitListener implements ServletContextListener {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

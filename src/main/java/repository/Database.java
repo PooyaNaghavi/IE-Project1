@@ -27,13 +27,13 @@ public class Database {
     private static UserSkillMapper userSkillMapper;
 
     public static void setMapper() throws SQLException {
-        bidMapper = new BidMapper();
-        endorsementMapper = new EndorsementMapper();
+        userMapper = new UserMapper();
+        skillMapper = new SkillMapper();
+        userSkillMapper = new UserSkillMapper();
         projectMapper = new ProjectMapper();
         projectSkillMapper = new ProjectSkillMapper();
-        skillMapper = new SkillMapper();
-        userMapper = new UserMapper();
-        userSkillMapper = new UserSkillMapper();
+        bidMapper = new BidMapper();
+        endorsementMapper = new EndorsementMapper();
 
         bidMapper.setMapper(userMapper, projectMapper);
         endorsementMapper.setMapper(userMapper, skillMapper);

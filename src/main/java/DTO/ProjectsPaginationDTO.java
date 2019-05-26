@@ -20,7 +20,7 @@ public class ProjectsPaginationDTO {
         return projects;
     }
 
-    public long getNextPageToken() {
+    public int getNextPageToken() {
         return nextPageToken;
     }
 
