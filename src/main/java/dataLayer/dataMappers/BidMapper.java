@@ -53,7 +53,7 @@ public class BidMapper extends Mapper<Bid, Integer>{
 
     public void insertOne(Bid bid) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        String sql = "INSERT OR IGNORE INTO bid (" +
+        String sql = "INSERT IGNORE INTO bid (" +
                 "userId," +
                 "projectId," +
                 "amount" +

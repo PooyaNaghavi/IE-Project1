@@ -69,7 +69,7 @@ public class ProjectMapper extends Mapper<Project, Integer> {
 
     public void insertOne(Project project) throws SQLException {
         Connection con = DBCPDBConnectionPool.getConnection();
-        String sql = "INSERT OR IGNORE INTO project (" +
+        String sql = "INSERT IGNORE INTO project (" +
                 "id," +
                 "title," +
                 "description," +
