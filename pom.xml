@@ -46,11 +46,11 @@
             <artifactId>json</artifactId>
             <version>20180130</version>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>org.projectfloodlight</groupId>
             <artifactId>floodlight</artifactId>
             <version>1.2-SNAPSHOT</version>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>com.sun.net.httpserver</groupId>
             <artifactId>http</artifactId>
