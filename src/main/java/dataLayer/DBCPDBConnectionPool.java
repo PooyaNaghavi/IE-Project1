@@ -28,7 +28,7 @@ public class DBCPDBConnectionPool {
             e.printStackTrace();
         }
         ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3307/joboonja?useUnicode=yes&characterEncoding=UTF-8");
+        ds.setUrl("jdbc:mysql:3307/joboonja?useUnicode=yes&characterEncoding=UTF-8");
         ds.setUsername("root");
         ds.setPassword("pass123");
         ds.setMinIdle(1);
