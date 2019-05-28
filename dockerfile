@@ -1,9 +1,9 @@
 FROM maven:3.3-jdk-8 as builder
-WORKDIR /usr/src/mymaven
+WORKDIR /app
 ADD . .
 RUN mvn install -f /usr/src/mymaven
-RUN mkdir /usr/src/wars/
-RUN find /usr/src/mymaven/ -iname '*.war' -exec cp {} /usr/src/wars/ \;
+RUN mkdir /wars/
+RUN find /app/ -iname '*.war' -exec cp {} /wars/ \;
 
 FROM tomcat:7.0.90-jre8
-COPY --from=builder /usr/src/wars/* /usr/local/tomcat/webapps/
+COPY --from=builder /wars/* /usr/local/tomcat/webapps/
