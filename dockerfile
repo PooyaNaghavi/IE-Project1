@@ -1,7 +1,7 @@
 FROM maven:3.3-jdk-8 as builder
 WORKDIR /app
 ADD . .
-RUN mvn package
+RUN mvn clean package
 RUN mkdir /wars/
 RUN find /app/ -iname '*.war' -exec cp {} /wars/ \;
 
