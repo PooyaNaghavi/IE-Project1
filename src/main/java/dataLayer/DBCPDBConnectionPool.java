@@ -27,8 +27,9 @@ public class DBCPDBConnectionPool {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println("connecting to jdbc:mysql:3306/joboonja?useUnicode=yes&characterEncoding=UTF-8")
         ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUrl("jdbc:mysql:3307/joboonja?useUnicode=yes&characterEncoding=UTF-8");
+        ds.setUrl("jdbc:mysql:3306/joboonja?useUnicode=yes&characterEncoding=UTF-8");
         ds.setUsername("root");
         ds.setPassword("pass123");
         ds.setMinIdle(1);
